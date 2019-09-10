@@ -16,8 +16,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView imageView = findViewById(R.id.image_iv);
-        imageView.setBackgroundResource(R.drawable.Highlights);
+        ImageView imageView = findViewById(R.id.image_bg);
+        imageView.setBackgroundResource(R.drawable.highlights);
+
+        ImageView imageView1 = findViewById(R.id.image_sand1);
+        imageView1.setBackgroundResource(R.drawable.sand1);
+
+        ImageView imageView2 = findViewById(R.id.image_wave1_20);
+        imageView2.setBackgroundResource(R.drawable.wave1_20);
 
     }
 }
