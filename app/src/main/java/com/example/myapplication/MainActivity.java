@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private TextView percentTide;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView imageView2 = findViewById(R.id.image_wave1_20);
         imageView2.setBackgroundResource(R.drawable.wave1_20);
+
+        String percent = "20%";
+        percentTide = findViewById(R.id.percentTide);
+        percentTide.setText(percent);
 
     }
 }

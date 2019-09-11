@@ -44,14 +44,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="100">
-            //это поле для процентов//
+
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/percentTide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20%"
                 android:layout_gravity="center"
-                android:layout_weight="50" />
+                android:layout_weight="50"
+                android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
 
