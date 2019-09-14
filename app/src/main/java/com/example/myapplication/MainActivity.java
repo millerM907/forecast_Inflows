@@ -11,7 +11,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private TextView percentTide;
+    private TextView tvPercentTide;
+    private TextView tvState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,12 @@ public class MainActivity extends AppCompatActivity {
         imageView2.setBackgroundResource(R.drawable.wave1_20);
 
         String percent = "20%";
-        percentTide = findViewById(R.id.percentTide);
-        percentTide.setText(percent);
+        tvPercentTide = findViewById(R.id.tv_percentTide);
+        tvPercentTide.setText(percent);
+
+        String[] state = new String[]{"ЗАГРУЗКА...", "ПРИЛИВ", "ОТЛИВ"};
+        tvState = findViewById(R.id.tv_state);
+        tvState.setText(state[1]);
 
     }
 }
