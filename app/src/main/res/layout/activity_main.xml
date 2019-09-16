@@ -72,7 +72,8 @@
     <TextView
         android:id="@+id/tv_state"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.09"
         android:gravity="center"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,12 +83,13 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cv_waterTime"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/cv_temperature"
         app:layout_constraintEnd_toStartOf="@+id/cv_waterHeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_state"
         app:layout_constraintWidth_percent="0.44"
+        app:layout_constraintHeight_percent="0.08"
         android:layout_marginTop="19dp"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp"/>
@@ -95,37 +97,40 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cv_temperature"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/cv_windSide"
         app:layout_constraintEnd_toStartOf="@+id/cv_rainfall"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_waterTime"
         app:layout_constraintWidth_percent="0.44"
-        android:layout_marginTop="6dp"
+        app:layout_constraintHeight_percent="0.08"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_windSide"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="19dp"
         app:layout_constraintEnd_toStartOf="@+id/cv_windStrength"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cv_temperature"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent="0.44"
-        android:layout_marginTop="6dp"
+        app:layout_constraintHeight_percent="0.08"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_waterHeight"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/cv_rainfall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cv_waterTime"
         app:layout_constraintTop_toBottomOf="@+id/tv_state"
         app:layout_constraintWidth_percent="0.44"
+        app:layout_constraintHeight_percent="0.08"
         android:layout_marginTop="19dp"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp"/>
@@ -133,25 +138,27 @@
     <android.support.v7.widget.CardView
         android:id="@+id/cv_rainfall"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/cv_windStrength"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cv_temperature"
         app:layout_constraintTop_toBottomOf="@+id/cv_waterHeight"
         app:layout_constraintWidth_percent="0.44"
-        android:layout_marginTop="6dp"
+        app:layout_constraintHeight_percent="0.08"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_windStrength"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cv_windSide"
         app:layout_constraintTop_toBottomOf="@+id/cv_rainfall"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent="0.44"
-        android:layout_marginTop="6dp"
+        app:layout_constraintHeight_percent="0.08"
+        android:layout_marginBottom="19dp"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp"/>
 
