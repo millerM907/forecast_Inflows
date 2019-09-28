@@ -144,7 +144,7 @@
         app:layout_constraintStart_toEndOf="@+id/cv_temperature"
         app:layout_constraintTop_toBottomOf="@+id/cv_waterHeight"
         app:layout_constraintWidth_percent="0.44"
-        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHeight_percent="0.09"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp"/>
 
@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_rainfall"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent="0.44"
-        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHeight_percent="0.12"
         android:layout_marginBottom="19dp"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp"/>
