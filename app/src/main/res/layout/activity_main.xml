@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_percentTide" />
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_waterTime.1"
+        android:id="@+id/cv_waterTime_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -100,8 +100,8 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/cv_temperature.2"
-        app:layout_constraintEnd_toStartOf="@+id/cv_waterHeight.4"
+        app:layout_constraintBottom_toTopOf="@+id/cv_temperature_2"
+        app:layout_constraintEnd_toStartOf="@+id/cv_waterHeight_4"
         app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_state"
@@ -110,62 +110,66 @@
         app:strokeWidth="8dp" >
 
         <TextView
-            android:id="@+id/tv_waterTime.1.1"
+            android:id="@+id/tv_waterTime_1_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|top"
             android:text="Полная вода"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
-            android:id="@+id/tv_waterTime.1.2"
+            android:id="@+id/tv_waterTime_1_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center_horizontal"
             android:text="23:15"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            android:fontFamily="@font/my_number_font"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_temperature.2"
+        android:id="@+id/cv_temperature_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/cv_windSide.3"
-        app:layout_constraintEnd_toStartOf="@+id/cv_rainfall.5"
+        app:layout_constraintBottom_toTopOf="@+id/cv_windSide_3"
+        app:layout_constraintEnd_toStartOf="@+id/cv_rainfall_5"
         app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_waterTime.1"
+        app:layout_constraintTop_toBottomOf="@+id/cv_waterTime_1"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp" >
 
         <TextView
-            android:id="@+id/tv_temperature.2.1"
+            android:id="@+id/tv_temperature_2_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|top"
             android:text="Температура воздуха"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
-            android:id="@+id/tv_temperature.2.2"
+            android:id="@+id/tv_temperature_2_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center_horizontal"
             android:text="14°"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            android:fontFamily="@font/my_number_font"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_windSide.3"
+        android:id="@+id/cv_windSide_3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
@@ -173,35 +177,37 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cv_windStrength.6"
+        app:layout_constraintEnd_toStartOf="@+id/cv_windStrength_6"
         app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_temperature.2"
+        app:layout_constraintTop_toBottomOf="@+id/cv_temperature_2"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp" >
 
         <TextView
-            android:id="@+id/tv_windSide.3.1"
+            android:id="@+id/tv_windSide_3_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|top"
             android:text="Направление ветра"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
-            android:id="@+id/tv_windSide.3.2"
+            android:id="@+id/tv_windSide_3_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center_horizontal"
             android:text="349°"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            android:fontFamily="@font/my_number_font"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_waterHeight.4"
+        android:id="@+id/cv_waterHeight_4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -209,72 +215,76 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/cv_rainfall.5"
+        app:layout_constraintBottom_toTopOf="@+id/cv_rainfall_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@+id/cv_waterTime.1"
+        app:layout_constraintStart_toEndOf="@+id/cv_waterTime_1"
         app:layout_constraintTop_toBottomOf="@+id/tv_state"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp" >
 
         <TextView
-            android:id="@+id/tv_waterHeight.4.1"
+            android:id="@+id/tv_waterHeight_4_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|top"
             android:text="Высота воды"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
-            android:id="@+id/tv_waterHeight.4.2"
+            android:id="@+id/tv_waterHeight_4_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center_horizontal"
             android:text="6,33 м"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            android:fontFamily="@font/my_number_font"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_rainfall.5"
+        android:id="@+id/cv_rainfall_5"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/cv_windStrength.6"
+        app:layout_constraintBottom_toTopOf="@+id/cv_windStrength_6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@+id/cv_temperature.2"
-        app:layout_constraintTop_toBottomOf="@+id/cv_waterHeight.4"
+        app:layout_constraintStart_toEndOf="@+id/cv_temperature_2"
+        app:layout_constraintTop_toBottomOf="@+id/cv_waterHeight_4"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp" >
 
         <TextView
-            android:id="@+id/tv_rainfall.5.1"
+            android:id="@+id/tv_rainfall_5_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|top"
             android:text="Вероятность осадков"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
-            android:id="@+id/tv_rainfall.5.2"
+            android:id="@+id/tv_rainfall_5_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center_horizontal"
             android:text="43%"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            android:fontFamily="@font/my_number_font"/>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_windStrength.6"
+        android:id="@+id/cv_windStrength_6"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
@@ -285,29 +295,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@+id/cv_windSide.3"
-        app:layout_constraintTop_toBottomOf="@+id/cv_rainfall.5"
+        app:layout_constraintStart_toEndOf="@+id/cv_windSide_3"
+        app:layout_constraintTop_toBottomOf="@+id/cv_rainfall_5"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#33FFFFFF"
         app:strokeWidth="8dp" >
 
         <TextView
-            android:id="@+id/tv_windStrength.6.1"
+            android:id="@+id/tv_windStrength_6_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|top"
             android:text="Сила ветра"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
-            android:id="@+id/tv_windStrength.6.2"
+            android:id="@+id/tv_windStrength_6_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center_horizontal"
             android:text="5 м/с"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            android:fontFamily="@font/my_number_font"/>
     </android.support.v7.widget.CardView>
 
     <ImageButton
@@ -331,6 +343,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        android:fontFamily="@font/my_number_font"/>
 
 </android.support.constraint.ConstraintLayout>

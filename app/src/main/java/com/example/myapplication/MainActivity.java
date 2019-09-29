@@ -1,14 +1,19 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.security.KeyStore;
+import java.text.AttributedCharacterIterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,10 +48,6 @@ public class MainActivity extends AppCompatActivity {
         tvState.setText(state[1]);
         Typeface typefacePalatinoLinotype = Typeface.createFromAsset(getAssets(), "fonts/pala.ttf");
         tvState.setTypeface(typefacePalatinoLinotype);
-
-        TextView tvTime = findViewById(R.id.tv_time);
-        Typeface typefaceBookAntiqua = Typeface.createFromAsset(getAssets(), "fonts/BKANT.TTF");
-        tvTime.setTypeface(typefaceBookAntiqua);
 
     }
 }
