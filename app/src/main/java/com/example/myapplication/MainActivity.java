@@ -1,19 +1,11 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import java.security.KeyStore;
-import java.text.AttributedCharacterIterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,14 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        ResourseID resourseID = new ResourseID(this);
+
         ImageView imageView = findViewById(R.id.iv_bg);
         imageView.setBackgroundResource(R.drawable.highlights);
 
         ImageView imageView1 = findViewById(R.id.iv_sand);
         imageView1.setBackgroundResource(R.drawable.sand1);
 
+        int x = 53;
         ImageView imageView2 = findViewById(R.id.iv_wave5);
-        imageView2.setBackgroundResource(R.drawable.wave5);
+        imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(x));
 
         String percent = "20%";
         tvPercentTide = findViewById(R.id.tv_percentTide);
