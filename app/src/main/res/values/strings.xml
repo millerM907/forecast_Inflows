@@ -3,4 +3,17 @@
     <string name="bg">Background image with highlights and gradients</string>
     <string name="sand">The wet sand</string>
     <string name="wave">The water</string>
+
+    <string name="ma_percent">%1$s %%</string>
+    <string name="ma_water_height">%1$s м</string>
+    <string name="ma_humidity">%1$s%%</string>
+    <string name="ma_temperature">%1$s°</string>
+    <string name="ma_wind">%1$s м/с</string>>
+
+    <string name="humidity">Влажность</string>
+    <string name="wind_force">Сила ветра</string>
+    <string name="water_height">Высота воды</string>
+    <string name="wind_direction">Направление ветра</string>
+    <string name="temperature">Температура воздуха</string>
+    <string name="water_time">Время</string>
 </resources>

@@ -11,7 +11,7 @@ public class ResourseID {
 
     public int getSearchImageResourseID(int percentTides){
         int imageID = (int)(percentTides + 5) / 10;
-        String imageWaveName = "wave" + imageID;
+        String imageWaveName = "wave_" + imageID;
         int resourseID = context.getResources().getIdentifier(imageWaveName, "drawable", context.getPackageName());
         return resourseID;
     }
