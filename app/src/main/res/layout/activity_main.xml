@@ -196,7 +196,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center_horizontal"
-            android:text="349°"
             android:textColor="@android:color/white"
             android:textSize="26sp"
             android:fontFamily="@font/my_number_font"/>
