@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_temperature_2_2;
     TextView tv_humidity_5_2;
 
-    private TextView tvState;
+    TextView tvState;
     TextView tv_time;
 
     @Override
