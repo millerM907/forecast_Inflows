@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<ResourseID, Void, Object[]> {
 
         @Override
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     class DataTaskTwo extends AsyncTask<Object, Void, Object[]>{
 
         @Override
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             //направление ветра
             String windDirection = gismeteoParserList.get(2);
             tv_windSide_3_2 = findViewById(R.id.tv_windSide_3_2);
-            tv_windSide_3_2.setText("Восточный");
+            tv_windSide_3_2.setText(windDirection);
         }
 
     }
