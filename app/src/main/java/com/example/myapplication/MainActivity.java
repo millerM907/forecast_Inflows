@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     TextView tvState;
     TextView tv_time;
 
+    //создаем обработчик для обновления текущего времени
+    Handler handlerCurrentTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         ResourseID resourseID = new ResourseID(this);
 
+        handlerCurrentTime = new Handler();
+        tv_time = findViewById(R.id.tv_time);
+        handlerCurrentTime.post(showInfo);
+
         ImageView imageView = findViewById(R.id.iv_bg);
         imageView.setBackgroundResource(R.drawable.highlights);
 
         ImageView imageView1 = findViewById(R.id.iv_sand);
         imageView1.setBackgroundResource(R.drawable.sand1);
-
-        //установка текущего времени города Магадан
-        LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
-        String currentTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-        tv_time = findViewById(R.id.tv_time);
-        tv_time.setText(currentTime);
 
         //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
         DataTask dataTask = new DataTask();
@@ -58,8 +60,17 @@ public class MainActivity extends AppCompatActivity {
         //запускаем второй поток
         DataTaskTwo dataTaskTwo = new DataTaskTwo();
         dataTaskTwo.execute();
-
     }
+
+    Runnable showInfo = new Runnable() {
+        public void run() {
+            LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
+            String currentTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+            tv_time.setText(currentTime);
+            // планирует сам себя через 1000 мсек
+            handlerCurrentTime.postDelayed(showInfo, 1000);
+        }
+    };
 
     @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<ResourseID, Void, Object[]> {
@@ -146,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
             tv_windSide_3_2 = findViewById(R.id.tv_windSide_3_2);
             tv_windSide_3_2.setText(windDirection);
         }
-
     }
-
 
 }

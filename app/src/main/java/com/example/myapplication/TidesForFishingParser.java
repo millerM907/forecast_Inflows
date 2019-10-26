@@ -60,6 +60,7 @@ public class TidesForFishingParser {
         try {
             Elements dataContent = doc.select(yesterdayCSSQuery);
             String waveDataContent = dataContent.text().replaceAll("(h)?(m)?", "");
+            waveDataContent = waveDataContent.replaceAll("[A-Za-z]?", "");
             String[] waveDataArray = waveDataContent.split(" ");
 
             //получили вчера
