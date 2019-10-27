@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         handlerCurrentTime = new Handler();
         tv_time = findViewById(R.id.tv_time);
-        handlerCurrentTime.post(showInfo);
+        handlerCurrentTime.post(showCurrentTimeInfo);
 
         ImageView imageView = findViewById(R.id.iv_bg);
         imageView.setBackgroundResource(R.drawable.highlights);
@@ -62,13 +62,13 @@ public class MainActivity extends AppCompatActivity {
         dataTaskTwo.execute();
     }
 
-    Runnable showInfo = new Runnable() {
+    Runnable showCurrentTimeInfo = new Runnable() {
         public void run() {
             LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
             String currentTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
             tv_time.setText(currentTime);
             // планирует сам себя через 1000 мсек
-            handlerCurrentTime.postDelayed(showInfo, 1000);
+            handlerCurrentTime.postDelayed(showCurrentTimeInfo, 1000);
         }
     };
 
