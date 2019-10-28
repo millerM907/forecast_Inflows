@@ -10,8 +10,8 @@ public class TimePercent {
 
         int percentTides = -100;
 
-        if(previousTime.equals("-100") && nextTime.equals("-100")){
-            System.out.println("Отсутствует подключение к интернету");
+        if(previousTime.equals("-100") || nextTime.equals("-100")){
+            return percentTides;
         } else {
             ZoneId leavingZone = ZoneId.of("Asia/Magadan");
             LocalDateTime localTime = LocalDateTime.now(leavingZone);
@@ -42,7 +42,6 @@ public class TimePercent {
             if(waterState.equals("false")){
                 percentTides = 100 - percentTides;
             }
-
         }
 
         return percentTides;
