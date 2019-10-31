@@ -39,7 +39,7 @@ public class GismeteoParser {
             Elements tempContent = doc.select("span.js_value");
             String temperature = tempContent.get(0).text().replaceAll("^[\\n]?[+]?[\\n]?", "");
             String tempValue = temperature.replace(",", ".");
-            tempValue = tempValue.replaceAll("^[−]?", "-");
+            tempValue = tempValue.replaceAll("[−]", "-");
             tempValue = String.valueOf((int)Float.parseFloat(tempValue));
             gismeteoDataList.add(tempValue);
         } catch (NullPointerException e) {

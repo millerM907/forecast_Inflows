@@ -49,6 +49,15 @@ public class TidesForFishingParser {
 
         //автоматическое составление запросов к таблице
         int localDayMonth = localDateTime.getDayOfMonth();
+
+        //если день месяца 1, то мы его пропускаем, чтобы не возникало ошибки при подключении к предыдущему дню и текущий-1
+        if(localDayMonth == 1){
+            for(int i = 0; i < 7; i++){
+                tidesParamArrayList.add(def);
+            }
+            return tidesParamArrayList;
+        }
+
         int yesterdayID = (localDayMonth * 2);
         int todayID = (localDayMonth * 2) + 2;
         int tomorrowID = (localDayMonth * 2) + 4;
@@ -150,7 +159,7 @@ public class TidesForFishingParser {
             }
 
             waveDataMap.put(preTomorrowYearMonthDay +  "T" + waveTomorrowDataArray[6] + afterYesterdayYearMonthDay, waveTomorrowDataArray[8]);
-        } catch (NullPointerException e){
+        } catch (Exception e){
             waveDataMap.put(def, def);
         }
 
