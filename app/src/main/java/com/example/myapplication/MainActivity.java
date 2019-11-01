@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -57,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView imageView1 = findViewById(R.id.iv_sand);
         imageView1.setBackgroundResource(R.drawable.sand1);
-
-
-
+        
         //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
         DataTask dataTask = new DataTask();
         dataTask.execute(resourseID);
