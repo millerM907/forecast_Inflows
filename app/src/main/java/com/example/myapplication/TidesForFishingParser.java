@@ -22,6 +22,7 @@ public class TidesForFishingParser {
 
     public static List getTidesForFishingDataList(){
         String def = "-100";
+        String fatalDef = "-200";
         //список для время рассвета, заката, начала, высоты начала, конца, высоты конеца, true/false - прилив/отлив
         List<String> tidesParamArrayList = new ArrayList<>();
 
@@ -34,9 +35,7 @@ public class TidesForFishingParser {
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            for(int i = 0; i < 7; i++){
-                tidesParamArrayList.add(def);
-            }
+            tidesParamArrayList.add(fatalDef);
             return tidesParamArrayList;
         }
 
@@ -52,9 +51,7 @@ public class TidesForFishingParser {
 
         //если день месяца 1, то мы его пропускаем, чтобы не возникало ошибки при подключении к предыдущему дню и текущий-1
         if(localDayMonth == 1){
-            for(int i = 0; i < 7; i++){
-                tidesParamArrayList.add(def);
-            }
+            tidesParamArrayList.add(fatalDef);
             return tidesParamArrayList;
         }
 

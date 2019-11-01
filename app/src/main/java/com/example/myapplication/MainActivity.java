@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     //создаем обработчик для обновления текущего времени
     Handler handlerCurrentTime;
 
+    Activity mainActivity = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView imageView1 = findViewById(R.id.iv_sand);
         imageView1.setBackgroundResource(R.drawable.sand1);
+
+
 
         //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
         DataTask dataTask = new DataTask();
@@ -86,48 +93,58 @@ public class MainActivity extends AppCompatActivity {
             List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
             ResourseID[] resourseID = (ResourseID[]) objectsArray[1];
 
-            //вычисление процента и присвоение переменной percent
-            String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(6), tidesForFishingParserList.get(2), tidesForFishingParserList.get(4)));
+            if(tidesForFishingParserList.get(0).equals("-200")){
 
-            //поиск image_view для картинки
-            ImageView imageView2 = findViewById(R.id.iv_wave);
+                //вывод сообщения о том, что приложение недоступно
+                CloseAlertDialog closeAlertDialog = new CloseAlertDialog();
+                AlertDialog dialog = closeAlertDialog.onCreateDialog(mainActivity);
+                dialog.show();
 
-            //если процент вычислить не удалось он равен -100, иначе если удалось
-            if(percent.equals("-100")){
-                //установка картинки
-                imageView2.setBackgroundResource(R.drawable.crab);
             } else {
-                //установка процента
-                tvPercentTide = findViewById(R.id.tv_percentTide);
-                tvPercentTide.setText(getString(R.string.ma_percent, percent));
-                Typeface typefaceCopperplateGothic = Typeface.createFromAsset(getAssets(), "fonts/COPRGTL.TTF");
-                tvPercentTide.setTypeface(typefaceCopperplateGothic);
+                //вычисление процента и присвоение переменной percent
+                String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(6), tidesForFishingParserList.get(2), tidesForFishingParserList.get(4)));
 
-                //установка картинки
-                imageView2.setBackgroundResource(resourseID[0].getSearchImageResourseID(Integer.valueOf(percent)));
+                //поиск image_view для картинки
+                ImageView imageView2 = findViewById(R.id.iv_wave);
 
-                //выводим состояние прилив/отлив
-                String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода"};
-                tvState = findViewById(R.id.tv_state);
-                tv_waterTime_1_1 = findViewById(R.id.tv_waterTime_1_1);
-                if(tidesForFishingParserList.get(6).equals("true")){
-                    tvState.setText(state[0]);
-                    tv_waterTime_1_1.setText(state[2]);
-                } else if (tidesForFishingParserList.get(6).equals("false")){
-                    tvState.setText(state[1]);
-                    tv_waterTime_1_1.setText(state[3]);
+                //если процент вычислить не удалось он равен -100, иначе если удалось
+                if(percent.equals("-100")){
+                    //установка картинки
+                    imageView2.setBackgroundResource(R.drawable.crab);
+
+                } else {
+                    //установка процента
+                    tvPercentTide = findViewById(R.id.tv_percentTide);
+                    tvPercentTide.setText(getString(R.string.ma_percent, percent));
+                    Typeface typefaceCopperplateGothic = Typeface.createFromAsset(getAssets(), "fonts/COPRGTL.TTF");
+                    tvPercentTide.setTypeface(typefaceCopperplateGothic);
+
+                    //установка картинки
+                    imageView2.setBackgroundResource(resourseID[0].getSearchImageResourseID(Integer.valueOf(percent)));
+
+                    //выводим состояние прилив/отлив
+                    String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода"};
+                    tvState = findViewById(R.id.tv_state);
+                    tv_waterTime_1_1 = findViewById(R.id.tv_waterTime_1_1);
+                    if(tidesForFishingParserList.get(6).equals("true")){
+                        tvState.setText(state[0]);
+                        tv_waterTime_1_1.setText(state[2]);
+                    } else if (tidesForFishingParserList.get(6).equals("false")){
+                        tvState.setText(state[1]);
+                        tv_waterTime_1_1.setText(state[3]);
+                    }
+
+                    Typeface typefacePalatinoLinotype = Typeface.createFromAsset(getAssets(), "fonts/pala.ttf");
+                    tvState.setTypeface(typefacePalatinoLinotype);
+
+                    //устанавливаем время конца цикла
+                    tv_waterTime_1_2 = findViewById(R.id.tv_waterTime_1_2);
+                    tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(4)).format(DateTimeFormatter.ofPattern("HH:mm")));
+
+                    //устанавливаем высоту воды
+                    tv_waterHeight_4_2 = findViewById(R.id.tv_waterHeight_4_2);
+                    tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(5)));
                 }
-
-                Typeface typefacePalatinoLinotype = Typeface.createFromAsset(getAssets(), "fonts/pala.ttf");
-                tvState.setTypeface(typefacePalatinoLinotype);
-
-                //устанавливаем время конца цикла
-                tv_waterTime_1_2 = findViewById(R.id.tv_waterTime_1_2);
-                tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(4)).format(DateTimeFormatter.ofPattern("HH:mm")));
-
-                //устанавливаем высоту воды
-                tv_waterHeight_4_2 = findViewById(R.id.tv_waterHeight_4_2);
-                tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(5)));
             }
         }
     }

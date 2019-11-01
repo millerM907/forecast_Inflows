@@ -16,4 +16,7 @@
     <string name="wind_direction">Направление ветра</string>
     <string name="temperature">Температура воздуха</string>
     <string name="water_time">Вода</string>
+
+    <string name="close_alert_dialog">Извините, приложение недоступно :(</string>
+    <string name="exit">Выйти</string>
 </resources>
