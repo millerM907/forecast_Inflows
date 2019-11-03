@@ -3,12 +3,15 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +21,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
 
     TextView tvPercentTide;
     TextView tv_waterTime_1_1;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     Activity mainActivity = this;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView imageView1 = findViewById(R.id.iv_sand);
         imageView1.setBackgroundResource(R.drawable.sand1);
-        
+
+
+        ImageView imageViewBackgroung = findViewById(R.id.iv_bg);
+        imageViewBackgroung.setOnTouchListener(this);
+
         //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
         DataTask dataTask = new DataTask();
         dataTask.execute(resourseID);
@@ -65,6 +73,31 @@ public class MainActivity extends AppCompatActivity {
         DataTaskTwo dataTaskTwo = new DataTaskTwo();
         dataTaskTwo.execute();
     }
+
+    //метод onTouch обабатывает свайпы влево - переключается на второй экран
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        float startX = 0;
+        float stopX = 0;
+
+        switch(event.getAction()) {
+            case MotionEvent.ACTION_DOWN: //первое касание
+                startX = event.getX();
+                break;
+            case MotionEvent.ACTION_UP: //отпускание
+                stopX = event.getX();
+                if (stopX > startX) {
+                    //свайп вправо
+                } else {
+                    //свайп влево
+                    Intent intent = new Intent(this, TodayActivity.class);
+                    startActivity(intent);
+                }
+                break;
+        }
+        return true;
+    }
+
 
     Runnable showCurrentTimeInfo = new Runnable() {
         public void run() {
