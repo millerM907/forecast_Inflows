@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
                     //устанавливаем время конца цикла
                     tv_waterTime_1_2 = findViewById(R.id.tv_waterTime_1_2);
-                    tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(4)).format(DateTimeFormatter.ofPattern("HH:mm")));
+                    tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(4)).format(DateTimeFormatter.ofPattern("HH:mm")).replaceAll(":", " ч ") + " мин");
 
                     //устанавливаем высоту воды
                     tv_waterHeight_4_2 = findViewById(R.id.tv_waterHeight_4_2);

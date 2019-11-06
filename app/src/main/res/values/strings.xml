@@ -12,7 +12,7 @@
 
     <string name="humidity">Влажность</string>
     <string name="wind_force">Сила ветра</string>
-    <string name="water_height">Высота воды</string>
+    <string name="water_height">Уровень воды</string>
     <string name="wind_direction">Направление ветра</string>
     <string name="temperature">Температура воздуха</string>
     <string name="water_time">Вода</string>
