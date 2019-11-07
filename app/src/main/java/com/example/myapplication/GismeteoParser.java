@@ -74,6 +74,24 @@ public class GismeteoParser {
                     Elements windDirectionContent = windContent.select("div.nowinfo__measure.nowinfo__measure_wind");
                     windDirection = windDirectionContent.get(0).text().replaceAll("(м/с)?", "").replaceAll(" ", "");
 
+                    //сокращаем наименование направления ветра
+                    String[] directionShortName = {"С", "B", "З", "Ю"};
+                    switch (windDirection) {
+                        case "Северный":
+                            windDirection = directionShortName[0];
+                            break;
+                        case "Восточный":
+                            windDirection = directionShortName[1];
+                            break;
+                        case "Западаный":
+                            windDirection = directionShortName[2];
+                            break;
+                        case "Южный":
+                            windDirection = directionShortName[3];
+                            break;
+                        default:
+                            break;
+                    }
                 } catch (NullPointerException e) {
                 } finally {
                     gismeteoDataList.add(windDirection);

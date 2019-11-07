@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         @Override
         protected Object[] doInBackground(ResourseID... resourseID) {
-            return new Object[]{TidesForFishingParser.getTidesForFishingDataList(), resourseID};
+            return new Object[]{TidesForFishingParser.getCurrentTidesForFishingDataList(), resourseID};
         }
 
         @SuppressLint("SetTextI18n")

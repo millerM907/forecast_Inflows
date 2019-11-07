@@ -5,42 +5,43 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TidesForFishingParser {
+
     private static TidesForFishingParser instance = new TidesForFishingParser();
     private TidesForFishingParser(){}
 
-    public static List getTidesForFishingDataList(){
-        String def = "-100";
-        String fatalDef = "-200";
-        //список для время рассвета, заката, начала, высоты начала, конца, высоты конеца, true/false - прилив/отлив
-        List<String> tidesParamArrayList = new ArrayList<>();
+    /**
+     * Данный метод осуществляет подключение по адресу: https://tides4fishing.com/as/northeast-russia/nagaeva-bay-tauiskaya-bay
+     * и возвращает список объектов "generalParametra":
+     * 1) объект типа Document, хранящий html размеитку страницы;
+     * 2) объект типа String, хранящий CSSQuery для выборки из таблицы строки, содержащией данные за вчера;
+     * 3) объект типа String, хранящий CSSQuery для выборки из таблицы строки, содержащией данные за сегодня;
+     * 4) объект типа String, хранящий CSSQuery для выборки из таблицы строки, содержащией данные за завтра;
+     * @return список объектов "generalParametra"
+     */
+    private static List getGeneralParametra(){
 
-        Document doc = null;
+        List<Object> generalParametra = new ArrayList<>();
+
+        String fatalDef = "-200";
+
+        Document doc;
         try {
             doc = Jsoup.connect("https://tides4fishing.com/as/northeast-russia/nagaeva-bay-tauiskaya-bay")
                     .userAgent("Chrome/77.0.3865.90 Safari/12.1.1")
                     .referrer("http://www.google.com")
                     .get();
 
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            tidesParamArrayList.add(fatalDef);
-            return tidesParamArrayList;
-        }
+            generalParametra.add(doc);
 
-        //map для таблицы время - высота
-        Map<String, String> waveDataMap = new LinkedHashMap<>();
+        } catch (IOException e) {
+            generalParametra.add(fatalDef);
+        }
 
         //получаем текущее время с учетом часового пояса +11
         ZoneId leavingZone = ZoneId.of("Asia/Magadan");
@@ -49,18 +50,48 @@ public class TidesForFishingParser {
         //автоматическое составление запросов к таблице
         int localDayMonth = localDateTime.getDayOfMonth();
 
-        //если день месяца 1, то мы его пропускаем, чтобы не возникало ошибки при подключении к предыдущему дню и текущий-1
+        //если день месяца 1, то мы присваиваем 0 элементу списка значение -200 и возвращаем список
         if(localDayMonth == 1){
-            tidesParamArrayList.add(fatalDef);
-            return tidesParamArrayList;
+            generalParametra.add(fatalDef);
+            return generalParametra;
         }
 
         int yesterdayID = (localDayMonth * 2);
         int todayID = (localDayMonth * 2) + 2;
         int tomorrowID = (localDayMonth * 2) + 4;
         String yesterdayCSSQuery = "#tabla_mareas > tbody > tr:nth-child(" + yesterdayID + ")";
+        generalParametra.add(yesterdayCSSQuery);
         String todayCSSQuery = "#tabla_mareas > tbody > tr:nth-child(" + todayID + ")";
+        generalParametra.add(todayCSSQuery);
         String tomorrowCSSQuery = "#tabla_mareas > tbody > tr:nth-child(" + tomorrowID + ")";
+        generalParametra.add(tomorrowCSSQuery);
+
+        return generalParametra;
+    }
+
+    public static List getCurrentTidesForFishingDataList(){
+        String def = "-100";
+
+        //список для время рассвета, заката, начала, высоты начала, конца, высоты конеца, true/false - прилив/отлив
+        List<String> tidesParamArrayList = new ArrayList<>();
+        List generalParametra = getGeneralParametra();
+
+        Document doc;
+        if(!generalParametra.get(0).equals("-200")){
+            doc = (Document) generalParametra.get(0);
+        } else {
+            return tidesParamArrayList;
+        }
+
+        //map для таблицы время - высота
+        Map<String, String> waveDataMap = new LinkedHashMap<>();
+
+        //получаем текущее время с учетом часового пояса +11
+        ZoneId leavingZone = ZoneId.of("Asia/Magadan");
+
+        String yesterdayCSSQuery = (String) generalParametra.get(1);
+        String todayCSSQuery = (String) generalParametra.get(2);
+        String tomorrowCSSQuery = (String) generalParametra.get(3);
 
         //вчера, конец
         try {
@@ -87,12 +118,12 @@ public class TidesForFishingParser {
             waveDataMap.put(def, def);
         }
 
-
         //сегодня
         try{
             Elements dataContent = doc.select(todayCSSQuery);
             String waveDataContent = dataContent.text().replaceAll("(h)?(m)?", "");
             String[] waveDataArray = waveDataContent.split(" ");
+            //затестить это место
 
             //вычисляем текущее время
             LocalDateTime localTodayTime = LocalDateTime.now(leavingZone);
@@ -234,6 +265,61 @@ public class TidesForFishingParser {
         }
 
         return  tidesParamArrayList;
+    }
+
+
+    public static List  getTodayTidesForFishingDataList(){
+        List generalParametra = getGeneralParametra();
+
+        String todayCSSQuery = (String) generalParametra.get(2);
+
+        String fatalDef = "-200";
+
+        List<String> tidesParamArrayList = new ArrayList<>();
+
+        Document doc = (Document) generalParametra.get(0);
+
+        try {
+            Elements dataContent = doc.select(todayCSSQuery);
+            String waveDataContent = dataContent.text().replaceAll("(h)?(m)?", "");
+            String[] waveDataArray = waveDataContent.split(" ");
+            for(int i = 6; i <= 20; i+=2){
+                if(!waveDataArray[i].equals("")){
+                    tidesParamArrayList.add(waveDataArray[i]);
+                }
+            }
+
+            String[] waterState = {"Малая вода", "Полная вода"};
+
+            String firstState;
+            if(Float.parseFloat(tidesParamArrayList.get(1)) < Float.parseFloat(tidesParamArrayList.get(3))){
+                firstState = waterState[0];
+            } else {
+                firstState = waterState[1];
+            }
+
+            //Записываем первое состояние в 0 элемент списка, со сдвигом +1
+            tidesParamArrayList.add(0, firstState);
+
+            //Записываем состояние воды в список на основании предыдущих состояний
+            for(int i = 3; i < tidesParamArrayList.size(); i+=2){
+                if(tidesParamArrayList.get(i-3).equals(waterState[0])){
+                    tidesParamArrayList.add(i, waterState[1]);
+                } else {
+                    tidesParamArrayList.add(i, waterState[0]);
+                }
+                i+=1;
+            }
+
+            for(String id: tidesParamArrayList){
+                System.out.println(id);
+            }
+        } catch (NullPointerException e){
+            tidesParamArrayList.add(fatalDef);
+            return tidesParamArrayList;
+        }
+
+        return tidesParamArrayList;
     }
 
     public static TidesForFishingParser getInstance(){
