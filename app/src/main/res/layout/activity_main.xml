@@ -74,20 +74,20 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tv_state"
-        style="@android:style/Widget.DeviceDefault.TextView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="2dp"
-        android:elegantTextHeight="true"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/white"
-        android:textSize="44sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_percentTide" />
+    android:id="@+id/tv_state"
+    style="@android:style/Widget.DeviceDefault.TextView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_marginTop="2dp"
+    android:elegantTextHeight="true"
+    android:gravity="center"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textColor="@android:color/white"
+    android:textSize="44sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHeight_percent="0.12"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tv_percentTide" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_waterTime_1"
@@ -331,12 +331,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/my_number_font"
         android:text="22:30"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        android:fontFamily="@font/my_number_font"/>
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
 </android.support.constraint.ConstraintLayout>

@@ -19,4 +19,8 @@
 
     <string name="close_alert_dialog">Извините, приложение недоступно :(</string>
     <string name="exit">Выйти</string>
+    <string name="shell">The sea shells</string>
+    <string name="sync">Tap and synchronize</string>
+    <string name="sunset">ЗАКАТ</string>
+    <string name="sunrise">РАССВЕТ</string>
 </resources>
