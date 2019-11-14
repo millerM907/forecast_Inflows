@@ -23,4 +23,7 @@
     <string name="sync">Tap and synchronize</string>
     <string name="sunset">ЗАКАТ</string>
     <string name="sunrise">РАССВЕТ</string>
+
+    <string name="txt_screen_1">1</string>
+    <string name="txt_screen_2">2</string>
 </resources>

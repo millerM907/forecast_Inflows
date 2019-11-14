@@ -7,7 +7,7 @@ import android.support.v4.app.DialogFragment;
 
 public class CloseAlertDialog extends DialogFragment {
 
-    public AlertDialog onCreateDialog(Activity activity) {
+    public AlertDialog onCreateDialog(MainActivity activity) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setMessage(R.string.close_alert_dialog)

@@ -310,10 +310,6 @@ public class TidesForFishingParser {
                 }
                 i+=1;
             }
-
-            for(String id: tidesParamArrayList){
-                System.out.println(id);
-            }
         } catch (NullPointerException e){
             tidesParamArrayList.add(fatalDef);
             return tidesParamArrayList;
