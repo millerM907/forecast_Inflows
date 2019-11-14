@@ -100,34 +100,6 @@
         tools:ignore="HardcodedText"/>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv_water1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="#40FFFFFF"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_sunrise"
-        app:layout_constraintEnd_toStartOf="@id/cv_time1"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
-        app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
-
-        <TextView
-            android:id="@+id/tv_water1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Малая вода"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@font/my_font"
-            tools:ignore="HardcodedText"/>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
         android:id="@+id/cv_time1"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -135,24 +107,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_water1"
         app:layout_constraintEnd_toStartOf="@id/cv_height1"
-        app:layout_constraintTop_toBottomOf="@id/tv_sunrise"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_sunrise"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_water1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/water_time"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_time1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="my_number_font"
+            android:gravity="bottom|center_horizontal"
             android:text="0:28"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="my_number_font"
-            tools:ignore="HardcodedText"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -163,52 +145,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_time1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_sunrise"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toEndOf="@id/cv_time1"
+        app:layout_constraintTop_toBottomOf="@id/tv_sunrise"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_tide1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/tide_now"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_height1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="@font/my_number_font"
+            android:gravity="bottom|center_horizontal"
             android:text="3 м"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@my_number_font"
-            tools:ignore="HardcodedText"/>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_water2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="#40FFFFFF"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_water1"
-        app:layout_constraintEnd_toStartOf="@id/cv_time2"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
-        app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
-
-        <TextView
-            android:id="@+id/tv_water2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Полная вода"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@font/my_font"
-            tools:ignore="HardcodedText"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -219,24 +183,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_water2"
         app:layout_constraintEnd_toStartOf="@id/cv_height2"
-        app:layout_constraintTop_toBottomOf="@id/cv_time1"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_time1"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_water2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/water_time"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_time2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="my_number_font"
+            android:gravity="bottom|center_horizontal"
             android:text="7:40"
             android:textColor="@android:color/white"
             android:textSize="24sp"
-            android:fontFamily="my_number_font"
-            tools:ignore="HardcodedText"/>
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -247,52 +221,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_time2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_height1"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toEndOf="@id/cv_time2"
+        app:layout_constraintTop_toBottomOf="@id/cv_height1"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_tide2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/tide_now"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_height2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="@font/my_number_font"
+            android:gravity="bottom|center_horizontal"
             android:text="6 м"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@my_number_font"
-            tools:ignore="HardcodedText"/>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_water3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="#40FFFFFF"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_water2"
-        app:layout_constraintEnd_toStartOf="@id/cv_time3"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
-        app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
-
-        <TextView
-            android:id="@+id/tv_water3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Малая вода"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@font/my_font"
-            tools:ignore="HardcodedText"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -303,24 +259,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_water3"
         app:layout_constraintEnd_toStartOf="@id/cv_height3"
-        app:layout_constraintTop_toBottomOf="@id/cv_time2"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_time2"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_water3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/water_time"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_time3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="my_number_font"
+            android:gravity="bottom|center_horizontal"
             android:text="16:37"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="my_number_font"
-            tools:ignore="HardcodedText"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -331,52 +297,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_time3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_height2"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toEndOf="@id/cv_time3"
+        app:layout_constraintTop_toBottomOf="@id/cv_height2"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_tide3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/tide_now"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_height3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="@font/my_number_font"
+            android:gravity="bottom|center_horizontal"
             android:text="3,1 м"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@my_number_font"
-            tools:ignore="HardcodedText"/>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_water4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="#40FFFFFF"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_water3"
-        app:layout_constraintEnd_toStartOf="@id/cv_time4"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
-        app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
-
-        <TextView
-            android:id="@+id/tv_water4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Полная вода"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@font/my_font"
-            tools:ignore="HardcodedText"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -387,24 +335,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_water4"
         app:layout_constraintEnd_toStartOf="@id/cv_height4"
-        app:layout_constraintTop_toBottomOf="@id/cv_time3"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_time3"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_water4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/water_time"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_time4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="my_number_font"
+            android:gravity="bottom|center_horizontal"
             android:text="21:18"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="my_number_font"
-            tools:ignore="HardcodedText"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
@@ -415,24 +373,34 @@
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintStart_toEndOf="@id/cv_time4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_height3"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintWidth_percent="0.28"
+        app:layout_constraintStart_toEndOf="@id/cv_time4"
+        app:layout_constraintTop_toBottomOf="@id/cv_height3"
+        app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
-        app:strokeWidth="8dp" >
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:id="@+id/tv_tide4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/tide_now"
+            android:fontFamily="@font/my_font"/>
 
         <TextView
             android:id="@+id/tv_height4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:fontFamily="@font/my_number_font"
+            android:gravity="center_horizontal|bottom"
             android:text="5,5 м"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:fontFamily="@my_number_font"
-            tools:ignore="HardcodedText"/>
+            android:textSize="26sp"
+            tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>

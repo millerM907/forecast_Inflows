@@ -26,4 +26,5 @@
 
     <string name="txt_screen_1">1</string>
     <string name="txt_screen_2">2</string>
+    <string name="tide_now">Высота прилива</string>
 </resources>
