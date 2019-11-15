@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -27,6 +28,7 @@ public class TodayActivity extends Fragment {
     TextView tv_water;
     TextView tv_time;
     TextView tv_height;
+    TextView tv_tide;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,67 +60,45 @@ public class TodayActivity extends Fragment {
            return new Object[]{TidesForFishingParser.getTodayTidesForFishingDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
         }
 
+
         @Override
         protected void onPostExecute(Object[] objectsArray) {
             List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
             View view = (View) objectsArray[1];
             thiscontext = (Context) objectsArray[2];
+            ResourseID resourseID = new ResourseID(thiscontext);
 
             int sizeTidesForFishingParserList = tidesForFishingParserList.size();
+
+            String[] waterSateArray = {"Полная вода", "Малая вода", "отлива","прилива", " м"};
 
             if(sizeTidesForFishingParserList == 12){
                 Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
 
-                //выводим состояние (малая/полная вода)
-                tv_water = view.findViewById(R.id.tv_water1);
-                tv_water.setText(tidesForFishingParserList.get(0));
-                tv_water.setTypeface(typefacePalatinoLinotype);
+                int x = 0;
+                for(int i = 1; i < 5; i++){
+                    tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
+                    tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
+                    tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
+                    tv_tide = view.findViewById(resourseID.tv_tidetResourseID(i));
 
-                tv_water = view.findViewById(R.id.tv_water2);
-                tv_water.setText(tidesForFishingParserList.get(3));
-                tv_water.setTypeface(typefacePalatinoLinotype);
-
-                tv_water = view.findViewById(R.id.tv_water3);
-                tv_water.setText(tidesForFishingParserList.get(6));
-                tv_water.setTypeface(typefacePalatinoLinotype);
-
-                tv_water = view.findViewById(R.id.tv_water4);
-                tv_water.setText(tidesForFishingParserList.get(9));
-                tv_water.setTypeface(typefacePalatinoLinotype);
-
-                //выводим время прилива/отлива
-                tv_time = view.findViewById(R.id.tv_time1);
-                tv_time.setText(tidesForFishingParserList.get(1));
-                tv_time.setTypeface(typefacePalatinoLinotype);
-
-                tv_time = view.findViewById(R.id.tv_time2);
-                tv_time.setText(tidesForFishingParserList.get(4));
-                tv_time.setTypeface(typefacePalatinoLinotype);
-
-                tv_time = view.findViewById(R.id.tv_time3);
-                tv_time.setText(tidesForFishingParserList.get(7));
-                tv_time.setTypeface(typefacePalatinoLinotype);
-
-                tv_time = view.findViewById(R.id.tv_time4);
-                tv_time.setText(tidesForFishingParserList.get(10));
-                tv_time.setTypeface(typefacePalatinoLinotype);
-
-                //выводим значения вывода прилива/отлива
-                tv_height = view.findViewById(R.id.tv_height1);
-                tv_height.setText(tidesForFishingParserList.get(2));
-                tv_height.setTypeface(typefacePalatinoLinotype);
-
-                tv_height = view.findViewById(R.id.tv_height2);
-                tv_height.setText(tidesForFishingParserList.get(5));
-                tv_height.setTypeface(typefacePalatinoLinotype);
-
-                tv_height = view.findViewById(R.id.tv_height3);
-                tv_height.setText(tidesForFishingParserList.get(8));
-                tv_height.setTypeface(typefacePalatinoLinotype);
-
-                tv_height = view.findViewById(R.id.tv_height4);
-                tv_height.setText(tidesForFishingParserList.get(11));
-                tv_height.setTypeface(typefacePalatinoLinotype);
+                    for(int y = x; y < x+1 ; y++){
+                        tv_water.setText(tidesForFishingParserList.get(y));
+                        tv_water.setTypeface(typefacePalatinoLinotype);
+                        tv_time.setText(tidesForFishingParserList.get(y+1));
+                        tv_time.setTypeface(typefacePalatinoLinotype);
+                        if(tidesForFishingParserList.get(y).equals(waterSateArray[0])){
+                            tv_tide.setText(getString(R.string.tide_now, waterSateArray[3]));
+                            tv_tide.setTypeface(typefacePalatinoLinotype);
+                        } else {
+                            tv_tide.setText(getString(R.string.tide_now, waterSateArray[2]));
+                            tv_tide.setTypeface(typefacePalatinoLinotype);
+                        }
+                        tv_height.setText(tidesForFishingParserList.get(y+2) + waterSateArray[4]);
+                        tv_height.setTypeface(typefacePalatinoLinotype);
+                    }
+                    x+=3;
+                }
 
             } else if (sizeTidesForFishingParserList == 9){
 
