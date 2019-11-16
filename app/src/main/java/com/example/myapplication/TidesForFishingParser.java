@@ -291,7 +291,7 @@ public class TidesForFishingParser {
             }
 
 
-            for(int i = 6; i <= 20; i+=2){
+            for(int i = 6; i <= waveDataArray.length-4; i+=2){
                 if(!waveDataArray[i].equals("")){
                     tidesParamArrayList.add(waveDataArray[i]);
                 }

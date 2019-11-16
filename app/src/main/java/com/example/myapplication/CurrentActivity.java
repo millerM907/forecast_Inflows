@@ -60,8 +60,8 @@ public class CurrentActivity extends Fragment {
         ImageView imageView = v.findViewById(R.id.iv_bg);
         imageView.setBackgroundResource(R.drawable.highlights);
 
-        ImageView imageView1 = v.findViewById(R.id.iv_sand);
-        imageView1.setBackgroundResource(R.drawable.sand1);
+        //ImageView imageView1 = v.findViewById(R.id.iv_sand);
+        //imageView1.setBackgroundResource(R.drawable.sand1);
 
         Object[] dataTaskObjectArray = {thiscontext, v};
 
