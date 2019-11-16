@@ -131,25 +131,6 @@ public class TidesForFishingParser {
             //шаблон для подстановки времени
             String currentYearMonthDay = localTodayTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            //подставляем времени рассвета текущую дату
-            String risingValue = waveDataArray[2];
-            if (risingValue.length() == 4){
-                risingValue = currentYearMonthDay + "T0" + risingValue + ":00.000000Z";
-            } else {
-                risingValue = currentYearMonthDay + "T" + risingValue + ":00.000000Z";
-            }
-
-            //подставляем времени заката текущаю дату
-            String sunsetValue = waveDataArray[4];
-            if(sunsetValue.length() == 4){
-                sunsetValue = currentYearMonthDay + "T0" + sunsetValue + ":00.000000Z";
-            } else {
-                sunsetValue = currentYearMonthDay + "T" + sunsetValue + ":00.000000Z";
-            }
-
-            tidesParamArrayList.add(risingValue);
-            tidesParamArrayList.add(sunsetValue);
-
             //Добавляем время сразу в формате, если значение не null
             for(int i = 6; i <= waveDataArray.length-6; i+=4){ //выходит за границу массива
                 if(!waveDataArray[i].equals("null")){
@@ -248,8 +229,8 @@ public class TidesForFishingParser {
                     tidesParamArrayList.add(pair.getValue());
 
                     //высота начала и конца цикла
-                    float startHeight = Float.parseFloat(tidesParamArrayList.get(3));
-                    float endHeight = Float.parseFloat(tidesParamArrayList.get(5));
+                    float startHeight = Float.parseFloat(tidesParamArrayList.get(1));
+                    float endHeight = Float.parseFloat(tidesParamArrayList.get(3));
 
                     //если отлив - false, прилив - true
                     if (startHeight > endHeight){
@@ -283,6 +264,33 @@ public class TidesForFishingParser {
             Elements dataContent = doc.select(todayCSSQuery);
             String waveDataContent = dataContent.text().replaceAll("(h)?(m)?", "");
             String[] waveDataArray = waveDataContent.split(" ");
+
+            //получаем текущее время с учетом часового пояса +11
+            ZoneId leavingZone = ZoneId.of("Asia/Magadan");
+
+            //вычисляем текущее время
+            LocalDateTime localTodayTime = LocalDateTime.now(leavingZone);
+
+            //шаблон для подстановки времени
+            String currentYearMonthDay = localTodayTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            //подставляем времени рассвета текущую дату
+            String risingValue = waveDataArray[2];
+            if (risingValue.length() == 4){
+                risingValue = currentYearMonthDay + "T0" + risingValue + ":00.000000Z";
+            } else {
+                risingValue = currentYearMonthDay + "T" + risingValue + ":00.000000Z";
+            }
+
+            //подставляем времени заката текущаю дату
+            String sunsetValue = waveDataArray[4];
+            if(sunsetValue.length() == 4){
+                sunsetValue = currentYearMonthDay + "T0" + sunsetValue + ":00.000000Z";
+            } else {
+                sunsetValue = currentYearMonthDay + "T" + sunsetValue + ":00.000000Z";
+            }
+
+
             for(int i = 6; i <= 20; i+=2){
                 if(!waveDataArray[i].equals("")){
                     tidesParamArrayList.add(waveDataArray[i]);
@@ -310,6 +318,11 @@ public class TidesForFishingParser {
                 }
                 i+=1;
             }
+
+            //добавляем в конец списка время рассвета и заката
+            tidesParamArrayList.add(risingValue);
+            tidesParamArrayList.add(sunsetValue);
+
         } catch (NullPointerException e){
             tidesParamArrayList.add(fatalDef);
             return tidesParamArrayList;

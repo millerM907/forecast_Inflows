@@ -50,7 +50,7 @@ public class WeatherAverages {
         return averageHumidity;
     }
 
-    public static String calculationMeanDawnTime(String firstTime, String secondTime, String thirdTime) {
+    public static String calculationMeanSunriseTime(String firstTime, String secondTime, String thirdTime) {
         String meanDawnTime = "NoN";
         if (!(firstTime.equals("-100") && secondTime.equals("-100"))) {
 

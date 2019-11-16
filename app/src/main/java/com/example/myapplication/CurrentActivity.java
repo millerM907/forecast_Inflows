@@ -113,7 +113,7 @@ public class CurrentActivity extends Fragment {
 
             } else {
                 //вычисление процента и присвоение переменной percent
-                String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(6), tidesForFishingParserList.get(2), tidesForFishingParserList.get(4)));
+                String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
 
                 //поиск image_view для картинки
                 ImageView imageView2 = view.findViewById(R.id.iv_wave);
@@ -137,10 +137,10 @@ public class CurrentActivity extends Fragment {
                     String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода"};
                     tvState = view.findViewById(R.id.tv_state);
                     tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
-                    if(tidesForFishingParserList.get(6).equals("true")){
+                    if(tidesForFishingParserList.get(4).equals("true")){
                         tvState.setText(state[0]);
                         tv_waterTime_1_1.setText(state[2]);
-                    } else if (tidesForFishingParserList.get(6).equals("false")){
+                    } else if (tidesForFishingParserList.get(4).equals("false")){
                         tvState.setText(state[1]);
                         tv_waterTime_1_1.setText(state[3]);
                     }
@@ -150,11 +150,11 @@ public class CurrentActivity extends Fragment {
 
                     //устанавливаем время конца цикла
                     tv_waterTime_1_2 = view.findViewById(R.id.tv_waterTime_1_2);
-                    tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(4)).format(DateTimeFormatter.ofPattern("HH:mm")));
+                    tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(2)).format(DateTimeFormatter.ofPattern("HH:mm")));
 
                     //устанавливаем высоту воды
                     tv_waterHeight_4_2 = view.findViewById(R.id.tv_waterHeight_4_2);
-                    tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(5)));
+                    tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(3)));
                 }
             }
         }
