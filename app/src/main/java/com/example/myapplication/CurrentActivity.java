@@ -57,9 +57,6 @@ public class CurrentActivity extends Fragment {
         //tv_time = v.findViewById(R.id.tv_time);
         //handlerCurrentTime.post(showCurrentTimeInfo);
 
-        ImageView imageView = v.findViewById(R.id.iv_bg);
-        imageView.setBackgroundResource(R.drawable.highlights);
-
         //ImageView imageView1 = v.findViewById(R.id.iv_sand);
         //imageView1.setBackgroundResource(R.drawable.sand1);
 
@@ -116,12 +113,12 @@ public class CurrentActivity extends Fragment {
                 String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
 
                 //поиск image_view для картинки
-                ImageView imageView2 = view.findViewById(R.id.iv_wave);
+                //ImageView imageView2 = view.findViewById(R.id.iv_wave);
 
                 //если процент вычислить не удалось он равен -100, иначе если удалось
                 if(percent.equals("-100")){
                     //установка картинки
-                    imageView2.setBackgroundResource(R.drawable.crab);
+                    //imageView2.setBackgroundResource(R.drawable.crab);
 
                 } else {
                     //установка процента
@@ -131,7 +128,7 @@ public class CurrentActivity extends Fragment {
                     tvPercentTide.setTypeface(typefaceCopperplateGothic);
 
                     //установка картинки
-                    imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
+                    //imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
 
                     //выводим состояние прилив/отлив
                     String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода"};
