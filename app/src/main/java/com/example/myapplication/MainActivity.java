@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,21 +13,47 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    Context thiscontext;
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        thiscontext = this;
+
+        ImageView imageView = findViewById(R.id.iv_bg);
+        imageView.setBackgroundResource(R.drawable.highlights_sand_bg_300);
+
+        Object[] dataTaskObjectArray = {thiscontext};
+
+        //запускаем поток по отрисовке процентов и передаем в него массив, содержищий контекст
+        DataTask dataTask = new DataTask();
+        dataTask.execute(dataTaskObjectArray);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+
+        if (viewPager != null) {
+            viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
+            viewPager.setCurrentItem(0); // выводим первый экран
+        }
+    }
 
     @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<Object, Void, Object[]> {
 
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{TidesForFishingParser.getCurrentTidesForFishingDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
+            return new Object[]{TidesForFishingParser.getCurrentTidesForFishingDataList(), dataTaskObjectArray[0]};
         }
 
         @SuppressLint("SetTextI18n")
@@ -38,21 +63,20 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(objectsArray[1]);
             Context thiscontext = (Context) objectsArray[1];
             ResourseID resourseID = new ResourseID(thiscontext);
-            View view = (View) objectsArray[2];
 
             if(tidesForFishingParserList.get(0).equals("-200")){
 
                 //вывод сообщения о том, что приложение недоступно
-                //CloseAlertDialog closeAlertDialog = new CloseAlertDialog();
-                //AlertDialog dialog = closeAlertDialog.onCreateDialog((MainActivity) getActivity());
-                //dialog.show();
+                CloseAlertDialog closeAlertDialog = new CloseAlertDialog();
+                AlertDialog dialog = closeAlertDialog.onCreateDialog((MainActivity) thiscontext);
+                dialog.show();
 
             } else {
                 //вычисление процента и присвоение переменной percent
                 String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
 
                 //поиск image_view для картинки
-                ImageView imageView2 = view.findViewById(R.id.iv_wave);
+                ImageView imageView2 = findViewById(R.id.iv_wave);
 
                 //если процент вычислить не удалось он равен -100, иначе если удалось
                 if(percent.equals("-100")){
@@ -60,31 +84,10 @@ public class MainActivity extends AppCompatActivity {
                     imageView2.setBackgroundResource(R.drawable.crab);
 
                 } else {
-
                     //установка картинки
                     imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
-
                 }
             }
-        }
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        ImageView imageView = findViewById(R.id.iv_bg);
-        imageView.setBackgroundResource(R.drawable.highlights_sand_bg_200);
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-
-        if (viewPager != null) {
-            viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
-            viewPager.setCurrentItem(0); // выводим первый экран
         }
     }
 

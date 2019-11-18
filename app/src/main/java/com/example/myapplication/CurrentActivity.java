@@ -104,9 +104,9 @@ public class CurrentActivity extends Fragment {
             if(tidesForFishingParserList.get(0).equals("-200")){
 
                 //вывод сообщения о том, что приложение недоступно
-                CloseAlertDialog closeAlertDialog = new CloseAlertDialog();
-                AlertDialog dialog = closeAlertDialog.onCreateDialog((MainActivity) getActivity());
-                dialog.show();
+                //CloseAlertDialog closeAlertDialog = new CloseAlertDialog();
+                //AlertDialog dialog = closeAlertDialog.onCreateDialog((MainActivity) getActivity());
+                //dialog.show();
 
             } else {
                 //вычисление процента и присвоение переменной percent

@@ -43,9 +43,6 @@ public class TodayActivity extends Fragment {
 
         thiscontext = getActivity();
 
-        ivShell = v.findViewById(R.id.iv_shell);
-        ivShell.setBackgroundResource(R.drawable.shell);
-
         Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
 
         tvSunrise = v.findViewById(R.id.tv_sunrise);
