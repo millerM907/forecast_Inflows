@@ -54,4 +54,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="52.5dp"
+        android:layout_height="0dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar1"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintTop_toTopOf="@+id/toolbar1"
+        app:srcCompat="@drawable/points" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="52.5dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg"
+        app:srcCompat="@drawable/sync" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/my_number_font"
+        android:text="6:15"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
+        app:layout_constraintStart_toStartOf="@+id/iv_bg"
+        app:layout_constraintTop_toTopOf="@+id/iv_bg" />
+
 </android.support.constraint.ConstraintLayout>
