@@ -14,12 +14,21 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Context thiscontext;
+
+    TextView tv_time;
+
+    //создаем обработчик для обновления текущего времени
+    Handler handlerCurrentTime;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -30,7 +39,11 @@ public class MainActivity extends AppCompatActivity {
         thiscontext = this;
 
         ImageView imageView = findViewById(R.id.iv_bg);
-        imageView.setBackgroundResource(R.drawable.highlights_sand_bg_300);
+        imageView.setBackgroundResource(R.drawable.highlights_sand_bg_200);
+
+        handlerCurrentTime = new Handler();
+        tv_time = findViewById(R.id.tv_time);
+        handlerCurrentTime.post(showCurrentTimeInfo);
 
         Object[] dataTaskObjectArray = {thiscontext};
 
@@ -47,6 +60,18 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(0); // выводим первый экран
         }
     }
+
+
+    Runnable showCurrentTimeInfo = new Runnable() {
+        public void run() {
+            LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
+            String currentTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+            tv_time.setText(currentTime);
+            // планирует сам себя через 1000 мсек
+            handlerCurrentTime.postDelayed(showCurrentTimeInfo, 1000);
+        }
+    };
+
 
     @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<Object, Void, Object[]> {
@@ -77,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //поиск image_view для картинки
                 ImageView imageView2 = findViewById(R.id.iv_wave);
-
                 //если процент вычислить не удалось он равен -100, иначе если удалось
                 if(percent.equals("-100")){
                     //установка картинки
