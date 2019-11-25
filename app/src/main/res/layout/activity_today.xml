@@ -15,28 +15,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/toolbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12" />
-
     <TextView
         android:id="@+id/tv_sunrise"
         style="@android:style/Widget.DeviceDefault.TextView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
         android:elegantTextHeight="true"
         android:gravity="start|center_vertical"
         android:text="@string/sunrise"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@id/cv_time1"
         app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_sunrise_time"
@@ -44,17 +38,17 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:elegantTextHeight="true"
+        android:fontFamily="@font/my_number_font"
         android:gravity="end|center_vertical"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="26sp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/cv_height1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.12"
-        android:fontFamily="@font/my_number_font"
-        tools:ignore="HardcodedText"/>
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_sunset"
@@ -95,14 +89,14 @@
         android:id="@+id/cv_time1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/cv_height1"
+        app:layout_constraintBottom_toTopOf="@+id/cv_time2"
+        app:layout_constraintEnd_toStartOf="@+id/cv_height1"
         app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_sunrise"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -111,11 +105,11 @@
             android:id="@+id/tv_water1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/water_time"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_time1"
@@ -132,14 +126,14 @@
         android:id="@+id/cv_height1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_height2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@id/cv_time1"
-        app:layout_constraintTop_toBottomOf="@id/tv_sunrise"
+        app:layout_constraintStart_toEndOf="@+id/cv_time1"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -148,11 +142,11 @@
             android:id="@+id/tv_tide1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/tide_now"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_height1"
@@ -169,14 +163,14 @@
         android:id="@+id/cv_time2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/cv_height2"
+        app:layout_constraintBottom_toTopOf="@+id/cv_time3"
+        app:layout_constraintEnd_toStartOf="@+id/cv_height2"
         app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_time1"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -185,11 +179,11 @@
             android:id="@+id/tv_water2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/water_time"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_time2"
@@ -206,14 +200,14 @@
         android:id="@+id/cv_height2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_height3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@id/cv_time2"
-        app:layout_constraintTop_toBottomOf="@id/cv_height1"
+        app:layout_constraintStart_toEndOf="@+id/cv_time2"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -222,11 +216,11 @@
             android:id="@+id/tv_tide2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/tide_now"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_height2"
@@ -243,14 +237,14 @@
         android:id="@+id/cv_time3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/cv_height3"
+        app:layout_constraintBottom_toTopOf="@+id/cv_time4"
+        app:layout_constraintEnd_toStartOf="@+id/cv_height3"
         app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_time2"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -259,11 +253,11 @@
             android:id="@+id/tv_water3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/water_time"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_time3"
@@ -280,14 +274,14 @@
         android:id="@+id/cv_height3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_height4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@id/cv_time3"
-        app:layout_constraintTop_toBottomOf="@id/cv_height2"
+        app:layout_constraintStart_toEndOf="@+id/cv_time3"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -296,11 +290,11 @@
             android:id="@+id/tv_tide3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/tide_now"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_height3"
@@ -317,14 +311,14 @@
         android:id="@+id/cv_time4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/cv_height4"
+        app:layout_constraintBottom_toTopOf="@+id/tv_sunset"
+        app:layout_constraintEnd_toStartOf="@+id/cv_height4"
         app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_time3"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -333,11 +327,11 @@
             android:id="@+id/tv_water4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/water_time"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_time4"
@@ -354,14 +348,14 @@
         android:id="@+id/cv_height4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#40FFFFFF"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_sunset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@id/cv_time4"
-        app:layout_constraintTop_toBottomOf="@id/cv_height3"
+        app:layout_constraintStart_toEndOf="@+id/cv_time4"
         app:layout_constraintWidth_percent="0.44"
         app:strokeColor="#9524DF"
         app:strokeWidth="8dp">
@@ -370,11 +364,11 @@
             android:id="@+id/tv_tide4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/my_font"
             android:gravity="center_horizontal|top"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:text="@string/tide_now"
-            android:fontFamily="@font/my_font"/>
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_height4"
