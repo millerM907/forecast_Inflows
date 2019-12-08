@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -48,7 +47,7 @@ public class TodayActivity extends Fragment {
         tvSunrise = v.findViewById(R.id.tv_sunrise);
         tvSunrise.setTypeface(typefacePalatinoLinotype);
 
-        tvSunset = v.findViewById(R.id.tv_sunset);
+        tvSunset = v.findViewById(R.id.guidline);
         tvSunset.setTypeface(typefacePalatinoLinotype);
 
         Object[] dataTaskObjectArray = {v, thiscontext};

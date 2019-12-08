@@ -62,6 +62,7 @@
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
         android:background="#00FFFFFF"
+        android:contentDescription="@string/menu"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
         app:layout_constraintEnd_toEndOf="@+id/toolbar1"
         app:layout_constraintTop_toTopOf="@+id/toolbar1"
@@ -76,6 +77,7 @@
         android:layout_marginBottom="12dp"
         android:adjustViewBounds="true"
         android:background="#00FFFFFF"
+        android:contentDescription="@string/sync"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="@+id/iv_bg"
@@ -92,6 +94,7 @@
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
         app:layout_constraintStart_toStartOf="@+id/iv_bg"
-        app:layout_constraintTop_toTopOf="@+id/iv_bg" />
+        app:layout_constraintTop_toTopOf="@+id/iv_bg"
+        tools:ignore="HardcodedText" />
 
 </android.support.constraint.ConstraintLayout>
