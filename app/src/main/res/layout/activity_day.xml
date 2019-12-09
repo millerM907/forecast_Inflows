@@ -260,7 +260,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_day1"
+            android:id="@+id/tv_time3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="my_number_font"
@@ -297,7 +297,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_day2"
+            android:id="@+id/tv_height3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/my_number_font"
@@ -334,7 +334,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_day4"
+            android:id="@+id/tv_time4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="my_number_font"
@@ -371,7 +371,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_day5"
+            android:id="@+id/tv_height4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/my_number_font"

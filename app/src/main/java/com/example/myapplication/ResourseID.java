@@ -40,4 +40,10 @@ public class ResourseID {
         return resourseID;
     }
 
+    public int but_dayResourseID(int identifier){
+        String but_day = "but_day" + identifier;
+        int resourseID = context.getResources().getIdentifier(but_day, "id", "com.example.myapplication");
+        return resourseID;
+    }
+
 }

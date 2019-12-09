@@ -99,7 +99,8 @@ public class TodayActivity extends Fragment {
                     for(int y = x; y < x+1 ; y++){
                         tv_water.setText(tidesForFishingParserList.get(y));
                         tv_water.setTypeface(typefacePalatinoLinotype);
-                        tv_time.setText(tidesForFishingParserList.get(y+1));
+                        String s = tidesForFishingParserList.get(y+1);
+                        tv_time.setText(s);
                         tv_time.setTypeface(typefacePalatinoLinotype);
                         if(tidesForFishingParserList.get(y).equals(waterSateArray[0])){
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[3]));

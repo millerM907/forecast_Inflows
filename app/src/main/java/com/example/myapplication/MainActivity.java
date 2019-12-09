@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
 
         @NonNull
@@ -134,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
                     return new CurrentActivity();
                 case 1:
                     return new TodayActivity();
-
+                case 2:
+                    return new WeekActivity();
                 default:
                     return new CurrentActivity();
             }
