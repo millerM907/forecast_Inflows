@@ -60,7 +60,7 @@ public class TodayActivity extends Fragment {
     class DataTask extends AsyncTask<Object, Void, Object[]> {
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-           return new Object[]{TidesForFishingParser.getTodayTidesForFishingDataList(), ForecaParser.getForecaDataList(), GismeteoParser.getGismeteoDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
+           return new Object[]{TidesForFishingParser.getTodayTidesForFishingDataList(0), ForecaParser.getForecaDataList(), GismeteoParser.getGismeteoDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
         }
 
 

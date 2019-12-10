@@ -66,6 +66,8 @@ public class TidesForFishingParser {
         String tomorrowCSSQuery = "#tabla_mareas > tbody > tr:nth-child(" + tomorrowID + ")";
         generalParametra.add(tomorrowCSSQuery);
 
+        generalParametra.add(todayID);
+
         return generalParametra;
     }
 
@@ -249,19 +251,28 @@ public class TidesForFishingParser {
     }
 
 
-    public static List  getTodayTidesForFishingDataList(){
+    public static List  getTodayTidesForFishingDataList(int dayOffsetRelativeToday){
         List generalParametra = getGeneralParametra();
 
-        String todayCSSQuery = (String) generalParametra.get(2);
+        Document doc = (Document) generalParametra.get(0);
+
+        int dayID = 0;
+
+        if(dayOffsetRelativeToday == 0){
+            dayID = (Integer) generalParametra.get(4) + dayOffsetRelativeToday;
+        } else {
+            dayID = (Integer) generalParametra.get(4) + dayOffsetRelativeToday*2;
+        }
+
+        String dayCSSQuery = "#tabla_mareas > tbody > tr:nth-child(" + dayID + ")";;
+        System.out.println(dayCSSQuery);
 
         String fatalDef = "-200";
 
         List<String> tidesParamArrayList = new ArrayList<>();
 
-        Document doc = (Document) generalParametra.get(0);
-
         try {
-            Elements dataContent = doc.select(todayCSSQuery);
+            Elements dataContent = doc.select(dayCSSQuery);
             String waveDataContent = dataContent.text().replaceAll("(h)?(m)?", "");
             String[] waveDataArray = waveDataContent.split(" ");
 
@@ -319,10 +330,12 @@ public class TidesForFishingParser {
                 i+=1;
             }
 
-            //добавляем в конец списка время рассвета и заката
             tidesParamArrayList.add(risingValue);
             tidesParamArrayList.add(sunsetValue);
 
+            for(String id: tidesParamArrayList){
+                System.out.println(id);
+            }
         } catch (NullPointerException e){
             tidesParamArrayList.add(fatalDef);
             return tidesParamArrayList;

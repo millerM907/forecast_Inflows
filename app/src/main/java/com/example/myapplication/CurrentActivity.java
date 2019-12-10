@@ -70,6 +70,7 @@ public class CurrentActivity extends Fragment {
         DataTaskTwo dataTaskTwo = new DataTaskTwo();
         dataTaskTwo.execute(dataTaskObjectArray);
 
+
         return v;
     }
 

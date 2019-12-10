@@ -54,11 +54,14 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setOffscreenPageLimit(2);
 
         if (viewPager != null) {
             viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
             viewPager.setCurrentItem(0); // выводим первый экран
         }
+
+
     }
 
 
@@ -118,8 +121,10 @@ public class MainActivity extends AppCompatActivity {
     public static class MyAdapter extends FragmentPagerAdapter {
 
         MyAdapter(@NonNull FragmentManager fm) {
+
             super(fm);
         }
+
 
         @Override
         public int getCount() {
