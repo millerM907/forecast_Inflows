@@ -86,52 +86,54 @@ public class WeekActivity extends Fragment  {
         but_day1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(1);
+
+                startIntent(1, but_day1.getText().toString());
             }
         });
 
         but_day2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(2);
+                startIntent(2, but_day2.getText().toString());
             }
         });
 
         but_day3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(3);
+                startIntent(3, but_day3.getText().toString());
             }
         });
 
         but_day4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(4);
+                startIntent(4, but_day4.getText().toString());
             }
         });
 
         but_day5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(5);
+                startIntent(5, but_day5.getText().toString());
             }
         });
 
         but_day6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(6);
+                startIntent(6, but_day6.getText().toString());
             }
         });
 
         return v;
     }
 
-    private void startIntent(int key){
+    private void startIntent(int key, String butText){
         Intent intent = new Intent(getContext(), DayActivity.class);
         // передача объекта с ключом "keyDay" и значением key
         intent.putExtra("keyDay", key);
+        intent.putExtra("nameDay", butText);
         // запуск SecondActivity
         startActivity(intent);
     }

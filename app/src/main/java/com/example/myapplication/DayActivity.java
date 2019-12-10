@@ -20,6 +20,8 @@ public class DayActivity extends AppCompatActivity {
 
     Context thiscontext;
 
+    TextView tv_weekDay;
+
     TextView tv_sunrise_time;
     TextView tv_sunset_time;
 
@@ -42,6 +44,40 @@ public class DayActivity extends AppCompatActivity {
 
         Bundle arguments = getIntent().getExtras();
         int keyDay = (Integer) arguments.get("keyDay");
+        String nameDay = (String) arguments.get("nameDay");
+
+        switch (nameDay){
+            case "ПН":
+                nameDay = "Понедельник";
+                break;
+
+            case "ВТ":
+                nameDay = "Вторник";
+                break;
+
+            case "СР":
+                nameDay = "Среда";
+                break;
+
+            case "ЧТ":
+                nameDay = "Четверг";
+                break;
+
+            case "ПТ":
+                nameDay = "Пятница";
+                break;
+
+            case "СБ":
+                nameDay = "Суббота";
+                break;
+
+            case "ВС":
+                nameDay = "Воскресенье";
+                break;
+        }
+
+        tv_weekDay = findViewById(R.id.tv_weekday);
+        tv_weekDay.setText(nameDay);
 
         Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
 
