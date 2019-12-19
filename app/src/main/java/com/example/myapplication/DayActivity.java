@@ -46,6 +46,8 @@ public class DayActivity extends AppCompatActivity {
         int keyDay = (Integer) arguments.get("keyDay");
         String nameDay = (String) arguments.get("nameDay");
 
+        System.out.println(nameDay);
+
         switch (nameDay){
             case "ПН":
                 nameDay = "Понедельник";

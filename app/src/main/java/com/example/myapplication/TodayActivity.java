@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,6 +36,7 @@ public class TodayActivity extends Fragment {
     CardView cv_time;
     CardView cv_height;
 
+    ImageButton imageButton;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class TodayActivity extends Fragment {
         Object[] dataTaskObjectArray = {v, thiscontext};
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
+
+
 
         return v;
     }

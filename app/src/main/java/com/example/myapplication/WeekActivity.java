@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public class WeekActivity extends Fragment  {
@@ -86,43 +87,55 @@ public class WeekActivity extends Fragment  {
         but_day1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startIntent(1, but_day1.getText().toString());
+                if(getEqualsMonth(1)){
+                    startIntent(1, but_day1.getText().toString());
+                }
             }
         });
 
         but_day2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(2, but_day2.getText().toString());
+                if(getEqualsMonth(2)){
+                    startIntent(2, but_day2.getText().toString());
+                }
+
             }
         });
 
         but_day3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(3, but_day3.getText().toString());
+                if(getEqualsMonth(3)){
+                    startIntent(3, but_day3.getText().toString());
+                }
             }
         });
 
         but_day4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(4, but_day4.getText().toString());
+                if(getEqualsMonth(4)){
+                    startIntent(4, but_day4.getText().toString());
+                }
             }
         });
 
         but_day5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(5, but_day5.getText().toString());
+                if(getEqualsMonth(5)){
+                    startIntent(5, but_day5.getText().toString());
+                }
             }
         });
 
         but_day6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startIntent(6, but_day6.getText().toString());
+                if(getEqualsMonth(6)){
+                    startIntent(6, but_day6.getText().toString());
+                }
             }
         });
 
@@ -138,4 +151,11 @@ public class WeekActivity extends Fragment  {
         startActivity(intent);
     }
 
+    private boolean getEqualsMonth(int dayIndex){
+        boolean equals = false;
+        if(LocalDateTime.now(ZoneId.of("Asia/Magadan")).plusDays(dayIndex).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
+            equals = true;
+        }
+        return equals;
+    }
 }
