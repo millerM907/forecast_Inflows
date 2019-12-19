@@ -18,6 +18,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="26sp"
+        android:fontFamily="@font/my_nice_font"
         app:layout_constraintBottom_toTopOf="@id/cv_time1"
         app:layout_constraintHeight_percent="0.12"
         app:layout_constraintStart_toStartOf="parent" />
@@ -50,6 +51,7 @@
         android:elegantTextHeight="true"
         android:gravity="end|center_vertical"
         android:text="@string/sunset"
+        android:fontFamily="@font/my_nice_font"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="26sp"

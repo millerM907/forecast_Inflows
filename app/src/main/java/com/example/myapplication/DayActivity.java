@@ -50,31 +50,31 @@ public class DayActivity extends AppCompatActivity {
 
         switch (nameDay){
             case "ПН":
-                nameDay = "Понедельник";
+                nameDay = "ПОНЕДЕЛЬНИК";
                 break;
 
             case "ВТ":
-                nameDay = "Вторник";
+                nameDay = "ВТОРНИК";
                 break;
 
             case "СР":
-                nameDay = "Среда";
+                nameDay = "СРЕДА";
                 break;
 
             case "ЧТ":
-                nameDay = "Четверг";
+                nameDay = "ЧЕТВЕРГ";
                 break;
 
             case "ПТ":
-                nameDay = "Пятница";
+                nameDay = "ПЯТНИЦА";
                 break;
 
             case "СБ":
-                nameDay = "Суббота";
+                nameDay = "СУББОТА";
                 break;
 
             case "ВС":
-                nameDay = "Воскресенье";
+                nameDay = "ВОСКРЕСЕНЬЕ";
                 break;
         }
 
