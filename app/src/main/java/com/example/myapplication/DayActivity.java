@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DayActivity extends AppCompatActivity {
@@ -46,7 +49,8 @@ public class DayActivity extends AppCompatActivity {
         int keyDay = (Integer) arguments.get("keyDay");
         String nameDay = (String) arguments.get("nameDay");
 
-        System.out.println(nameDay);
+        tv_time = findViewById(R.id.tv_time);
+        tv_time.setText(dateTime(keyDay));
 
         switch (nameDay){
             case "ПН":
@@ -92,6 +96,12 @@ public class DayActivity extends AppCompatActivity {
         Object[] dataTaskObjectArray = {thiscontext, keyDay};
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
+    }
+
+
+    private String dateTime(int offsetDay){
+        String date = LocalDateTime.now(ZoneId.of("Asia/Magadan")).plusDays(offsetDay).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        return date;
     }
 
     class DataTask extends AsyncTask<Object, Void, Object[]> {
