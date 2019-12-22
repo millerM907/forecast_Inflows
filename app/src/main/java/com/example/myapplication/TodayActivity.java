@@ -56,8 +56,6 @@ public class TodayActivity extends Fragment {
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
 
-
-
         return v;
     }
 

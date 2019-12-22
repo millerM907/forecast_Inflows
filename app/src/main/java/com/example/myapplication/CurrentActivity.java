@@ -40,10 +40,6 @@ public class CurrentActivity extends Fragment {
     TextView tv_humidity_5_2;
 
     TextView tvState;
-    TextView tv_time;
-
-    //создаем обработчик для обновления текущего времени
-    Handler handlerCurrentTime;
 
     Context thiscontext;
 
@@ -52,13 +48,6 @@ public class CurrentActivity extends Fragment {
         View v = inflater.inflate(R.layout.activity_current, container, false);
 
         thiscontext = getActivity();
-
-        //handlerCurrentTime = new Handler();
-        //tv_time = v.findViewById(R.id.tv_time);
-        //handlerCurrentTime.post(showCurrentTimeInfo);
-
-        //ImageView imageView1 = v.findViewById(R.id.iv_sand);
-        //imageView1.setBackgroundResource(R.drawable.sand1);
 
         Object[] dataTaskObjectArray = {thiscontext, v};
 
@@ -73,17 +62,6 @@ public class CurrentActivity extends Fragment {
 
         return v;
     }
-
-    /*
-    Runnable showCurrentTimeInfo = new Runnable() {
-        public void run() {
-            LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
-            String currentTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-            tv_time.setText(currentTime);
-            // планирует сам себя через 1000 мсек
-            handlerCurrentTime.postDelayed(showCurrentTimeInfo, 1000);
-        }
-    };*/
 
     @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<Object, Void, Object[]> {
