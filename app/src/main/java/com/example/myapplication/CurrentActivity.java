@@ -1,33 +1,27 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
-public class CurrentActivity extends Fragment {
+public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     TextView tvPercentTide;
     TextView tv_waterTime_1_1;
@@ -43,14 +37,20 @@ public class CurrentActivity extends Fragment {
 
     Context thiscontext;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private Object[] dataTaskObjectArray;
+    private int countExecuteAsycnkTask;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_current, container, false);
 
         thiscontext = getActivity();
 
-        Object[] dataTaskObjectArray = {thiscontext, v};
 
+        dataTaskObjectArray = new Object[]{thiscontext, v};
+
+        countExecuteAsycnkTask = 0;
         //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
@@ -59,8 +59,21 @@ public class CurrentActivity extends Fragment {
         DataTaskTwo dataTaskTwo = new DataTaskTwo();
         dataTaskTwo.execute(dataTaskObjectArray);
 
-
+        mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         return v;
+    }
+
+    @Override
+    public void onRefresh() {
+
+        //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
+        DataTask dataTask = new DataTask();
+        dataTask.execute(dataTaskObjectArray);
+
+        //запускаем второй поток
+        DataTaskTwo dataTaskTwo = new DataTaskTwo();
+        dataTaskTwo.execute(dataTaskObjectArray);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -133,6 +146,7 @@ public class CurrentActivity extends Fragment {
                     tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(3)));
                 }
             }
+
         }
     }
 
@@ -169,6 +183,13 @@ public class CurrentActivity extends Fragment {
             String windDirection = gismeteoParserList.get(2);
             tv_windSide_3_2 = view.findViewById(R.id.tv_windSide_3_2);
             tv_windSide_3_2.setText(windDirection);
+
+            //после выполнения обновления убираем кругляк обновления
+            mSwipeRefreshLayout.setRefreshing(false);
+            if(mSwipeRefreshLayout.isRefreshing() == false && (countExecuteAsycnkTask != 0)){
+                Toast.makeText((Context) dataTaskObjectArray[0], "Информация обновлена!", Toast.LENGTH_SHORT).show();
+            }
+            countExecuteAsycnkTask++;
         }
     }
 }
