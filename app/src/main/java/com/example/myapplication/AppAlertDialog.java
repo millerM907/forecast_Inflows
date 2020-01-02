@@ -3,8 +3,11 @@ package com.example.myapplication;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.support.v4.app.DialogFragment;
+import android.view.Gravity;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class AppAlertDialog extends DialogFragment {
 
@@ -29,9 +32,11 @@ public class AppAlertDialog extends DialogFragment {
                         }
                     });
         } else if (keyMessage == 2){
-            String version = BuildConfig.VERSION_NAME;
-
-            builder.setTitle(R.string.about_prog_alert_dialog_title).setMessage(R.string.about_prog_alert_dialog_mes)
+            String appName = activity.getString(R.string.app_name);
+            String version = "Версия приложения: " + BuildConfig.VERSION_NAME;
+            String developer = "Разработчик: Иван Иванов";
+            builder.setTitle(R.string.about_prog_alert_dialog_title)
+                    .setMessage("\n" + appName + "\n\n" + version + "\n\n" + developer)
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             //Закрываем приложение

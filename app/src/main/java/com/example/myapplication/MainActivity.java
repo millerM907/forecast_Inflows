@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,9 +12,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -105,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                         AppAlertDialog alertDialog = new AppAlertDialog();
                         android.app.AlertDialog dialog = alertDialog.onCreateDialog((MainActivity) thiscontext, 2);
                         dialog.show();
+
+                        TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+                        messageView.setGravity(Gravity.CENTER);
                         break;
                 }
                 return true;
