@@ -16,8 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 
@@ -93,60 +98,84 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             ResourseID resourseID = new ResourseID(thiscontext);
             View view = (View) objectsArray[2];
 
-            if(tidesForFishingParserList.get(0).equals("-200")){
 
-                //вывод сообщения о том, что приложение недоступно
-                //CloseAlertDialog closeAlertDialog = new CloseAlertDialog();
-                //AlertDialog dialog = closeAlertDialog.onCreateDialog((MainActivity) getActivity());
-                //dialog.show();
+            //вычисление процента и присвоение переменной percent
+            String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
+
+            //поиск textView для времени
+            tv_waterTime_1_2 = view.findViewById(R.id.tv_waterTime_1_2);
+
+            //поиск textView для высоты прилива/отлива
+            tv_waterHeight_4_2 = view.findViewById(R.id.tv_waterHeight_4_2);
+
+
+            //если процент вычислить не удалось он равен -100, иначе если удалось
+            if(percent.equals("-100")){
+                //вместо времени и высоты устанавливаем прочерки, слово прилив/отлив не выводим
+                tv_waterTime_1_2.setText("-");
+                tv_waterHeight_4_2.setText("-");
 
             } else {
-                //вычисление процента и присвоение переменной percent
-                String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
 
-                //поиск image_view для картинки
-                //ImageView imageView2 = view.findViewById(R.id.iv_wave);
+                //устанавливаем вместо процента - время до конца цикла
 
-                //если процент вычислить не удалось он равен -100, иначе если удалось
-                if(percent.equals("-100")){
-                    //установка картинки
-                    //imageView2.setBackgroundResource(R.drawable.crab);
+                //получаем текущее время с учетом часового пояса +11
+                LocalDateTime currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
 
-                } else {
-                    //установка процента
-                    tvPercentTide = view.findViewById(R.id.tv_percentTide);
-                    tvPercentTide.setText(getString(R.string.ma_percent, percent));
-                    Typeface typefaceCopperplateGothic = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/COPRGTL.TTF");
-                    tvPercentTide.setTypeface(typefaceCopperplateGothic);
+                Instant instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
+                long currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
 
-                    //установка картинки
-                    //imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
+                Instant instantEndCycleTime = Instant.parse(tidesForFishingParserList.get(2));
+                long endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
 
-                    //выводим состояние прилив/отлив
-                    String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода"};
-                    tvState = view.findViewById(R.id.tv_state);
-                    tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
-                    if(tidesForFishingParserList.get(4).equals("true")){
-                        tvState.setText(state[0]);
-                        tv_waterTime_1_1.setText(state[2]);
-                    } else if (tidesForFishingParserList.get(4).equals("false")){
-                        tvState.setText(state[1]);
-                        tv_waterTime_1_1.setText(state[3]);
-                    }
+                long differenceTime = endCycleTimeNumber - currentTimeNumber;
 
-                    Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
-                    tvState.setTypeface(typefacePalatinoLinotype);
+                //DateTimeFormatter formatter = DateTimeFormatter.ofPattern ( "HH:mm" );
+                String output = timeToString(differenceTime);
 
-                    //устанавливаем время конца цикла
-                    tv_waterTime_1_2 = view.findViewById(R.id.tv_waterTime_1_2);
-                    tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(2)).format(DateTimeFormatter.ofPattern("HH:mm")));
 
-                    //устанавливаем высоту воды
-                    tv_waterHeight_4_2 = view.findViewById(R.id.tv_waterHeight_4_2);
-                    tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(3)));
+
+                //установка процента
+                tvPercentTide = view.findViewById(R.id.tv_percentTide);
+                //tvPercentTide.setText(getString(R.string.ma_percent, percent));
+                tvPercentTide.setText(output);
+
+                Typeface typefaceCopperplateGothic = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/COPRGTL.TTF");
+                tvPercentTide.setTypeface(typefaceCopperplateGothic);
+
+                //установка картинки
+                //imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
+
+                //выводим состояние прилив/отлив
+                String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода"};
+                tvState = view.findViewById(R.id.tv_state);
+                tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
+                if(tidesForFishingParserList.get(4).equals("true")){
+                    tvState.setText(state[0]);
+                    tv_waterTime_1_1.setText(state[2]);
+                } else if (tidesForFishingParserList.get(4).equals("false")){
+                    tvState.setText(state[1]);
+                    tv_waterTime_1_1.setText(state[3]);
                 }
+
+                Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
+                tvState.setTypeface(typefacePalatinoLinotype);
+
+                //устанавливаем время конца цикла
+                tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(2)).format(DateTimeFormatter.ofPattern("HH:mm")));
+
+                //устанавливаем высоту воды
+                tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(3)));
             }
 
+        }
+
+        private  String timeToString(long secs) {
+            long hour = secs / 3600;
+            long min = secs / 60 % 60;
+            long sec = secs - hour * 3600 - min * 60;
+
+            return String.format("%01d:%02d:%02d", hour, min, sec);
         }
     }
 
@@ -187,7 +216,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //после выполнения обновления убираем кругляк обновления
             mSwipeRefreshLayout.setRefreshing(false);
             if(mSwipeRefreshLayout.isRefreshing() == false && (countExecuteAsycnkTask != 0)){
-                Toast.makeText((Context) dataTaskObjectArray[0], "Информация обновлена!", Toast.LENGTH_SHORT).show();
+                Toast.makeText((Context) dataTaskObjectArray[0], "Обновлено", Toast.LENGTH_SHORT).show();
             }
             countExecuteAsycnkTask++;
         }

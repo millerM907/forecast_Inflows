@@ -1,8 +1,8 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,7 +13,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.time.LocalDateTime;
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tv_time;
 
+    ImageButton im_button;
+
     //создаем обработчик для обновления текущего времени
     Handler handlerCurrentTime;
 
@@ -35,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         thiscontext = this;
 
@@ -45,23 +53,65 @@ public class MainActivity extends AppCompatActivity {
         tv_time = findViewById(R.id.tv_time);
         handlerCurrentTime.post(showCurrentTimeInfo);
 
-        Object[] dataTaskObjectArray = {thiscontext};
+        //проверка интернет соединения
+        if (!NetworkManager.isNetworkAvailable(thiscontext)) {
+            //вывод сообщения о том, что приложение недоступно из-за ошибки интернет соединения
+            AppAlertDialog alertDialog = new AppAlertDialog();
+            android.app.AlertDialog dialog = alertDialog.onCreateDialog((MainActivity) thiscontext, 1);
+            dialog.setCancelable(false);
+            dialog.show();
+        } else {
+            im_button = findViewById(R.id.imageButton);
+            im_button.setOnClickListener(viewClickListener);
 
-        //запускаем поток по отрисовке процентов и передаем в него массив, содержищий контекст
-        DataTask dataTask = new DataTask();
-        dataTask.execute(dataTaskObjectArray);
+            Object[] dataTaskObjectArray = {thiscontext};
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            //запускаем поток по отрисовке процентов и передаем в него массив, содержищий контекст
+            DataTask dataTask = new DataTask();
+            dataTask.execute(dataTaskObjectArray);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setOffscreenPageLimit(2);
 
-        if (viewPager != null) {
-            viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
-            viewPager.setCurrentItem(0); // выводим первый экран
+            ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+            viewPager.setOffscreenPageLimit(2);
+
+            if (viewPager != null) {
+                viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
+                viewPager.setCurrentItem(0); // выводим первый экран
+            }
         }
+    }
 
+    View.OnClickListener viewClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showPopupMenu(v);
+        }
+    };
 
+    public void showPopupMenu (View view)
+    {
+        PopupMenu menu = new PopupMenu (this, view);
+        menu.setOnMenuItemClickListener (new PopupMenu.OnMenuItemClickListener ()
+        {
+            @Override
+            public boolean onMenuItemClick (MenuItem item)
+            {
+                int id = item.getItemId();
+                switch (id)
+                {
+                    case R.id.item_instruction: ;
+                        break;
+                    case R.id.item_about:
+                        AppAlertDialog alertDialog = new AppAlertDialog();
+                        android.app.AlertDialog dialog = alertDialog.onCreateDialog((MainActivity) thiscontext, 2);
+                        dialog.show();
+                        break;
+                }
+                return true;
+            }
+        });
+        menu.inflate (R.menu.popupmenu);
+        menu.show();
     }
 
 
@@ -94,9 +144,10 @@ public class MainActivity extends AppCompatActivity {
 
             if(tidesForFishingParserList.get(0).equals("-200")){
 
-                //вывод сообщения о том, что приложение недоступно
-                CloseAlertDialog closeAlertDialog = new CloseAlertDialog();
-                AlertDialog dialog = closeAlertDialog.onCreateDialog((MainActivity) thiscontext);
+                //вывод сообщения о том, что приложение недоступно по техническим причинам
+                AppAlertDialog alertDialog = new AppAlertDialog();
+                android.app.AlertDialog dialog = alertDialog.onCreateDialog((MainActivity) thiscontext, 0);
+                dialog.setCancelable(false);
                 dialog.show();
 
             } else {

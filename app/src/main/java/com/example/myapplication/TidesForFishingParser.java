@@ -43,18 +43,26 @@ public class TidesForFishingParser {
             generalParametra.add(fatalDef);
         }
 
-        //получаем текущее время с учетом часового пояса +11
-        ZoneId leavingZone = ZoneId.of("Asia/Magadan");
-        LocalDateTime localDateTime = LocalDateTime.now(leavingZone);
+        String postficsTime = "-01T12:00:00.000000Z";
 
-        //автоматическое составление запросов к таблице
-        int localDayMonth = localDateTime.getDayOfMonth();
+        LocalDateTime currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
+        String prefixCurrentDate = currentLocalDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM"));
+        String time = prefixCurrentDate + postficsTime;
 
-        //если день месяца 1, то мы присваиваем 0 элементу списка значение -200 и возвращаем список
-        if(localDayMonth == 1){
+        Instant instantConstTime = Instant.parse(time);
+        long constTimeNumber = Instant.ofEpochSecond(0L).until(instantConstTime, ChronoUnit.SECONDS);
+
+        Instant instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
+        long currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
+
+        //если день месяца 1, и текущее время меньше 12 часов дня, то мы присваиваем 0 элементу списка значение -200 и возвращаем список
+        if(currentTimeNumber < constTimeNumber){
             generalParametra.add(fatalDef);
             return generalParametra;
         }
+
+        //автоматическое составление запросов к таблице
+        int localDayMonth = currentLocalDateTime.getDayOfMonth();
 
         int yesterdayID = (localDayMonth * 2);
         int todayID = (localDayMonth * 2) + 2;
