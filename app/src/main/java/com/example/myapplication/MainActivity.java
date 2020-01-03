@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_time;
 
     ImageButton im_button;
+    static ImageView im_view_start_screen;
 
     //создаем обработчик для обновления текущего времени
     Handler handlerCurrentTime;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        im_view_start_screen = findViewById(R.id.imageView);
+        im_view_start_screen.bringToFront();
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         thiscontext = this;
@@ -69,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             DataTask dataTask = new DataTask();
             dataTask.execute(dataTaskObjectArray);
 
-
             ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
             viewPager.setOffscreenPageLimit(2);
 
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(0); // выводим первый экран
             }
         }
+
     }
 
     View.OnClickListener viewClickListener = new View.OnClickListener() {

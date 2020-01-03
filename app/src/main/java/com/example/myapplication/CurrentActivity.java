@@ -7,11 +7,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +26,9 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.zip.Inflater;
 
+import static com.example.myapplication.R.layout.*;
 
 public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -48,7 +52,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_current, container, false);
+        View v = inflater.inflate(activity_current, container, false);
 
         thiscontext = getActivity();
 
@@ -219,6 +223,24 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 Toast.makeText((Context) dataTaskObjectArray[0], "Обновлено", Toast.LENGTH_SHORT).show();
             }
             countExecuteAsycnkTask++;
+
+            LayoutInflater inflater = getLayoutInflater();
+            View activityLayout = inflater.inflate(activity_main, null);
+            ImageView imageView = (ImageView) activityLayout.findViewById(R.id.imageView);
+            imageView.setVisibility(View.INVISIBLE);
+
+
+            System.out.println(imageView);
+            imageView.setColorFilter(getResources().getColor(R.color.colorPrimaryDark));
+            //imageView.setVisibility(View.GONE);
+            imageView.setVisibility(View.INVISIBLE);
+
+            //View activityLayout =  inflater.inflate(activity_main, container, false); //инфлейтим разметку нашего хедера во время выполнения
+            //ImageView imageView = (ImageView) activityLayout.findViewById(R.id.imageView4); // и теперь имеем доступ к любому компоненту в headerLayout
+            //imageView.setVisibility(View.GONE);
+
+            MainActivity.im_view_start_screen.setVisibility(View.GONE);
+            //MainActivity.im_view_start_screen.setVisibility(View.GONE);
         }
     }
 }
