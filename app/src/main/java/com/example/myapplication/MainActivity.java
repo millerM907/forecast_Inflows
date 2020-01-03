@@ -6,10 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -172,35 +168,6 @@ public class MainActivity extends AppCompatActivity {
                     //установка картинки
                     imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
                 }
-            }
-        }
-    }
-
-    public static class MyAdapter extends FragmentPagerAdapter {
-
-        MyAdapter(@NonNull FragmentManager fm) {
-
-            super(fm);
-        }
-
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        @NonNull
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new CurrentActivity();
-                case 1:
-                    return new TodayActivity();
-                case 2:
-                    return new WeekActivity();
-                default:
-                    return new CurrentActivity();
             }
         }
     }
