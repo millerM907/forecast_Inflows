@@ -87,7 +87,7 @@ public class TodayActivity extends Fragment {
 
             int sizeTidesForFishingParserList = tidesForFishingParserList.size() - 2;
 
-            String[] waterSateArray = {"Полная вода", "Малая вода", "отлива","прилива", " м"};
+            String[] waterSateArray = {"Полная вода", "Малая вода", "малой","полной", " м"};
 
 
             if(sizeTidesForFishingParserList == 12){

@@ -35,6 +35,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
     TextView tvPercentTide;
     TextView tv_waterTime_1_1;
     TextView tv_waterTime_1_2;
+    TextView tv_waterHeight_4_1;
     TextView tv_waterHeight_4_2;
     TextView tv_windStrength_6_2;
     TextView tv_windSide_3_2;
@@ -56,10 +57,10 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
         thiscontext = getActivity();
 
-
         dataTaskObjectArray = new Object[]{thiscontext, v};
 
         countExecuteAsycnkTask = 0;
+
         //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
@@ -150,14 +151,18 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 //установка картинки
                 //imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
 
+                tv_waterHeight_4_1 = view.findViewById(R.id.tv_waterHeight_4_1);
+
                 //выводим состояние прилив/отлив
-                String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода"};
+                String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода", "полной", "малой"};
                 tvState = view.findViewById(R.id.tv_state);
                 tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
                 if(tidesForFishingParserList.get(4).equals("true")){
+                    tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[4]));
                     tvState.setText(state[0]);
                     tv_waterTime_1_1.setText(state[2]);
                 } else if (tidesForFishingParserList.get(4).equals("false")){
+                    tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[5]));
                     tvState.setText(state[1]);
                     tv_waterTime_1_1.setText(state[3]);
                 }
@@ -177,9 +182,9 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         private  String timeToString(long secs) {
             long hour = secs / 3600;
             long min = secs / 60 % 60;
-            long sec = secs - hour * 3600 - min * 60;
+            //long sec = secs - hour * 3600 - min * 60;
 
-            return String.format("%01d:%02d:%02d", hour, min, sec);
+            return String.format("%01d:%02d", hour, min);
         }
     }
 

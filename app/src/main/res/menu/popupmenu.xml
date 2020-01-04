@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_instruction"
-        android:title="Инструкция"
+        android:title="@string/instruction"
         android:visible="true"/>
     <item
         android:id="@+id/item_about"
-        android:title="О приложении"
+        android:title="@string/about_app"
         android:visible="true"/>
 </menu>

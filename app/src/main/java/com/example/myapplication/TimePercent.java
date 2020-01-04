@@ -16,11 +16,11 @@ public class TimePercent {
             ZoneId leavingZone = ZoneId.of("Asia/Magadan");
             LocalDateTime localTime = LocalDateTime.now(leavingZone);
 
-            //вычисляем предыдущее время в миллисекундах
+            //переводим предыдущее время в секунды
             OffsetDateTime dateStartCycleNew = OffsetDateTime.parse(previousTime);
             long previousTimeNumber = dateStartCycleNew.toEpochSecond();
 
-            //вычисляем следующее время в миллисекундах
+            //переводим следующее время в секунды
             OffsetDateTime dateEndCycleNew = OffsetDateTime.parse(nextTime);
             long nextTimeNumber = dateEndCycleNew.toEpochSecond();
 
@@ -30,7 +30,7 @@ public class TimePercent {
                 nextTimeNumber = dateEndCycleNew.toEpochSecond();
             }
 
-            //вычисляем текущее время в миллисекундах
+            //вычисляем текущее время в секундах
             long currentTimeNumber = localTime.toEpochSecond(ZoneOffset.UTC);
 
             currentTimeNumber -= previousTimeNumber;
