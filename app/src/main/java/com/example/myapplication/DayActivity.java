@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -34,12 +35,18 @@ public class DayActivity extends AppCompatActivity {
     CardView cv_time;
     CardView cv_height;
 
+    AlertDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
 
         thiscontext = this;
+
+        AppAlertDialog alertDialog = new AppAlertDialog();
+        dialog = alertDialog.onCreateDialog(thiscontext, 3);
+        dialog.show();
 
         ImageView imageView = findViewById(R.id.iv_bg);
         imageView.setBackgroundResource(R.drawable.day0);
@@ -130,7 +137,7 @@ public class DayActivity extends AppCompatActivity {
 
             int sizeTidesForFishingParserList = tidesForFishingParserList.size() - 2;
 
-            String[] waterSateArray = {"Полная вода", "Малая вода", "отлива", "прилива", " м"};
+            String[] waterSateArray = {"Полная вода", "Малая вода", "малой", "полной", " м"};
 
 
             if (sizeTidesForFishingParserList == 12) {
@@ -159,7 +166,7 @@ public class DayActivity extends AppCompatActivity {
                     }
                     x += 3;
                 }
-
+                dialog.dismiss();
             } else if (sizeTidesForFishingParserList == 9) {
 
                 //определяем и скрываем cv_time4
@@ -194,8 +201,7 @@ public class DayActivity extends AppCompatActivity {
                     }
                     x += 3;
                 }
-
-
+                dialog.dismiss();
             } else if (sizeTidesForFishingParserList == 6) {
 
                 //определяем и скрываем cv_time3
@@ -239,6 +245,7 @@ public class DayActivity extends AppCompatActivity {
                     x += 3;
                 }
             }
+            dialog.dismiss();
         }
     }
 }

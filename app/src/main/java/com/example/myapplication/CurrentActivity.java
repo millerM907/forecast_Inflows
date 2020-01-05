@@ -93,34 +93,43 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     Runnable showRemainingTime = new Runnable() {
-        LocalDateTime currentLocalDateTime;
-        Instant instantCurrentTime;
+        //LocalDateTime currentLocalDateTime;
+        //Instant instantCurrentTime;
 
-        long currentTimeNumber;
+        //long currentTimeNumber;
 
-        String time;
+        //String time;
 
-        Instant instantEndCycleTime;
-        long endCycleTimeNumber;
-        long differenceTime;
+        //Instant instantEndCycleTime;
+        //long endCycleTimeNumber;
+        //long differenceTime;
 
-        String output;
+        //String output;
 
         public void run() {
             //получаем текущее время с учетом часового пояса +11
-            currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
+            LocalDateTime currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
 
-            instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
-            currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
 
-            time = currentLocalDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+ "T" + tv_waterTime_1_2.getText() + ":00.000000Z";
+            Instant instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
 
-            instantEndCycleTime = Instant.parse(time);
-            endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
+            long currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
 
-            differenceTime = endCycleTimeNumber - currentTimeNumber;
+            String time = currentLocalDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+ "T" + tv_waterTime_1_2.getText() + ":00.000000Z";
 
-            output = timeToString(differenceTime);
+            Instant instantEndCycleTime = Instant.parse(time);
+            long endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
+            long differenceTime = 0;
+            if(endCycleTimeNumber-currentTimeNumber < 0){
+                time = LocalDateTime.now(ZoneId.of("Asia/Magadan")).plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+ "T" + tv_waterTime_1_2.getText() + ":00.000000Z";
+                instantEndCycleTime = Instant.parse(time);
+                endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
+                differenceTime = endCycleTimeNumber - currentTimeNumber;
+            } else {
+                differenceTime = endCycleTimeNumber - currentTimeNumber;
+            }
+
+            String output = timeToString(differenceTime);
 
             tvRemainingTimeTide.setText(output);
 
@@ -185,7 +194,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
                 //DateTimeFormatter formatter = DateTimeFormatter.ofPattern ( "HH:mm" );
                 String output = timeToString(differenceTime);
-
+                System.out.println(output);
 
                 //установка времени, оставшегося до конца цикла
                 tvRemainingTimeTide = view.findViewById(R.id.tv_remainingTimeTide);
@@ -206,7 +215,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 tvState = view.findViewById(R.id.tv_state);
                 tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
                 if(tidesForFishingParserList.get(4).equals("true")){
-                    tv_remaining_time.setText(getString(R.string.remaining_time, state[4]));
+                    tv_remaining_time.setText(getString(R.string.remaining_time, state[4])); //постоянно вылетает
                     tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[4]));
                     tvState.setText(state[0]);
                     tv_waterTime_1_1.setText(state[2]);

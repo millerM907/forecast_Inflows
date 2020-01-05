@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.item_about:
                         AppAlertDialog alertDialog = new AppAlertDialog();
-                        android.app.AlertDialog dialog = alertDialog.onCreateDialog((MainActivity) thiscontext, 2);
+                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 2);
                         dialog.show();
 
                         TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
