@@ -15,9 +15,9 @@ public class ForecaParser {
     private static ForecaParser instance = new ForecaParser();
     private ForecaParser(){}
 
-    public static List getForecaDataList(){
-        List<String> forecaDataList = new ArrayList<>();
-        String def = "-100";
+    private static List getGeneralParametra(){
+        List<Object> generalParametra = new ArrayList<>();
+        String def = "-200";
 
         Document doc = null;
         try {
@@ -27,19 +27,38 @@ public class ForecaParser {
                     .get();
 
         } catch (IOException e) {
-            for (int i = 0; i < 4; i++) {
-                forecaDataList.add(i, def);
+            generalParametra.add(def);
+            return generalParametra;
+        }
+
+        generalParametra.add(doc);
+        return generalParametra;
+    }
+
+    //метод возвращает влажность и температуру
+    public static List getForecaWeatherDataList(){
+        List generalParametra = getGeneralParametra();
+        List<String> forecaWeatherDataList = new ArrayList<>();
+
+        String def = "-100";
+
+        Document doc;
+        if(!generalParametra.get(0).equals("-200")){
+            doc = (Document) generalParametra.get(0);
+        } else {
+            for(int i = 0; i < 4; i++){
+                forecaWeatherDataList.add(i, def);
             }
-            return forecaDataList;
+            return forecaWeatherDataList;
         }
 
         try {
             //достаем температуру
             Elements leftContent = doc.select("div.left strong");
             String temperature = leftContent.get(0).text().replaceAll("^[\\n]?[+]?[\\n]?", "");
-            forecaDataList.add(0, temperature);
+            forecaWeatherDataList.add(0, temperature);
         } catch (NullPointerException e) {
-            forecaDataList.add(0, def);
+            forecaWeatherDataList.add(0, def);
         }
 
         try {
@@ -48,7 +67,34 @@ public class ForecaParser {
             String humidity = rightContent.get(3).text().replaceAll("[\\n]?[%]?[\\n]?", "");
             //убрать все, что после запятой
             humidity = String.valueOf((int)Float.parseFloat(humidity));
-            forecaDataList.add(humidity);
+            forecaWeatherDataList.add(humidity);
+
+        } catch (NullPointerException e) {
+            forecaWeatherDataList.add(1, def);
+        }
+
+        return forecaWeatherDataList;
+    }
+
+    //метод возвращает время рассвета и заката
+    public static List getForecaSunActivityDataList(){
+        List generalParametra = getGeneralParametra();
+        List<String> forecaSunActivityDataList = new ArrayList<>();
+
+        String def = "-100";
+
+        Document doc;
+        if(!generalParametra.get(0).equals("-200")){
+            doc = (Document) generalParametra.get(0);
+        } else {
+            for(int i = 0; i < 2; i++){
+                forecaSunActivityDataList.add(i, def);
+            }
+            return forecaSunActivityDataList;
+        }
+
+        try{
+            Elements rightContent = doc.select("div.right strong");
 
             //вычисляем текущее время
             LocalDateTime localTodayTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
@@ -59,20 +105,19 @@ public class ForecaParser {
             //время рассвета
             String rising = rightContent.get(5).text();
             rising = currentYearMonthDay + "T" + rising + ":00.000000Z";
-            forecaDataList.add(rising);
+            forecaSunActivityDataList.add(rising);
 
             //время заката
             String sunset = rightContent.get(6).text();
             sunset = currentYearMonthDay + "T" + sunset + ":00.000000Z";
-            forecaDataList.add(sunset);
+            forecaSunActivityDataList.add(sunset);
 
-        } catch (NullPointerException e) {
-            for(int i = 1; i < 4; i++){
-                forecaDataList.add(i, def);
+        } catch (NullPointerException ignored){
+            for(int i = 0; i < 2; i++){
+                forecaSunActivityDataList.add(i, def);
             }
         }
-
-        return forecaDataList;
+        return forecaSunActivityDataList;
     }
 
     public static ForecaParser getInstance(){

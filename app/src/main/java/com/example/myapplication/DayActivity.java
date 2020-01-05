@@ -106,7 +106,7 @@ public class DayActivity extends AppCompatActivity {
     class DataTask extends AsyncTask<Object, Void, Object[]> {
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{TidesForFishingParser.getTodayTidesForFishingDataList((Integer) dataTaskObjectArray[1]), ForecaParser.getForecaDataList(), GismeteoParser.getGismeteoDataList(), dataTaskObjectArray[0]};
+            return new Object[]{TidesForFishingParser.getTodayTidesForFishingDataList((Integer) dataTaskObjectArray[1]), ForecaParser.getForecaSunActivityDataList(), GismeteoParser.getGismeteoSunActivityDataList(), dataTaskObjectArray[0]};
         }
 
 
@@ -120,11 +120,11 @@ public class DayActivity extends AppCompatActivity {
             Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
 
 
-            String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(2), gismeteoParserList.get(4), tidesForFishingParserList.get(tidesForFishingParserList.size() - 2));
+            String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(0), gismeteoParserList.get(0), tidesForFishingParserList.get(tidesForFishingParserList.size() - 2));
             tv_sunrise_time = findViewById(R.id.tv_sunrise_time);
             tv_sunrise_time.setText(sunriseTime);
 
-            String sunsetTime = WeatherAverages.calculationMeanSunsetTime(forecaParserList.get(3), gismeteoParserList.get(5), tidesForFishingParserList.get(tidesForFishingParserList.size() - 1));
+            String sunsetTime = WeatherAverages.calculationMeanSunsetTime(forecaParserList.get(1), gismeteoParserList.get(1), tidesForFishingParserList.get(tidesForFishingParserList.size() - 1));
             tv_sunset_time = findViewById(R.id.tv_sunset_time);
             tv_sunset_time.setText(sunsetTime);
 

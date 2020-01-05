@@ -15,9 +15,9 @@ public class GismeteoParser {
     private static GismeteoParser instance = new GismeteoParser();
     private GismeteoParser(){}
 
-    public static List getGismeteoDataList(){
-        List<String> gismeteoDataList = new ArrayList<>();
-        String def = "-100";
+    private static List getGeneralParametra(){
+        List<Object> generalParametra = new ArrayList<>();
+        String def = "-200";
 
         Document doc = null;
         try {
@@ -27,11 +27,29 @@ public class GismeteoParser {
                     .get();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            for (int i = 0; i < 6; i++){
-                gismeteoDataList.add(i, def);
+            generalParametra.add(def);
+            return generalParametra;
+        }
+
+        generalParametra.add(doc);
+        return generalParametra;
+    }
+
+
+
+    public static List getGismeteoWeatherDataList(){
+        List generalParametra = getGeneralParametra();
+        List<String> gismeteoWeatherDataList = new ArrayList<>();
+        String def = "-100";
+
+        Document doc;
+        if(!generalParametra.get(0).equals("-200")){
+            doc = (Document) generalParametra.get(0);
+        } else {
+            for(int i = 0; i < 4; i++){
+                gismeteoWeatherDataList.add(i, def);
             }
-            return gismeteoDataList;
+            return gismeteoWeatherDataList;
         }
 
         try {
@@ -40,10 +58,11 @@ public class GismeteoParser {
             String temperature = tempContent.get(0).text().replaceAll("^[\\n]?[+]?[\\n]?", "");
             String tempValue = temperature.replace(",", ".");
             tempValue = tempValue.replaceAll("[−]", "-");
+            System.out.println(tempValue);
             tempValue = String.valueOf((int)Float.parseFloat(tempValue));
-            gismeteoDataList.add(tempValue);
+            gismeteoWeatherDataList.add(tempValue);
         } catch (NullPointerException e) {
-            gismeteoDataList.add(def);
+            gismeteoWeatherDataList.add(def);
         }
 
         try {
@@ -65,7 +84,7 @@ public class GismeteoParser {
                     int averageWindValueI = (firstWindValueSh + secondWindValueSh) / 2;
                     windValue = String.valueOf(averageWindValueI);
                 } finally {
-                    gismeteoDataList.add(windValue);
+                    gismeteoWeatherDataList.add(windValue);
                 }
 
                 //Направление ветра
@@ -73,10 +92,9 @@ public class GismeteoParser {
                 try {
                     Elements windDirectionContent = windContent.select("div.nowinfo__measure.nowinfo__measure_wind");
                     windDirection = windDirectionContent.get(0).text().replaceAll("(м/с)?", "").replaceAll(" ", "");
-
-                    //сокращаем наименование направления ветра
+                    windDirection = "СЗ";
                     String[] directionShortName = {"С", "B", "З", "Ю"};
-                    switch (windDirection) {
+                    switch (windDirection){
                         case "Северный":
                             windDirection = directionShortName[0];
                             break;
@@ -94,13 +112,13 @@ public class GismeteoParser {
                     }
                 } catch (NullPointerException e) {
                 } finally {
-                    gismeteoDataList.add(windDirection);
+                    gismeteoWeatherDataList.add(windDirection);
                 }
 
 
             } catch (NullPointerException e) {
-                gismeteoDataList.add(1, def);
-                gismeteoDataList.add(2, def);
+                gismeteoWeatherDataList.add(1, def);
+                gismeteoWeatherDataList.add(2, def);
             }
 
             //Влажность в %
@@ -111,15 +129,35 @@ public class GismeteoParser {
                 humidityValue = humidityValueContent.get(0).text().replaceAll("[\\n]", "");
             } catch (NullPointerException e) {
             } finally {
-                gismeteoDataList.add(humidityValue);
+                gismeteoWeatherDataList.add(humidityValue);
             }
         } catch (NullPointerException e) {
-            gismeteoDataList.add(1, def);
-            gismeteoDataList.add(2, def);
-            gismeteoDataList.add(3, def);
+            gismeteoWeatherDataList.add(1, def);
+            gismeteoWeatherDataList.add(2, def);
+            gismeteoWeatherDataList.add(3, def);
         }
 
-        //Время рассвета/заката
+        return gismeteoWeatherDataList;
+    }
+
+    public static List getGismeteoSunActivityDataList(){
+
+        List generalParametra = getGeneralParametra();
+        List<String> gismeteoSunActivityDataList = new ArrayList<>();
+
+        String def = "-100";
+
+        Document doc;
+        if(!generalParametra.get(0).equals("-200")){
+            doc = (Document) generalParametra.get(0);
+        } else {
+            for(int i = 0; i < 2; i++){
+                gismeteoSunActivityDataList.add(i, def);
+            }
+            return gismeteoSunActivityDataList;
+        }
+
+        //Парсинг времени рассвета и заката
         try {
             Elements sunContent = doc.select("div.nowastro__time");
             String rising = sunContent.get(0).text().replaceAll("[\\n]?", "");
@@ -142,15 +180,15 @@ public class GismeteoParser {
             rising = currentYearMonthDay + "T" + rising + ":00.000000Z";
             sunset = currentYearMonthDay + "T" + sunset + ":00.000000Z";
 
-            gismeteoDataList.add(rising);
-            gismeteoDataList.add(sunset);
+            gismeteoSunActivityDataList.add(rising);
+            gismeteoSunActivityDataList.add(sunset);
 
         } catch (NullPointerException e) {
-            gismeteoDataList.add(def);
-            gismeteoDataList.add(def);
+            gismeteoSunActivityDataList.add(def);
+            gismeteoSunActivityDataList.add(def);
         }
 
-        return gismeteoDataList;
+        return gismeteoSunActivityDataList;
     }
 
     public static GismeteoParser getInstance(){

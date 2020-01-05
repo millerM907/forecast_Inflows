@@ -240,7 +240,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{ForecaParser.getForecaDataList(), GismeteoParser.getGismeteoDataList(), dataTaskObjectArray[1]};
+            return new Object[]{ForecaParser.getForecaWeatherDataList(), GismeteoParser.getGismeteoWeatherDataList(), dataTaskObjectArray[1]};
         }
 
         @Override
