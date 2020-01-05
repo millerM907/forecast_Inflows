@@ -17,7 +17,6 @@ import java.util.List;
 
 public class DayActivity extends AppCompatActivity {
 
-
     TextView tvSunset;
     TextView tvSunrise;
 

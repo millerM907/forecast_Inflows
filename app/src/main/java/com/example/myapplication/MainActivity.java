@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton im_button;
     static ImageView im_view_start_screen;
+    static ImageView im_view_2;
 
     //создаем обработчик для обновления текущего времени
     Handler handlerCurrentTime;
@@ -39,8 +40,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //установка стартовой страницы приложения
         im_view_start_screen = findViewById(R.id.imageView);
+        im_view_2 = findViewById(R.id.imageView2);
+
         im_view_start_screen.bringToFront();
+        im_view_2.bringToFront();
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 

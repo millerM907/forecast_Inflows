@@ -6,88 +6,120 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="657dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="390dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.52"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.52"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/but_today"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintWidth_percent="0.92"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="today"
-                app:layout_constraintTop_toBottomOf="@id/view"/>
+                android:visibility="visible"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                app:layout_constraintWidth_percent="0.92"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/but_day1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintWidth_percent="0.92"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="today"
-                app:layout_constraintTop_toBottomOf="@id/but_today"/>
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_today"
+                app:layout_constraintWidth_percent="0.92" />
 
             <Button
                 android:id="@+id/but_day2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintWidth_percent="0.92"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="today"
-                app:layout_constraintTop_toBottomOf="@id/but_day1"/>
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day1"
+                app:layout_constraintWidth_percent="0.92" />
 
             <Button
                 android:id="@+id/but_day3"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintWidth_percent="0.92"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="today"
-                app:layout_constraintTop_toBottomOf="@id/but_day2"/>
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day2"
+                app:layout_constraintWidth_percent="0.92" />
 
             <Button
                 android:id="@+id/but_day4"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintWidth_percent="0.92"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="today"
-                app:layout_constraintTop_toBottomOf="@id/but_day3"/>
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day3"
+                app:layout_constraintWidth_percent="0.92" />
 
             <Button
                 android:id="@+id/but_day5"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintWidth_percent="0.92"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="today"
-                app:layout_constraintTop_toBottomOf="@id/but_day4"/>
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day4"
+                app:layout_constraintWidth_percent="0.92" />
 
             <Button
                 android:id="@+id/but_day6"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintWidth_percent="0.92"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="today"
-                app:layout_constraintTop_toBottomOf="@id/but_day5"/>
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day5"
+                app:layout_constraintWidth_percent="0.92" />
+
+            <Button
+                android:id="@+id/but_day7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="today"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day5"
+                app:layout_constraintWidth_percent="0.92" />
+
+            <Button
+                android:id="@+id/but_day8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="today"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day5"
+                app:layout_constraintWidth_percent="0.92" />
+
+            <Button
+                android:id="@+id/but_day9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="today"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintTop_toBottomOf="@id/but_day5"
+                app:layout_constraintWidth_percent="0.92" />
 
 
         </LinearLayout>

@@ -5,9 +5,9 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -26,13 +26,12 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import static com.example.myapplication.R.layout.*;
 
 public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    TextView tvPercentTide;
+    TextView tvRemainingTimeTide;
     TextView tv_waterTime_1_1;
     TextView tv_waterTime_1_2;
     TextView tv_waterHeight_4_1;
@@ -45,7 +44,11 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
     TextView tvState;
 
+    TextView tv_remaining_time;
+
     Context thiscontext;
+
+    Handler handlerRemaningTimeTide;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private Object[] dataTaskObjectArray;
@@ -69,8 +72,11 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         DataTaskTwo dataTaskTwo = new DataTaskTwo();
         dataTaskTwo.execute(dataTaskObjectArray);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.container);
+        mSwipeRefreshLayout = v.findViewById(R.id.container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
+
+        handlerRemaningTimeTide = new Handler();
+
         return v;
     }
 
@@ -84,6 +90,51 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         //запускаем второй поток
         DataTaskTwo dataTaskTwo = new DataTaskTwo();
         dataTaskTwo.execute(dataTaskObjectArray);
+    }
+
+    Runnable showRemainingTime = new Runnable() {
+        LocalDateTime currentLocalDateTime;
+        Instant instantCurrentTime;
+
+        long currentTimeNumber;
+
+        String time;
+
+        Instant instantEndCycleTime;
+        long endCycleTimeNumber;
+        long differenceTime;
+
+        String output;
+
+        public void run() {
+            //получаем текущее время с учетом часового пояса +11
+            currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
+
+            instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
+            currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
+
+            time = currentLocalDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+ "T" + tv_waterTime_1_2.getText() + ":00.000000Z";
+
+            instantEndCycleTime = Instant.parse(time);
+            endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
+
+            differenceTime = endCycleTimeNumber - currentTimeNumber;
+
+            output = timeToString(differenceTime);
+
+            tvRemainingTimeTide.setText(output);
+
+            // планирует сам себя через 1000 мсек
+            handlerRemaningTimeTide.postDelayed(showRemainingTime, 1000);
+        }
+    };
+
+    private  String timeToString(long secs) {
+        long hour = secs / 3600;
+        long min = secs / 60 % 60;
+        //long sec = secs - hour * 3600 - min * 60;
+
+        return String.format("%01d:%02d", hour, min);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -100,9 +151,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
             System.out.println(objectsArray[1]);
             Context thiscontext = (Context) objectsArray[1];
-            ResourseID resourseID = new ResourseID(thiscontext);
             View view = (View) objectsArray[2];
-
 
             //вычисление процента и присвоение переменной percent
             String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
@@ -112,7 +161,6 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
             //поиск textView для высоты прилива/отлива
             tv_waterHeight_4_2 = view.findViewById(R.id.tv_waterHeight_4_2);
-
 
             //если процент вычислить не удалось он равен -100, иначе если удалось
             if(percent.equals("-100")){
@@ -139,18 +187,18 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 String output = timeToString(differenceTime);
 
 
-
-                //установка процента
-                tvPercentTide = view.findViewById(R.id.tv_percentTide);
+                //установка времени, оставшегося до конца цикла
+                tvRemainingTimeTide = view.findViewById(R.id.tv_remainingTimeTide);
                 //tvPercentTide.setText(getString(R.string.ma_percent, percent));
-                tvPercentTide.setText(output);
+                tvRemainingTimeTide.setText(output);
 
                 Typeface typefaceCopperplateGothic = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/COPRGTL.TTF");
-                tvPercentTide.setTypeface(typefaceCopperplateGothic);
+                tvRemainingTimeTide.setTypeface(typefaceCopperplateGothic);
 
                 //установка картинки
                 //imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
 
+                tv_remaining_time = view.findViewById(R.id.tv_remaining_time);
                 tv_waterHeight_4_1 = view.findViewById(R.id.tv_waterHeight_4_1);
 
                 //выводим состояние прилив/отлив
@@ -158,10 +206,12 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 tvState = view.findViewById(R.id.tv_state);
                 tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
                 if(tidesForFishingParserList.get(4).equals("true")){
+                    tv_remaining_time.setText(getString(R.string.remaining_time, state[4]));
                     tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[4]));
                     tvState.setText(state[0]);
                     tv_waterTime_1_1.setText(state[2]);
                 } else if (tidesForFishingParserList.get(4).equals("false")){
+                    tv_remaining_time.setText(getString(R.string.remaining_time, state[5]));
                     tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[5]));
                     tvState.setText(state[1]);
                     tv_waterTime_1_1.setText(state[3]);
@@ -175,17 +225,14 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
                 //устанавливаем высоту воды
                 tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(3)));
+
+                //запускаем поток обновления времени, оставшегося до конца приливного цикла
+                handlerRemaningTimeTide.post(showRemainingTime);
             }
 
         }
 
-        private  String timeToString(long secs) {
-            long hour = secs / 3600;
-            long min = secs / 60 % 60;
-            //long sec = secs - hour * 3600 - min * 60;
 
-            return String.format("%01d:%02d", hour, min);
-        }
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -229,23 +276,8 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             }
             countExecuteAsycnkTask++;
 
-            LayoutInflater inflater = getLayoutInflater();
-            View activityLayout = inflater.inflate(activity_main, null);
-            ImageView imageView = (ImageView) activityLayout.findViewById(R.id.imageView);
-            imageView.setVisibility(View.INVISIBLE);
-
-
-            System.out.println(imageView);
-            imageView.setColorFilter(getResources().getColor(R.color.colorPrimaryDark));
-            //imageView.setVisibility(View.GONE);
-            imageView.setVisibility(View.INVISIBLE);
-
-            //View activityLayout =  inflater.inflate(activity_main, container, false); //инфлейтим разметку нашего хедера во время выполнения
-            //ImageView imageView = (ImageView) activityLayout.findViewById(R.id.imageView4); // и теперь имеем доступ к любому компоненту в headerLayout
-            //imageView.setVisibility(View.GONE);
-
             MainActivity.im_view_start_screen.setVisibility(View.GONE);
-            //MainActivity.im_view_start_screen.setVisibility(View.GONE);
+            MainActivity.im_view_2.setVisibility(View.GONE);
         }
     }
 }

@@ -273,7 +273,6 @@ public class TidesForFishingParser {
         }
 
         String dayCSSQuery = "#tabla_mareas > tbody > tr:nth-child(" + dayID + ")";;
-        System.out.println(dayCSSQuery);
 
         String fatalDef = "-200";
 
@@ -340,10 +339,6 @@ public class TidesForFishingParser {
 
             tidesParamArrayList.add(risingValue);
             tidesParamArrayList.add(sunsetValue);
-
-            for(String id: tidesParamArrayList){
-                System.out.println(id);
-            }
         } catch (NullPointerException e){
             tidesParamArrayList.add(fatalDef);
             return tidesParamArrayList;
