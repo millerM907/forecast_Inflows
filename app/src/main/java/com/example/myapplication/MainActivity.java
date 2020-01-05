@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         thiscontext = this;
 
         ImageView imageView = findViewById(R.id.iv_bg);
-        imageView.setBackgroundResource(R.drawable.highlights_sand_bg_200);
+        imageView.setBackgroundResource(R.drawable.pur_bg);
 
         handlerCurrentTime = new Handler();
         tv_time = findViewById(R.id.tv_time);

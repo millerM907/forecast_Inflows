@@ -5,141 +5,91 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.88" />
-
-
-
-    <Button
-        android:id="@+id/but_today"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/my_bottom2"
-        android:fontFamily="@font/my_nice_font"
-        android:gravity="center"
-        android:text="Сегодня"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        tools:ignore="HardcodedText"
-        app:layout_constraintBottom_toTopOf="@+id/but_day2"
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="657dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.92"/>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/but_day1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/my_bottom"
-        android:fontFamily="@font/my_nice_font"
-        android:gravity="center"
-        android:text="Пн"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        tools:ignore="HardcodedText"
-        app:layout_constraintBottom_toTopOf="@+id/but_day4"
-        app:layout_constraintEnd_toStartOf="@+id/but_day2"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.28"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.52"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/but_today"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintWidth_percent="0.92"
+                android:text="today"
+                app:layout_constraintTop_toBottomOf="@id/view"/>
+
+            <Button
+                android:id="@+id/but_day1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintWidth_percent="0.92"
+                android:text="today"
+                app:layout_constraintTop_toBottomOf="@id/but_today"/>
+
+            <Button
+                android:id="@+id/but_day2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintWidth_percent="0.92"
+                android:text="today"
+                app:layout_constraintTop_toBottomOf="@id/but_day1"/>
+
+            <Button
+                android:id="@+id/but_day3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintWidth_percent="0.92"
+                android:text="today"
+                app:layout_constraintTop_toBottomOf="@id/but_day2"/>
+
+            <Button
+                android:id="@+id/but_day4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintWidth_percent="0.92"
+                android:text="today"
+                app:layout_constraintTop_toBottomOf="@id/but_day3"/>
+
+            <Button
+                android:id="@+id/but_day5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintWidth_percent="0.92"
+                android:text="today"
+                app:layout_constraintTop_toBottomOf="@id/but_day4"/>
+
+            <Button
+                android:id="@+id/but_day6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.085"
+                app:layout_constraintWidth_percent="0.92"
+                android:text="today"
+                app:layout_constraintTop_toBottomOf="@id/but_day5"/>
 
 
-    <Button
-        android:id="@+id/but_day2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/my_bottom"
-        android:fontFamily="@font/my_nice_font"
-        android:gravity="center"
-        android:text="Вт"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/but_day5"
-        app:layout_constraintEnd_toStartOf="@+id/but_day3"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@+id/but_day1"
-        app:layout_constraintWidth_percent="0.28"
-        tools:ignore="HardcodedText" />
-
-
-    <Button
-        android:id="@+id/but_day3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/my_bottom"
-        android:fontFamily="@font/my_nice_font"
-        android:gravity="center"
-        android:text="Ср"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/but_day6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@+id/but_day2"
-        app:layout_constraintWidth_percent="0.28"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:id="@+id/but_day4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/my_bottom"
-        android:fontFamily="@font/my_nice_font"
-        android:gravity="center"
-        android:text="Чт"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        tools:ignore="HardcodedText"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/but_day5"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.28"/>
-
-    <Button
-        android:id="@+id/but_day5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/my_bottom"
-        android:fontFamily="@font/my_nice_font"
-        android:gravity="center"
-        android:text="Пт"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        tools:ignore="HardcodedText"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/but_day6"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@+id/but_day4"
-        app:layout_constraintWidth_percent="0.28"/>
-
-    <Button
-        android:id="@+id/but_day6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/my_bottom"
-        android:fontFamily="@font/my_nice_font"
-        android:gravity="center"
-        android:text="Сб"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        tools:ignore="HardcodedText"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toEndOf="@+id/but_day5"
-        app:layout_constraintWidth_percent="0.28"/>
-
+        </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
