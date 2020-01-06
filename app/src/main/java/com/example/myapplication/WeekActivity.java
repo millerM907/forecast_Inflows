@@ -27,13 +27,13 @@ public class WeekActivity extends Fragment  {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_week, container, false);
+        View v = inflater.inflate(R.layout.x, container, false);
 
         ResourseID resourseID = new ResourseID(getActivity());
 
         String[] dayOfWeek = {"ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"};
 
-        for(int i = 1; i < 7; i++){
+        for(int i = 1; i < 10; i++){
             but_today = v.findViewById(resourseID.but_dayResourseID(i));
             switch (DayOfWeek.from(LocalDate.now(ZoneId.of("Asia/Magadan"))).plus(i)){
                 case MONDAY:

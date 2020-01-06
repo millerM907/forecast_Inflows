@@ -1,107 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="416dp"
+        android:layout_height="657dp"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="0.7in"
+            android:fontFamily="@font/my_nice_font"
+            android:gravity="center"
+            android:text="Следующие 10 дней"
+            android:textColor="@color/colorWhite"
+            android:textSize="38sp" />
 
-            <View
-                android:id="@+id/view3"
+        <ScrollView
+            android:layout_width="405dp"
+            android:layout_height="366dp"
+            android:layout_marginTop="0.79in"
+            android:scrollbarSize="0dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/but_today"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="today" />
 
-            <Button
-                android:id="@+id/but_day1"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day1" />
+                <Button
+                    android:id="@+id/but_today"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="today" />
 
-            <Button
-                android:id="@+id/but_day2"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day2" />
+                <Button
+                    android:id="@+id/but_day1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day1" />
 
-            <Button
-                android:id="@+id/but_day3"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day3" />
+                <Button
+                    android:id="@+id/but_day2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day2" />
 
-            <Button
-                android:id="@+id/but_day4"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day4" />
+                <Button
+                    android:id="@+id/but_day3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day3" />
 
-            <Button
-                android:id="@+id/but_day5"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day5" />
+                <Button
+                    android:id="@+id/but_day4"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day4" />
 
-            <Button
-                android:id="@+id/but_day6"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day6" />
+                <Button
+                    android:id="@+id/but_day5"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day5" />
 
-            <Button
-                android:id="@+id/but_day7"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day7" />
+                <Button
+                    android:id="@+id/but_day6"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day6" />
 
-            <Button
-                android:id="@+id/but_day8"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day8" />
+                <Button
+                    android:id="@+id/but_day7"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day7" />
 
-            <Button
-                android:id="@+id/but_day9"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/my_bottom3"
-                android:text="day9" />
+                <Button
+                    android:id="@+id/but_day8"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day8" />
 
-        </LinearLayout>
-    </ScrollView>
+                <Button
+                    android:id="@+id/but_day9"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/my_bottom3"
+                    android:text="day9" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

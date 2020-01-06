@@ -171,12 +171,14 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //поиск textView для высоты прилива/отлива
             tv_waterHeight_4_2 = view.findViewById(R.id.tv_waterHeight_4_2);
 
+            //поиск textView для вывода осталось до
+            tvRemainingTimeTide = view.findViewById(R.id.tv_remainingTimeTide);
+
             //если процент вычислить не удалось он равен -100, иначе если удалось
             if(percent.equals("-100")){
                 //вместо времени и высоты устанавливаем прочерки, слово прилив/отлив не выводим
                 tv_waterTime_1_2.setText("-");
                 tv_waterHeight_4_2.setText("-");
-
             } else {
 
                 //устанавливаем вместо процента - время до конца цикла
@@ -196,9 +198,10 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 String output = timeToString(differenceTime);
                 System.out.println(output);
 
-                //установка времени, оставшегося до конца цикла
+
                 tvRemainingTimeTide = view.findViewById(R.id.tv_remainingTimeTide);
                 //tvPercentTide.setText(getString(R.string.ma_percent, percent));
+                //установка времени, оставшегося до конца цикла
                 tvRemainingTimeTide.setText(output);
 
                 Typeface typefaceCopperplateGothic = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/COPRGTL.TTF");

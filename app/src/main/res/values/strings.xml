@@ -42,4 +42,6 @@
     <string name="bay_name">Бухта Нагаева</string>
     <string name="remaining_time">до %1$s воды</string>
     <string name="download">Загрузка данных...</string>
+    <string name="continue_ten_days">Следующие 10 дней</string>
+    <string name="today">сегодня</string>
 </resources>
