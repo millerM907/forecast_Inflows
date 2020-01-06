@@ -6,121 +6,101 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingTop="390dp"
-        android:fillViewport="true"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <View
-                android:id="@+id/view"
+                android:id="@+id/view3"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.52"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_height="400dp" />
 
             <Button
                 android:id="@+id/but_today"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                android:visibility="visible"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/view"
-                app:layout_constraintWidth_percent="0.92"
-                tools:visibility="visible" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="today" />
 
             <Button
                 android:id="@+id/but_day1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_today"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day1" />
 
             <Button
                 android:id="@+id/but_day2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day1"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day2" />
 
             <Button
                 android:id="@+id/but_day3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day2"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day3" />
 
             <Button
                 android:id="@+id/but_day4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day3"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day4" />
 
             <Button
                 android:id="@+id/but_day5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day4"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day5" />
 
             <Button
                 android:id="@+id/but_day6"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day5"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day6" />
 
             <Button
                 android:id="@+id/but_day7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day5"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day7" />
 
             <Button
                 android:id="@+id/but_day8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day5"
-                app:layout_constraintWidth_percent="0.92" />
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day8" />
 
             <Button
                 android:id="@+id/but_day9"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="today"
-                app:layout_constraintHeight_percent="0.085"
-                app:layout_constraintTop_toBottomOf="@id/but_day5"
-                app:layout_constraintWidth_percent="0.92" />
-
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/my_bottom3"
+                android:text="day9" />
 
         </LinearLayout>
     </ScrollView>

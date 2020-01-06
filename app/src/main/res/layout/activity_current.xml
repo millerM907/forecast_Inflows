@@ -280,7 +280,7 @@
             android:id="@+id/tv_remaining_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/my_font"
             android:gravity="center"
             android:text="@string/remaining_time"
