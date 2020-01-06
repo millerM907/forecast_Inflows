@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="8dp"/>
-    <gradient
-        android:type="linear"
-        android:startColor="#73AFBA"
-        android:endColor="#C5BFAD"/>
-    <stroke android:color="#FFFFFF"/>
-</shape>
+<inset xmlns:android="http://schemas.android.com/apk/res/android">
+    <ripple android:color="?attr/colorControlHighlight">
+        <item>
+            <shape android:shape="rectangle"
+                android:tint="#A891B6">
+                <corners android:radius="8dp"/>
+                <solid android:color="#B1B1B1"/>
+                <padding android:bottom="6dp"/>
+            </shape>
+        </item>
+    </ripple>
+
+</inset>

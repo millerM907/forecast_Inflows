@@ -47,9 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/guideline10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline10" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -74,6 +74,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fadingEdge="vertical"
                 android:orientation="vertical">
 
                 <Button
@@ -82,7 +83,11 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="0dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="@string/today" />
+                    android:scrollbarThumbHorizontal="@color/colorAccent"
+                    android:scrollbarThumbVertical="@color/colorAccent"
+                    android:text="@string/today"
+                    android:textColor="#4B8BFF"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day1"
@@ -90,7 +95,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day1" />
+                    android:text="day1"
+                    android:textColor="#4F7DF6"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day2"
@@ -98,7 +105,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day2" />
+                    android:text="day2"
+                    android:textColor="#5270EE"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day3"
@@ -106,7 +115,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day3" />
+                    android:text="day3"
+                    android:textColor="#5564E7"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day4"
@@ -114,7 +125,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day4" />
+                    android:text="day4"
+                    android:textColor="#5957DE"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day5"
@@ -122,7 +135,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day5" />
+                    android:text="day5"
+                    android:textColor="#5C4AD6"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day6"
@@ -130,7 +145,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day6" />
+                    android:text="day6"
+                    android:textColor="#6848D2"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day7"
@@ -138,7 +155,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day7" />
+                    android:text="day7"
+                    android:textColor="#7545CD"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day8"
@@ -146,16 +165,20 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day8" />
+                    android:text="day8"
+                    android:textColor="#8242C8"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day9"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="0dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day9" />
+                    android:text="day9"
+                    android:textColor="#8E40C4"
+                    android:textSize="18dp" />
 
             </LinearLayout>
         </ScrollView>
