@@ -5,52 +5,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/my_nice_font"
+        android:gravity="center"
+        android:text="@string/continue_ten_days"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.47" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/guideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline10" />
 
     <LinearLayout
-        android:layout_width="416dp"
-        android:layout_height="657dp"
-        android:layout_marginTop="14dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0.7in"
-            android:fontFamily="@font/my_nice_font"
-            android:gravity="center"
-            android:text="Следующие 10 дней"
-            android:textColor="@color/colorWhite"
-            android:textSize="38sp" />
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintWidth_percent="0.92">
 
         <ScrollView
-            android:layout_width="405dp"
-            android:layout_height="366dp"
-            android:layout_marginTop="0.79in"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
             android:scrollbarSize="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
+                android:fadingEdge="vertical"
                 android:orientation="vertical">
-
 
                 <Button
                     android:id="@+id/but_today"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="0dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="today" />
+                    android:scrollbarThumbHorizontal="@color/colorAccent"
+                    android:scrollbarThumbVertical="@color/colorAccent"
+                    android:text="@string/today"
+                    android:textColor="#4B8BFF"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day1"
@@ -58,7 +95,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day1" />
+                    android:text="day1"
+                    android:textColor="#4F7DF6"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day2"
@@ -66,7 +105,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day2" />
+                    android:text="day2"
+                    android:textColor="#5270EE"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day3"
@@ -74,7 +115,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day3" />
+                    android:text="day3"
+                    android:textColor="#5564E7"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day4"
@@ -82,7 +125,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day4" />
+                    android:text="day4"
+                    android:textColor="#5957DE"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day5"
@@ -90,7 +135,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day5" />
+                    android:text="day5"
+                    android:textColor="#5C4AD6"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day6"
@@ -98,7 +145,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day6" />
+                    android:text="day6"
+                    android:textColor="#6848D2"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day7"
@@ -106,7 +155,9 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day7" />
+                    android:text="day7"
+                    android:textColor="#7545CD"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day8"
@@ -114,18 +165,31 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day8" />
+                    android:text="day8"
+                    android:textColor="#8242C8"
+                    android:textSize="18dp" />
 
                 <Button
                     android:id="@+id/but_day9"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="0dp"
                     android:background="@drawable/my_bottom3"
-                    android:text="day9" />
+                    android:text="day9"
+                    android:textColor="#8E40C4"
+                    android:textSize="18dp" />
 
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.895" />
+
 
 </android.support.constraint.ConstraintLayout>

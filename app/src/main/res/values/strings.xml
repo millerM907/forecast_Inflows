@@ -30,8 +30,8 @@
     <string name="ok">ОК</string>
     <string name="shell">The sea shells</string>
     <string name="sync">Tap and synchronize</string>
-    <string name="sunset">ЗАКАТ</string>
-    <string name="sunrise">РАССВЕТ</string>
+    <string name="sunset">ЗАХОД</string>
+    <string name="sunrise">ВОСХОД</string>
 
     <string name="txt_screen_1">1</string>
     <string name="txt_screen_2">2</string>
