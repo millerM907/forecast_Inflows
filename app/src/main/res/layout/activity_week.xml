@@ -80,7 +80,7 @@
                 <Button
                     android:id="@+id/but_today"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="0dp"
                     android:background="@drawable/my_bottom3"
                     android:scrollbarThumbHorizontal="@color/colorAccent"
@@ -92,7 +92,7 @@
                 <Button
                     android:id="@+id/but_day1"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day1"
@@ -102,7 +102,7 @@
                 <Button
                     android:id="@+id/but_day2"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day2"
@@ -112,7 +112,7 @@
                 <Button
                     android:id="@+id/but_day3"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="70dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day3"
