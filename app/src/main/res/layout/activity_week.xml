@@ -80,7 +80,7 @@
                 <Button
                     android:id="@+id/but_day1"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="0dp"
                     android:background="@drawable/my_bottom3"
                     android:scrollbarThumbHorizontal="@color/colorAccent"
@@ -92,7 +92,7 @@
                 <Button
                     android:id="@+id/but_day2"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day1"
@@ -102,7 +102,7 @@
                 <Button
                     android:id="@+id/but_day3"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day2"
@@ -112,7 +112,7 @@
                 <Button
                     android:id="@+id/but_day4"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day3"
@@ -122,7 +122,7 @@
                 <Button
                     android:id="@+id/but_day5"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day4"
@@ -132,7 +132,7 @@
                 <Button
                     android:id="@+id/but_day6"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day5"
@@ -142,7 +142,7 @@
                 <Button
                     android:id="@+id/but_day7"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day6"
@@ -152,7 +152,7 @@
                 <Button
                     android:id="@+id/but_day8"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day7"
@@ -162,7 +162,7 @@
                 <Button
                     android:id="@+id/but_day9"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day8"
@@ -172,7 +172,7 @@
                 <Button
                     android:id="@+id/but_day10"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="53dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="0dp"
                     android:background="@drawable/my_bottom3"
