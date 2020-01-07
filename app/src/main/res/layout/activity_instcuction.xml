@@ -44,7 +44,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/introduction_inf"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/tv_general"
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/general_inf"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <ImageView
                 android:id="@+id/im_instr1"
@@ -70,7 +70,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/first_page_inf"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <ImageView
                 android:id="@+id/im_instr2"
@@ -86,7 +86,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/second_page_inf"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <ImageView
                 android:id="@+id/im_instr3"
@@ -102,7 +102,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/third_page_inf"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <ImageView
                 android:id="@+id/im_instr4"
@@ -118,7 +118,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/third_page_button_notactiv"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <ImageView
                 android:id="@+id/im_instr5"
@@ -134,7 +134,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/third_page_button_backward"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <ImageView
                 android:id="@+id/im_instr6"
@@ -150,7 +150,7 @@
                 android:fontFamily="@font/my_font"
                 android:text="@string/dropdown_menu_inf"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="19sp" />
 
             <ImageView
                 android:id="@+id/im_instr7"
