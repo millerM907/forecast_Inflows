@@ -186,7 +186,7 @@ public class WeekActivity extends Fragment  {
         but_day7 = v.findViewById(R.id.but_day7);
         but_day8 = v.findViewById(R.id.but_day8);
         but_day9 = v.findViewById(R.id.but_day9);
-        but_day10 = v.findViewById(R.id.but_day10);
+        but_day10  = v.findViewById(R.id.but_day10);
 
         but_day1.setOnClickListener(new View.OnClickListener() {
             @Override
