@@ -35,8 +35,9 @@ public class AppAlertDialog extends DialogFragment {
         } else if (keyMessage == 2){
             String appName = context.getString(R.string.app_name);
             String version = "Версия приложения: " + BuildConfig.VERSION_NAME;
-            String developer = "Разработчик: Иван Иванов";
-            builder.setTitle(R.string.about_prog_alert_dialog_title)
+            String developer = "Разработчик: Агеенко Михаил";
+            builder.setIcon(R.drawable.icon).
+                    setTitle(R.string.about_prog_alert_dialog_title)
                     .setMessage("\n" + appName + "\n\n" + version + "\n\n" + developer)
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
