@@ -55,9 +55,6 @@ public class DayActivity extends AppCompatActivity {
         int keyDay = (Integer) arguments.get("keyDay");
         String nameDay = (String) arguments.get("nameDay");
 
-        tv_time = findViewById(R.id.tv_time);
-        tv_time.setText(dateTime(keyDay));
-
         switch (nameDay){
             case "ПН":
                 nameDay = "ПОНЕДЕЛЬНИК";

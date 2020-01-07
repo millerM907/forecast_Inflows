@@ -413,7 +413,6 @@
         android:elegantTextHeight="true"
         android:fontFamily="@font/my_nice_font"
         android:gravity="center"
-        android:text="ПОНЕДЕЛЬНИК"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="36sp"
@@ -425,12 +424,12 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/tv_time"
+        android:id="@+id/tv_bay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/my_number_font"
-        android:text="6:15"
+        android:text="Бухта Нагаева"
         android:textColor="@android:color/white"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar1"

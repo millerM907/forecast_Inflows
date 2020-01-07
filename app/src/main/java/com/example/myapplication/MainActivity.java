@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -104,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id)
                 {
-                    case R.id.item_instruction: ;
+                    case R.id.item_instruction:
+                        Intent intent = new Intent(thiscontext, InstructionActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.item_about:
                         AppAlertDialog alertDialog = new AppAlertDialog();
