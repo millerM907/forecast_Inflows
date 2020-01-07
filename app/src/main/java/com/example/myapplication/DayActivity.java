@@ -55,36 +55,6 @@ public class DayActivity extends AppCompatActivity {
         int keyDay = (Integer) arguments.get("keyDay");
         String nameDay = (String) arguments.get("nameDay");
 
-        switch (nameDay){
-            case "ПН":
-                nameDay = "ПОНЕДЕЛЬНИК";
-                break;
-
-            case "ВТ":
-                nameDay = "ВТОРНИК";
-                break;
-
-            case "СР":
-                nameDay = "СРЕДА";
-                break;
-
-            case "ЧТ":
-                nameDay = "ЧЕТВЕРГ";
-                break;
-
-            case "ПТ":
-                nameDay = "ПЯТНИЦА";
-                break;
-
-            case "СБ":
-                nameDay = "СУББОТА";
-                break;
-
-            case "ВС":
-                nameDay = "ВОСКРЕСЕНЬЕ";
-                break;
-        }
-
         tv_weekDay = findViewById(R.id.tv_weekday);
         tv_weekDay.setText(nameDay);
 
