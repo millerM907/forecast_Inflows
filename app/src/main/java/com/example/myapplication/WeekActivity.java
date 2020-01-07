@@ -27,6 +27,7 @@ public class WeekActivity extends Fragment  {
     Button but_day7;
     Button but_day8;
     Button but_day9;
+    Button but_day10;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class WeekActivity extends Fragment  {
         String[] dayOfWeek = {"ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"};
         String point = ",  ";
 
-        for(int i = 1; i < 10; i++){
+        for(int i = 1; i <= 10; i++){
             String date;
             but_today = v.findViewById(resourseID.but_dayResourseID(i));
             switch (DayOfWeek.from(LocalDate.now(ZoneId.of("Asia/Magadan"))).plus(i)){
@@ -84,7 +85,7 @@ public class WeekActivity extends Fragment  {
 
         String currentMonth = LocalDate.now(ZoneId.of("Asia/Magadan")).getMonth().toString();
 
-        for(int i = 1; i < 10; i++){
+        for(int i = 1; i <= 10; i++){
             String date;
             but_today = v.findViewById(resourseID.but_dayResourseID(i));
             switch ((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getMonth()){
@@ -92,7 +93,6 @@ public class WeekActivity extends Fragment  {
                    if(!currentMonth.equals("JANUARY")){
                        but_today.setBackgroundResource(R.drawable.my_bottom2);
                    }
-                   but_today.setBackgroundResource(R.drawable.my_bottom2);
                    date = but_today.getText() + monthOfYear[0];
                    but_today.setText(date);
                    break;
@@ -176,7 +176,7 @@ public class WeekActivity extends Fragment  {
             }
         }
 
-        but_today = v.findViewById(R.id.but_today);
+
         but_day1 = v.findViewById(R.id.but_day1);
         but_day2 = v.findViewById(R.id.but_day2);
         but_day3 = v.findViewById(R.id.but_day3);
@@ -186,13 +186,7 @@ public class WeekActivity extends Fragment  {
         but_day7 = v.findViewById(R.id.but_day7);
         but_day8 = v.findViewById(R.id.but_day8);
         but_day9 = v.findViewById(R.id.but_day9);
-
-        but_today.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        but_day10 = v.findViewById(R.id.but_day10);
 
         but_day1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,6 +266,16 @@ public class WeekActivity extends Fragment  {
             public void onClick(View v) {
                 if(getEqualsMonth(9)){
                     startIntent(9, but_day9.getText().toString());
+                }
+            }
+        });
+
+
+        but_day10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getEqualsMonth(10)){
+                    startIntent(10, but_day10.getText().toString());
                 }
             }
         });

@@ -78,7 +78,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/but_today"
+                    android:id="@+id/but_day1"
                     android:layout_width="match_parent"
                     android:layout_height="68dp"
                     android:layout_marginTop="0dp"
@@ -90,7 +90,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day1"
+                    android:id="@+id/but_day2"
                     android:layout_width="match_parent"
                     android:layout_height="68dp"
                     android:layout_marginTop="8dp"
@@ -100,9 +100,9 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day2"
+                    android:id="@+id/but_day3"
                     android:layout_width="match_parent"
-                    android:layout_height="68dpdp"
+                    android:layout_height="68dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/my_bottom3"
                     android:text="day2"
@@ -110,7 +110,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day3"
+                    android:id="@+id/but_day4"
                     android:layout_width="match_parent"
                     android:layout_height="68dp"
                     android:layout_marginTop="8dp"
@@ -120,7 +120,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day4"
+                    android:id="@+id/but_day5"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
@@ -130,7 +130,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day5"
+                    android:id="@+id/but_day6"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
@@ -140,7 +140,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day6"
+                    android:id="@+id/but_day7"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
@@ -150,7 +150,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day7"
+                    android:id="@+id/but_day8"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
@@ -160,7 +160,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day8"
+                    android:id="@+id/but_day9"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
@@ -170,7 +170,7 @@
                     android:textSize="18dp" />
 
                 <Button
-                    android:id="@+id/but_day9"
+                    android:id="@+id/but_day10"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="8dp"
