@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent="0.92"
-        android:text="@string/instruction"
+        android:text="@string/help"
         android:fontFamily="@font/my_font"
         android:textColor="#000000"
         android:textSize="35sp"

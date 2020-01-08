@@ -37,7 +37,7 @@
     <string name="txt_screen_2">2</string>
     <string name="tide_now">Высота %1$s воды</string>
     <string name="menu" />
-    <string name="instruction">Инструкция</string>
+    <string name="help">Справка</string>
     <string name="about_app">О приложении</string>
     <string name="bay_name">Бухта Нагаева</string>
     <string name="remaining_time">до %1$s воды</string>
