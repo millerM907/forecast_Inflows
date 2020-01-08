@@ -174,8 +174,13 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //поиск textView для вывода осталось до
             tvRemainingTimeTide = view.findViewById(R.id.tv_remainingTimeTide);
 
+            //поиск textView для вывода подписи к высоте
+            tv_waterHeight_4_1 = view.findViewById(R.id.tv_waterHeight_4_1);
+
+
             //если процент вычислить не удалось он равен -100, иначе если удалось
             if(percent.equals("-100")){
+                tv_waterHeight_4_1.setText("Высота воды");
                 //вместо времени и высоты устанавливаем прочерки, слово прилив/отлив не выводим
                 tv_waterTime_1_2.setText("-");
                 tv_waterHeight_4_2.setText("-");
@@ -211,19 +216,18 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 //imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
 
                 tv_remaining_time = view.findViewById(R.id.tv_remaining_time);
-                tv_waterHeight_4_1 = view.findViewById(R.id.tv_waterHeight_4_1);
 
                 //выводим состояние прилив/отлив
-                String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода", "полной", "малой"};
+                String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода", "полной", "малой", "до полной воды", "до малой воды"};
                 tvState = view.findViewById(R.id.tv_state);
                 tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
                 if(tidesForFishingParserList.get(4).equals("true")){
-                    tv_remaining_time.setText(getString(R.string.remaining_time, state[4])); //постоянно вылетает
+                    tv_remaining_time.setText(state[6]); //постоянно вылетает
                     tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[4]));
                     tvState.setText(state[0]);
                     tv_waterTime_1_1.setText(state[2]);
                 } else if (tidesForFishingParserList.get(4).equals("false")){
-                    tv_remaining_time.setText(getString(R.string.remaining_time, state[5]));
+                    tv_remaining_time.setText(state[7]);
                     tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[5]));
                     tvState.setText(state[1]);
                     tv_waterTime_1_1.setText(state[3]);

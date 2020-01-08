@@ -93,7 +93,6 @@ public class WeekActivity extends Fragment  {
                    if(!currentMonth.equals("JANUARY")){
                        but_today.setBackgroundResource(R.drawable.my_bottom2);
                    }
-                    but_today.setBackgroundResource(R.drawable.my_bottom2);
                    date = but_today.getText() + monthOfYear[0];
                    but_today.setText(date);
                    break;

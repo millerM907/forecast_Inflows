@@ -283,7 +283,6 @@
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/my_font"
             android:gravity="center"
-            android:text="@string/remaining_time"
             android:textColor="#8CFFFFFF"
             android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
