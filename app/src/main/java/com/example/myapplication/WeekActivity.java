@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class WeekActivity extends Fragment  {
 
@@ -28,6 +32,12 @@ public class WeekActivity extends Fragment  {
     Button but_day8;
     Button but_day9;
     Button but_day10;
+    Button but_day11;
+    Button but_day12;
+
+    TextView tv_day;
+
+    TextView tv_month;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,147 +45,102 @@ public class WeekActivity extends Fragment  {
 
         ResourseID resourseID = new ResourseID(getActivity());
 
-        String[] dayOfWeek = {"ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"};
-        String point = ",  ";
+        List<String> monthOfEnglish = new ArrayList<>();
+        Collections.addAll(monthOfEnglish,
+                "JANUARY",
+                "FEBRUARY",
+                "MARCH",
+                "APRIL",
+                "MAY",
+                "JUNE",
+                "JULY",
+                "AUGUST",
+                "SEPTEMBER",
+                "OCTOBER",
+                "NOVEMBER",
+                "DECEMBER");
 
-        for(int i = 1; i <= 10; i++){
+        List<String> monthOfRussian = new ArrayList<>();
+        Collections.addAll(monthOfRussian,
+                "ЯНВАРЬ",
+                "ФЕВРАЛЬ",
+                "МАРТ",
+                "АПРЕЛЬ",
+                "МАЙ",
+                "ИЮНЬ",
+                "ИЮЛЬ",
+                "АВГУСТ",
+                "СЕНТЯБРЬ",
+                "ОКТЯБРЬ",
+                "НОЯБРЬ",
+                "ДЕКАБРЬ");
+
+        String currentMonthPlusOneDay = LocalDate.now(ZoneId.of("Asia/Magadan")).plusDays(1).getMonth().toString();
+
+        tv_month = v.findViewById(R.id.tv_month);
+        tv_month.setText(monthOfRussian.get(monthOfEnglish.indexOf(currentMonthPlusOneDay)));
+
+        String[] dayOfWeek = {"ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"};
+
+        for(int i = 1; i <= 12; i++){
             String date;
             but_today = v.findViewById(resourseID.but_dayResourseID(i));
+            tv_day = v.findViewById(resourseID.tv_dayResourseID(i));
             switch (DayOfWeek.from(LocalDate.now(ZoneId.of("Asia/Magadan"))).plus(i)){
                 case MONDAY:
-                    date = dayOfWeek[0] + point + (LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth();
+                    date = String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth());
                     but_today.setText(date);
+                    tv_day.setText(dayOfWeek[0]);
                     break;
 
                 case TUESDAY:
-                    date = dayOfWeek[1] + point + (LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth();
+                    date = String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth());
                     but_today.setText(date);
+                    tv_day.setText(dayOfWeek[1]);
                     break;
 
                 case WEDNESDAY:
-                    date = dayOfWeek[2] + point + (LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth();
+                    date = String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth());
                     but_today.setText(date);
+                    tv_day.setText(dayOfWeek[2]);
                     break;
 
                 case THURSDAY:
-                    date = dayOfWeek[3] + point + (LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth();
+                    date = String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth());
                     but_today.setText(date);
+                    tv_day.setText(dayOfWeek[3]);
                     break;
 
                 case FRIDAY:
-                    date = dayOfWeek[4] + point + (LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth();
+                    date = String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth());
                     but_today.setText(date);
+                    tv_day.setText(dayOfWeek[4]);
                     break;
 
                 case SATURDAY:
-                    date = dayOfWeek[5] + point + (LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth();
+                    date = String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth());
                     but_today.setText(date);
+                    tv_day.setText(dayOfWeek[5]);
                     break;
 
                 case SUNDAY:
-                    date = dayOfWeek[6] + point + (LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth();
+                    date = String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getDayOfMonth());
                     but_today.setText(date);
+                    tv_day.setText(dayOfWeek[6]);
                     break;
             }
 
         }
-
-        String[] monthOfYear = {"  янв", "  фев", "  мар", "  апр", "  май", "  июнь", "  июль", "  авг", "  сен", "  окт", "  нояб", "  дек"};
-
 
         String currentMonth = LocalDate.now(ZoneId.of("Asia/Magadan")).getMonth().toString();
 
-        for(int i = 1; i <= 10; i++){
-            String date;
+        //если дата на кнопке относится к след месяцу, то мы устанавливаем ей неактивный фон
+        for(int i = 1; i <= 12; i++){
             but_today = v.findViewById(resourseID.but_dayResourseID(i));
-            switch ((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getMonth()){
-                case JANUARY:
-                   if(!currentMonth.equals("JANUARY")){
-                       but_today.setBackgroundResource(R.drawable.my_bottom2);
-                   }
-                   date = but_today.getText() + monthOfYear[0];
-                   but_today.setText(date);
-                   break;
-                case FEBRUARY:
-                    if(!currentMonth.equals("FEBRUARY")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[1];
-                    but_today.setText(date);
-                    break;
-                case MARCH:
-                    if(!currentMonth.equals("MARCH")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[2];
-                    but_today.setText(date);
-                    break;
-                case APRIL:
-                    if(!currentMonth.equals("APRIL")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[3];
-                    but_today.setText(date);
-                    break;
-                case MAY:
-                    if(!currentMonth.equals("MAY")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[4];
-                    but_today.setText(date);
-                    break;
-                case JUNE:
-                    if(!currentMonth.equals("JUNE")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[5];
-                    but_today.setText(date);
-                    break;
-                case JULY:
-                    if(!currentMonth.equals("JULY")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[6];
-                    but_today.setText(date);
-                    break;
-                case AUGUST:
-                    if(!currentMonth.equals("AUGUST")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[7];
-                    but_today.setText(date);
-                    break;
-                case SEPTEMBER:
-                    if(!currentMonth.equals("SEPTEMBER")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[8];
-                    but_today.setText(date);
-                    break;
-                case OCTOBER:
-                    if(!currentMonth.equals("OCTOBER")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[9];
-                    but_today.setText(date);
-                    break;
-                case NOVEMBER:
-                    if(!currentMonth.equals("NOVEMBER")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[10];
-                    but_today.setText(date);
-                    break;
-                case DECEMBER:
-                    if(!currentMonth.equals("DECEMBER")){
-                        but_today.setBackgroundResource(R.drawable.my_bottom2);
-                    }
-                    date = but_today.getText() + monthOfYear[11];
-                    but_today.setText(date);
-                    break;
+            if(!currentMonth.equals(String.valueOf((LocalDate.now(ZoneId.of("Asia/Magadan"))).plusDays(i).getMonth()))){
+                but_today.setBackgroundResource(R.drawable.my_bottom2);
             }
         }
-
 
         but_day1 = v.findViewById(R.id.but_day1);
         but_day2 = v.findViewById(R.id.but_day2);
@@ -187,6 +152,8 @@ public class WeekActivity extends Fragment  {
         but_day8 = v.findViewById(R.id.but_day8);
         but_day9 = v.findViewById(R.id.but_day9);
         but_day10  = v.findViewById(R.id.but_day10);
+        but_day11  = v.findViewById(R.id.but_day11);
+        but_day12  = v.findViewById(R.id.but_day12);
 
         but_day1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,6 +243,24 @@ public class WeekActivity extends Fragment  {
             public void onClick(View v) {
                 if(getEqualsMonth(10)){
                     startIntent(10, but_day10.getText().toString());
+                }
+            }
+        });
+
+        but_day11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getEqualsMonth(11)){
+                    startIntent(11, but_day11.getText().toString());
+                }
+            }
+        });
+
+        but_day12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(getEqualsMonth(12)){
+                    startIntent(12, but_day12.getText().toString());
                 }
             }
         });
