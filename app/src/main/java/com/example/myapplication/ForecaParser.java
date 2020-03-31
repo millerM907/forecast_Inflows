@@ -19,7 +19,7 @@ public class ForecaParser {
         List<Object> generalParametra = new ArrayList<>();
         String def = "-200";
 
-        Document doc = null;
+        Document doc;
         try {
             doc = Jsoup.connect("https://www.foreca.com/Russia/Magadan")
                     .userAgent("Chrome/77.0.3865.90 Safari/12.1.1")
@@ -101,6 +101,9 @@ public class ForecaParser {
 
             //шаблон для подстановки времени
             String currentYearMonthDay = localTodayTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+            //обработать ситуацию, когда видимость может быть, а может не быть (всегда брать два последних элемента)
 
             //время рассвета
             String rising = rightContent.get(rightContent.size()-2).text();

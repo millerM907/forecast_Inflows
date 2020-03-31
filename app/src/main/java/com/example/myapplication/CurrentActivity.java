@@ -110,7 +110,6 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //получаем текущее время с учетом часового пояса +11
             LocalDateTime currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
 
-
             Instant instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
 
             long currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
@@ -151,16 +150,20 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{TidesForFishingParser.getCurrentTidesForFishingDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
+            return new Object[]{dataTaskObjectArray[0], dataTaskObjectArray[1]};
         }
 
         @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Object[] objectsArray) {
-            List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
-            System.out.println(objectsArray[1]);
-            Context thiscontext = (Context) objectsArray[1];
-            View view = (View) objectsArray[2];
+
+            //работаем дальше
+            DBHelper dbHelper = new DBHelper(thiscontext);
+
+            List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
+            System.out.println(objectsArray[0]);
+            Context thiscontext = (Context) objectsArray[0];
+            View view = (View) objectsArray[1];
 
             //вычисление процента и присвоение переменной percent
             String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
@@ -201,19 +204,14 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
                 //DateTimeFormatter formatter = DateTimeFormatter.ofPattern ( "HH:mm" );
                 String output = timeToString(differenceTime);
-                System.out.println(output);
-
 
                 tvRemainingTimeTide = view.findViewById(R.id.tv_remainingTimeTide);
-                //tvPercentTide.setText(getString(R.string.ma_percent, percent));
+
                 //установка времени, оставшегося до конца цикла
                 tvRemainingTimeTide.setText(output);
 
                 Typeface typefaceCopperplateGothic = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/COPRGTL.TTF");
                 tvRemainingTimeTide.setTypeface(typefaceCopperplateGothic);
-
-                //установка картинки
-                //imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
 
                 tv_remaining_time = view.findViewById(R.id.tv_remaining_time);
 

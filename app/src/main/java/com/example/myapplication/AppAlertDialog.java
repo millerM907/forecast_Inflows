@@ -46,7 +46,18 @@ public class AppAlertDialog extends DialogFragment {
                     });
         } else if (keyMessage == 3) {
             builder.setView(R.layout.layout_loading_dialog).setCancelable(false);
+        } else if(keyMessage == 4){
+            builder.setTitle(R.string.close_alert_dialog_net_title).setMessage(R.string.close_alert_dialog_net_update_db)
+                    .setPositiveButton(R.string.exit, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //Закрываем приложение
+                            System.exit(0);
+                        }
+                    });
         }
+
+
+
         return builder.create();
     }
 }

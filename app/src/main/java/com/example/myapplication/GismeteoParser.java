@@ -19,7 +19,7 @@ public class GismeteoParser {
         List<Object> generalParametra = new ArrayList<>();
         String def = "-200";
 
-        Document doc = null;
+        Document doc;
         try {
             doc = Jsoup.connect("https://www.gismeteo.ru/weather-magadan-4063/now/")
                     .userAgent("Chrome/77.0.3865.90 Safari/12.1.1")
@@ -41,14 +41,21 @@ public class GismeteoParser {
         List generalParametra = getGeneralParametra();
         List<String> gismeteoWeatherDataList = new ArrayList<>();
         String def = "-100";
+        String def2 = "-";
 
         Document doc;
         if(!generalParametra.get(0).equals("-200")){
             doc = (Document) generalParametra.get(0);
         } else {
-            for(int i = 0; i < 4; i++){
-                gismeteoWeatherDataList.add(i, def);
-            }
+            //температура
+            gismeteoWeatherDataList.add(0, def);
+            //скорость ветра
+            gismeteoWeatherDataList.add(1, def2);
+            //направление ветра
+            gismeteoWeatherDataList.add(2, def2);
+            //влажность
+            gismeteoWeatherDataList.add(3, def);
+
             return gismeteoWeatherDataList;
         }
 
@@ -72,7 +79,7 @@ public class GismeteoParser {
                 Elements windContent = infoContent.select("div.nowinfo__item.nowinfo__item_wind");
 
                 //Скорость ветра в м/с
-                String windValue = def;
+                String windValue = "-";
                 try {
                     Elements windSpeedContent = windContent.select("div.nowinfo__value");
                     windValue = windSpeedContent.get(0).text().replaceAll("[\\n]?", "");
@@ -88,7 +95,7 @@ public class GismeteoParser {
                 }
 
                 //Направление ветра
-                String windDirection = def;
+                String windDirection = "-";
                 try {
                     Elements windDirectionContent = windContent.select("div.nowinfo__measure.nowinfo__measure_wind");
                     windDirection = windDirectionContent.get(0).text().replaceAll("(м/с)?", "").replaceAll(" ", "");
@@ -117,8 +124,8 @@ public class GismeteoParser {
 
 
             } catch (NullPointerException e) {
-                gismeteoWeatherDataList.add(1, def);
-                gismeteoWeatherDataList.add(2, def);
+                gismeteoWeatherDataList.add(1, def2);
+                gismeteoWeatherDataList.add(2, def2);
             }
 
             //Влажность в %
@@ -132,8 +139,8 @@ public class GismeteoParser {
                 gismeteoWeatherDataList.add(humidityValue);
             }
         } catch (NullPointerException e) {
-            gismeteoWeatherDataList.add(1, def);
-            gismeteoWeatherDataList.add(2, def);
+            gismeteoWeatherDataList.add(1, def2);
+            gismeteoWeatherDataList.add(2, def2);
             gismeteoWeatherDataList.add(3, def);
         }
 

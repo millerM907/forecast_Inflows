@@ -3,7 +3,9 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
     //создаем обработчик для обновления текущего времени
     Handler handlerCurrentTime;
 
+
+    SharedPreferences mSettings = null;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_DB_DATE_UPDATE = "db_date_update";
+
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        mSettings = this.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
         thiscontext = this;
 
         ImageView imageView = findViewById(R.id.iv_bg);
@@ -60,12 +70,19 @@ public class MainActivity extends AppCompatActivity {
         handlerCurrentTime.post(showCurrentTimeInfo);
 
         //проверка интернет соединения
-        if (!NetworkManager.isNetworkAvailable(thiscontext)) {
+        if (!NetworkManager.isNetworkAvailable(thiscontext) && mSettings.getBoolean("firstrun", true)) {
             //вывод сообщения о том, что приложение недоступно из-за ошибки интернет соединения
             AppAlertDialog alertDialog = new AppAlertDialog();
-            android.app.AlertDialog dialog = alertDialog.onCreateDialog((MainActivity) thiscontext, 1);
+            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 1);
             dialog.setCancelable(false);
             dialog.show();
+        } else if ((!NetworkManager.isNetworkAvailable(thiscontext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
+            //вывод сообщения о том, что приложение недоступно из-за ошибки обновления базы без интернет соединения
+            AppAlertDialog alertDialog = new AppAlertDialog();
+            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 4);
+            dialog.setCancelable(false);
+            dialog.show();
+
         } else {
             im_button = findViewById(R.id.imageButton);
             im_button.setOnClickListener(viewClickListener);
@@ -76,13 +93,11 @@ public class MainActivity extends AppCompatActivity {
             DataTask dataTask = new DataTask();
             dataTask.execute(dataTaskObjectArray);
 
-            ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+            ViewPager viewPager = findViewById(R.id.pager);
             viewPager.setOffscreenPageLimit(2);
 
-            if (viewPager != null) {
-                viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
-                viewPager.setCurrentItem(0); // выводим первый экран
-            }
+            viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
+            viewPager.setCurrentItem(0); // выводим первый экран
         }
 
     }
@@ -114,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 2);
                         dialog.show();
 
-                        TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+                        TextView messageView = dialog.findViewById(android.R.id.message);
                         messageView.setGravity(Gravity.CENTER);
                         break;
                 }
@@ -142,22 +157,107 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{TidesForFishingParser.getCurrentTidesForFishingDataList(), dataTaskObjectArray[0]};
+
+            //если приложение стартует первый раз
+            if (mSettings.getBoolean("firstrun", true)) {
+
+                return new Object[]{dataTaskObjectArray[0], TidesForFishingParser.getTidesTableDataList()};
+
+            } else {
+
+                //получаем текущую дату и дату обновления базы
+                LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
+                LocalDateTime dbUpdateTime = LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null));
+
+                //если в прошлом месяце, то получаем список, иначе передаем только контекст
+                if(!dbUpdateTime.getMonth().equals(localDateTime.getMonth())) {
+                    return new Object[]{dataTaskObjectArray[0], TidesForFishingParser.getTidesTableDataList()};
+                } else {
+                    return new Object[]{dataTaskObjectArray[0]};
+                }
+            }
         }
 
         @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Object[] objectsArray) {
-            List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
-            System.out.println(objectsArray[1]);
-            Context thiscontext = (Context) objectsArray[1];
+
+            //работаем дальше
+            DBHelper dbHelper = new DBHelper(thiscontext);
+
+            //получаем запрос на запись бд
+            SQLiteDatabase databaseTidesWritable = dbHelper.getWritableDatabase();
+
+            //если приложение стартует первый раз
+            if (mSettings.getBoolean("firstrun", true)) {
+                //получае список с расписанием
+                List tidesTable = (List) objectsArray[1];
+
+                //проверка на возврат отказа парсером
+                if(tidesTable.get(0).equals("-200")){
+
+                    //вывод сообщения о том, что приложение недоступно по техническим причинам
+                    AppAlertDialog alertDialog = new AppAlertDialog();
+                    android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 0);
+                    dialog.setCancelable(false);
+                    dialog.show();
+
+                } else {
+
+                    //записываем данные в бд
+                    dbHelper.addTidesData(databaseTidesWritable, tidesTable);
+
+                    /*записываем во вторую строку преференсов дату обновления */
+                    mSettings.edit().putString(APP_PREFERENCES_DB_DATE_UPDATE, String.valueOf(LocalDateTime.now(ZoneId.of("Asia/Magadan")))).apply();
+
+                    mSettings.edit().putBoolean("firstrun", false).apply();
+                }
+                //если стартует не первый раз
+            } else {
+
+                //получаем текущую дату и дату обновления базы
+                LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
+                LocalDateTime dbUpdateTime = LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null));
+
+                //если база обновлялась в прошлом месяце, тогда
+
+                if(!dbUpdateTime.getMonth().equals(localDateTime.getMonth())){
+                    System.out.println("След месяц");
+                    //получае список с расписанием
+                    List tidesTable = (List) objectsArray[1];
+
+                    //проверка на возврат отказа парсером
+                    if(tidesTable.get(0).equals("-200")) {
+
+                        //вывод сообщения о том, что приложение недоступно по техническим причинам
+                        AppAlertDialog alertDialog = new AppAlertDialog();
+                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 0);
+                        dialog.setCancelable(false);
+                        dialog.show();
+                    } else {
+
+                        //стираем данные в таблтце БД
+                        dbHelper.onUpgrade(databaseTidesWritable, 0, 0);
+
+                        //записываем полученные данные
+                        dbHelper.addTidesData(databaseTidesWritable, tidesTable);
+
+                        //записываем дату обновления БД в переменную
+                        mSettings.edit().putString(APP_PREFERENCES_DB_DATE_UPDATE, String.valueOf(LocalDateTime.now(ZoneId.of("Asia/Magadan")))).apply();
+                    }
+                }
+            }
+
+
+            List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
+            Context thiscontext = (Context) objectsArray[0];
             ResourseID resourseID = new ResourseID(thiscontext);
 
             if(tidesForFishingParserList.get(0).equals("-200")){
 
                 //вывод сообщения о том, что приложение недоступно по техническим причинам
                 AppAlertDialog alertDialog = new AppAlertDialog();
-                android.app.AlertDialog dialog = alertDialog.onCreateDialog((MainActivity) thiscontext, 0);
+                android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 0);
                 dialog.setCancelable(false);
                 dialog.show();
 

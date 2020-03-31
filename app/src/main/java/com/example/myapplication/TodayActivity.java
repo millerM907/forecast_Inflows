@@ -21,8 +21,6 @@ public class TodayActivity extends Fragment {
 
     TextView tvSunset;
     TextView tvSunrise;
-    //ImageView ivBg;
-    ImageView ivShell;
 
     Context thiscontext;
 
@@ -35,8 +33,6 @@ public class TodayActivity extends Fragment {
     TextView tv_tide;
     CardView cv_time;
     CardView cv_height;
-
-    ImageButton imageButton;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +58,9 @@ public class TodayActivity extends Fragment {
     class DataTask extends AsyncTask<Object, Void, Object[]> {
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-           return new Object[]{TidesForFishingParser.getTodayTidesForFishingDataList(0), ForecaParser.getForecaSunActivityDataList(), GismeteoParser.getGismeteoSunActivityDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
+           DBHelper dbHelper = new DBHelper(thiscontext);
+
+           return new Object[]{ComputeTidalParam.getTodayTidesForFishingDataList(dbHelper,0), ForecaParser.getForecaSunActivityDataList(), GismeteoParser.getGismeteoSunActivityDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
         }
 
 
