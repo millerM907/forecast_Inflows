@@ -49,7 +49,7 @@ public class DayActivity extends AppCompatActivity {
         dialog.show();
 
         ImageView imageView = findViewById(R.id.iv_bg);
-        imageView.setBackgroundResource(R.drawable.day0);
+        imageView.setBackgroundResource(R.drawable.pur_bg2);
 
         Bundle arguments = getIntent().getExtras();
         int keyDay = (Integer) arguments.get("keyDay");

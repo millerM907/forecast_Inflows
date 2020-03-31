@@ -5,39 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline5"
+    <TextView
+        android:id="@+id/tv_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:fontFamily="@font/my_nice_font"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="-40dp"
+        android:fontFamily="@font/my_font"
         android:gravity="center"
-        android:text="@string/continue_ten_days"
-        android:textColor="@color/colorWhite"
-        android:textSize="35sp"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        tools:layout_editor_absoluteX="2dp" />
+        android:text="следующие дни"
+        android:textColor="#8CFFFFFF"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_month"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/tv_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="@font/my_font"
+        style="@android:style/Widget.DeviceDefault.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:elegantTextHeight="true"
         android:gravity="center"
-        android:text="Апрель"
-        android:textColor="#8CFFFFFF"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:fontFamily="@font/my_nice_font"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/white"
+        android:textSize="44sp"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintBottom_toTopOf="@+id/guideline" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
