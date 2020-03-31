@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class WeatherAverages {
 
     public static String calculationTemperatureAverages(String firstTemp, String secondTemp) {
-        String averageTemp = "NoN";
+        String averageTemp = "-";
         if (!(firstTemp.equals("-100") && secondTemp.equals("-100"))) {
             int firstValueTemp = Integer.parseInt(firstTemp);
             int secondValueTemp = Integer.parseInt(secondTemp);
@@ -35,7 +35,7 @@ public class WeatherAverages {
     }
 
     public static String сalculationAverageHumidity(String firstHumidity, String secondHumidity) {
-        String averageHumidity = "NoN";
+        String averageHumidity = "-";
         if (!(firstHumidity.equals("-100") && secondHumidity.equals("-100"))) {
             int firstValueHumidity = Integer.parseInt(firstHumidity);
             int secondValueHumidity = Integer.parseInt(secondHumidity);
@@ -51,7 +51,7 @@ public class WeatherAverages {
     }
 
     public static String calculationMeanSunriseTime(String firstTime, String secondTime, String thirdTime) {
-        String meanDawnTime = "NoN";
+        String meanDawnTime = "-";
         if (!(firstTime.equals("-100") && secondTime.equals("-100"))) {
 
             OffsetDateTime firstDateRising = OffsetDateTime.parse(firstTime);
@@ -64,7 +64,7 @@ public class WeatherAverages {
             LocalDateTime localDateTime = Instant.ofEpochSecond(meanDawnTimeNumber).atZone(ZoneId.of("UTC")).toLocalDateTime();
             meanDawnTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
 
-        } else if (firstTime.equals("-100") && !secondTime.equals("100")) {
+        } else if (firstTime.equals("-100") && !secondTime.equals("-100")) {
             OffsetDateTime offsetDateTime = OffsetDateTime.parse(secondTime);
             meanDawnTime = offsetDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
             return meanDawnTime;
@@ -87,7 +87,7 @@ public class WeatherAverages {
 
 
     public static String calculationMeanSunsetTime(String firstTime, String secondTime, String thirdTime) {
-        String meanSunsetTime = "NoN";
+        String meanSunsetTime = "-";
 
         if (!(firstTime.equals("-100") && secondTime.equals("-100"))) {
 

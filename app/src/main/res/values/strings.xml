@@ -24,6 +24,9 @@
     <string name="close_alert_dialog_net">Не удалось запустить приложение из-за проблем с интернет-соединением.
         Проверьте подключение к сети и повторите попытку.</string>
 
+    <string name="close_alert_dialog_net_update_db">Не удалось обновить данные из-за проблем с интернет-соединением.
+        Проверьте подключение к сети и повторите попытку.</string>
+
     <string name="about_prog_alert_dialog_title">О программе</string>
     <string name="about_prog_alert_dialog_mes">Версия программы: 1.0</string>
     <string name="exit">Выйти</string>
