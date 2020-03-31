@@ -103,12 +103,12 @@ public class ForecaParser {
             String currentYearMonthDay = localTodayTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
             //время рассвета
-            String rising = rightContent.get(5).text();
+            String rising = rightContent.get(rightContent.size()-2).text();
             rising = currentYearMonthDay + "T" + rising + ":00.000000Z";
             forecaSunActivityDataList.add(rising);
 
             //время заката
-            String sunset = rightContent.get(6).text();
+            String sunset = rightContent.get(rightContent.size()-1).text();
             sunset = currentYearMonthDay + "T" + sunset + ":00.000000Z";
             forecaSunActivityDataList.add(sunset);
 
