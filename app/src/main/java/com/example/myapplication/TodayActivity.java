@@ -37,8 +37,6 @@ public class TodayActivity extends Fragment {
 
         thiscontext = getActivity();
 
-        Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
-
         Object[] dataTaskObjectArray = {v, thiscontext};
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
@@ -63,7 +61,6 @@ public class TodayActivity extends Fragment {
             View view = (View) objectsArray[3];
             thiscontext = (Context) objectsArray[4];
             ResourseID resourseID = new ResourseID(thiscontext);
-            Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
 
 
             String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(0), gismeteoParserList.get(0), tidesForFishingParserList.get(tidesForFishingParserList.size()-2));
@@ -89,19 +86,14 @@ public class TodayActivity extends Fragment {
 
                     for(int y = x; y < x+1 ; y++){
                         tv_water.setText(tidesForFishingParserList.get(y));
-                        tv_water.setTypeface(typefacePalatinoLinotype);
                         String s = tidesForFishingParserList.get(y+1);
                         tv_time.setText(s);
-                        tv_time.setTypeface(typefacePalatinoLinotype);
                         if(tidesForFishingParserList.get(y).equals(waterSateArray[0])){
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[3]));
-                            tv_tide.setTypeface(typefacePalatinoLinotype);
                         } else {
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[2]));
-                            tv_tide.setTypeface(typefacePalatinoLinotype);
                         }
                         tv_height.setText(tidesForFishingParserList.get(y+2) + waterSateArray[4]);
-                        tv_height.setTypeface(typefacePalatinoLinotype);
                     }
                     x+=3;
                 }
@@ -125,18 +117,13 @@ public class TodayActivity extends Fragment {
 
                     for(int y = x; y < x+1 ; y++){
                         tv_water.setText(tidesForFishingParserList.get(y));
-                        tv_water.setTypeface(typefacePalatinoLinotype);
                         tv_time.setText(tidesForFishingParserList.get(y+1));
-                        tv_time.setTypeface(typefacePalatinoLinotype);
                         if(tidesForFishingParserList.get(y).equals(waterSateArray[0])){
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[3]));
-                            tv_tide.setTypeface(typefacePalatinoLinotype);
                         } else {
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[2]));
-                            tv_tide.setTypeface(typefacePalatinoLinotype);
                         }
                         tv_height.setText(tidesForFishingParserList.get(y+2) + waterSateArray[4]);
-                        tv_height.setTypeface(typefacePalatinoLinotype);
                     }
                     x+=3;
                 }
@@ -169,18 +156,13 @@ public class TodayActivity extends Fragment {
 
                     for(int y = x; y < x+1 ; y++){
                         tv_water.setText(tidesForFishingParserList.get(y));
-                        tv_water.setTypeface(typefacePalatinoLinotype);
                         tv_time.setText(tidesForFishingParserList.get(y+1));
-                        tv_time.setTypeface(typefacePalatinoLinotype);
                         if(tidesForFishingParserList.get(y).equals(waterSateArray[0])){
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[3]));
-                            tv_tide.setTypeface(typefacePalatinoLinotype);
                         } else {
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[2]));
-                            tv_tide.setTypeface(typefacePalatinoLinotype);
                         }
                         tv_height.setText(tidesForFishingParserList.get(y+2) + waterSateArray[4]);
-                        tv_height.setTypeface(typefacePalatinoLinotype);
                     }
                     x+=3;
                 }

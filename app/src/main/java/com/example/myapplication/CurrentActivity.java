@@ -210,9 +210,6 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 //установка времени, оставшегося до конца цикла
                 tvRemainingTimeTide.setText(output);
 
-                Typeface typefaceCopperplateGothic = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/COPRGTL.TTF");
-                tvRemainingTimeTide.setTypeface(typefaceCopperplateGothic);
-
                 tv_remaining_time = view.findViewById(R.id.tv_remaining_time);
 
                 //выводим состояние прилив/отлив
@@ -230,9 +227,6 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                     tvState.setText(state[1]);
                     tv_waterTime_1_1.setText(state[3]);
                 }
-
-                Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
-                tvState.setTypeface(typefacePalatinoLinotype);
 
                 //устанавливаем время конца цикла
                 tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(2)).format(DateTimeFormatter.ofPattern("HH:mm")));
