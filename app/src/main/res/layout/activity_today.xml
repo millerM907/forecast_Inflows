@@ -10,17 +10,17 @@
         style="@android:style/Widget.DeviceDefault.TextView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:elegantTextHeight="true"
         android:fontFamily="@font/my_number_font"
         android:gravity="end|center_vertical"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@id/cv_height1"
+        app:layout_constraintEnd_toStartOf="@+id/iv_sunset"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/iv_sunrise"
+        app:layout_constraintTop_toBottomOf="@+id/cv_time4"
         tools:ignore="HardcodedText" />
 
     <TextView
@@ -29,15 +29,15 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="20dp"
         android:elegantTextHeight="true"
         android:fontFamily="@font/my_number_font"
         android:gravity="start|center_vertical"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="26sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
+        app:layout_constraintStart_toEndOf="@+id/iv_sunset"
         app:layout_constraintTop_toBottomOf="@+id/cv_time4"
         tools:ignore="HardcodedText" />
 
@@ -344,14 +344,14 @@
         app:layout_constraintGuide_percent="0.64" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_sunrise"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_sunrise_time"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_sunrise_time"
-        app:srcCompat="@drawable/sun" />
+        app:srcCompat="@drawable/sun"
+        app:layout_constraintEnd_toStartOf="@id/tv_sunrise_time"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -361,13 +361,13 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iv_sunset"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_sunset_time"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/tv_sunset_time"
+        app:layout_constraintEnd_toStartOf="@id/tv_sunset_time"
+        app:layout_constraintStart_toEndOf="@id/tv_sunrise_time"
         app:srcCompat="@drawable/moon" />
 
 </android.support.constraint.ConstraintLayout>

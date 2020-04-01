@@ -19,9 +19,6 @@ import java.util.List;
 
 public class TodayActivity extends Fragment {
 
-    TextView tvSunset;
-    TextView tvSunrise;
-
     Context thiscontext;
 
     TextView tv_sunrise_time;
@@ -41,12 +38,6 @@ public class TodayActivity extends Fragment {
         thiscontext = getActivity();
 
         Typeface typefacePalatinoLinotype = Typeface.createFromAsset(thiscontext.getAssets(), "fonts/pala.ttf");
-
-        tvSunrise = v.findViewById(R.id.tv_sunrise);
-        tvSunrise.setTypeface(typefacePalatinoLinotype);
-
-        tvSunset = v.findViewById(R.id.guidline);
-        tvSunset.setTypeface(typefacePalatinoLinotype);
 
         Object[] dataTaskObjectArray = {v, thiscontext};
         DataTask dataTask = new DataTask();
