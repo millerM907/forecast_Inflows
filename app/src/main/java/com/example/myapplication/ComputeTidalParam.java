@@ -64,21 +64,22 @@ public class ComputeTidalParam {
 
         String previousKey = "";
         String previousValue = "";
+        int k = 0;
         for (Map.Entry<String, String> pair : waveDataMap.entrySet()) {
             String key = pair.getKey();
 
             //проверка текущего времени
-            if(key.equals("-100") && previousKey.equals("") ){
+            if(previousKey.equals("-100") && k == 1 && currentTimeNumber < Instant.ofEpochSecond(0L).until(LocalDateTime.parse(key.replaceAll("Z","")).toInstant(ZoneOffset.UTC), ChronoUnit.SECONDS)){
                 for(int y = 0; y < 4; y++){
                     tidesParamArrayList.add(def);
                 }
                 tidesParamArrayList.add(startAndEnd[0]);
-            } else if (key.equals("-100") && !previousKey.equals("-100")){
+            } else if (key.equals("-100") && !previousKey.equals("-100") && k!=0){
                 for(int y = 0; y < 4; y++){
                     tidesParamArrayList.add(def);
                 }
                 tidesParamArrayList.add(startAndEnd[1]);
-            }  else {
+            }  else if(!key.equals("-100") && !previousKey.equals("-100")){
                 Instant timeStartCycleNew = Instant.parse(key.replaceAll(" ", ""));
                 long timeNumber = Instant.ofEpochSecond(0L).until(timeStartCycleNew, ChronoUnit.SECONDS);
 
@@ -100,11 +101,13 @@ public class ComputeTidalParam {
                     }
                     break;
                 }
-                previousKey = pair.getKey();
-                previousValue = pair.getValue();
-            }
-        }
 
+            }
+            k++;
+            previousKey = pair.getKey();
+            previousValue = pair.getValue();
+        }
+        
         return tidesParamArrayList;
     }
 
