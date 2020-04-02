@@ -353,26 +353,27 @@
         android:id="@+id/tv_weekday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:fontFamily="@font/my_font"
-        android:gravity="center"
-        android:textColor="#8CFFFFFF"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/top_line"/>
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/my_number_font"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
+        app:layout_constraintStart_toStartOf="@id/tv_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"/>
 
     <TextView
-        android:id="@+id/tv_bay"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:fontFamily="@font/my_number_font"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/my_font"
         android:text="@string/bay_name"
         android:textColor="@android:color/white"
         android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
-        app:layout_constraintStart_toStartOf="@+id/cv_time1"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/tv_weekday"
+        app:layout_constraintStart_toStartOf="@id/cv_time1"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"
@@ -391,7 +392,7 @@
         app:layout_constraintEnd_toStartOf="@id/tv_sunrise_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_sunrise_time"
-        app:srcCompat="@drawable/sun" />
+        app:srcCompat="@drawable/sun192" />
 
     <android.support.constraint.Guideline
         android:id="@+id/top_line"
@@ -417,6 +418,6 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_sunset_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_sunset_time"
-        app:srcCompat="@drawable/moon" />
+        app:srcCompat="@drawable/moon192" />
 
 </android.support.constraint.ConstraintLayout>

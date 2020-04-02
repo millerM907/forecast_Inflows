@@ -329,7 +329,7 @@
         app:layout_constraintEnd_toStartOf="@id/tv_sunrise_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_sunrise_time"
-        app:srcCompat="@drawable/sun" />
+        app:srcCompat="@drawable/sun192" />
 
     <ImageView
         android:id="@+id/iv_sunset"
@@ -341,7 +341,7 @@
         app:layout_constraintEnd_toStartOf="@id/tv_sunset_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_sunset_time"
-        app:srcCompat="@drawable/moon" />
+        app:srcCompat="@drawable/moon192" />
 
     <android.support.constraint.Guideline
         android:id="@+id/bottom_line"
