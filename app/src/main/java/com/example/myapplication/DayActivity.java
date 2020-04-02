@@ -16,9 +16,12 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DayActivity extends AppCompatActivity {
@@ -44,6 +47,7 @@ public class DayActivity extends AppCompatActivity {
 
     ImageButton im_button;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +67,29 @@ public class DayActivity extends AppCompatActivity {
         String numberDay = (String) arguments.get("numberDay");
         String nameDayOfWeek = (String) arguments.get("nameDayOfWeek");
 
+        List<String> monthOfRussian = new ArrayList<>();
+        Collections.addAll(monthOfRussian,
+                "ЯНВАРЯ",
+                "ФЕВРАЛЯ",
+                "МАРТА",
+                "АПРЕЛЯ",
+                "МАЯ",
+                "ИЮНЯ",
+                "ИЮЛЯ",
+                "АВГУСТА",
+                "СЕНТЯБРЯ",
+                "ОКТЯБРЯ",
+                "НОЯБРЯ",
+                "ДЕКАБРЯ");
+
+
+
+
         tv_weekDay = findViewById(R.id.tv_weekday);
-        tv_weekDay.setText(nameDayOfWeek + ", " + numberDay);
+        tv_weekDay.setText(nameDayOfWeek + ", "
+                + numberDay + " "
+                + monthOfRussian.get(LocalDate.now(ZoneId.of("Asia/Magadan")).getMonthValue() - 1)
+        );
 
         Object[] dataTaskObjectArray = {thisContext, keyDay};
         DataTask dataTask = new DataTask();
