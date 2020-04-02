@@ -107,7 +107,7 @@ public class ComputeTidalParam {
             previousKey = pair.getKey();
             previousValue = pair.getValue();
         }
-        
+
         return tidesParamArrayList;
     }
 
@@ -284,7 +284,7 @@ public class ComputeTidalParam {
         if(userCursor.moveToFirst() && userCursor.getCount() >= 1) {
             do {
                 //получаем время рассвета из базы и приводим к необходимому формату
-                risingValue = userCursor.getString(2).replaceAll(" ", "");
+                risingValue = userCursor.getString(1).replaceAll(" ", "");
                 if (risingValue.length() == 4){
                     risingValue = prefixData + "T0" + risingValue + postfixData;
                 } else {
@@ -293,7 +293,7 @@ public class ComputeTidalParam {
 
 
                 //получаем время заката из базы и приводим к необходимому формату
-               sunsetValue = userCursor.getString(3).replaceAll(" ", "");
+               sunsetValue = userCursor.getString(2).replaceAll(" ", "");
                 if(sunsetValue.length() == 4){
                     sunsetValue = prefixData + "T0" + sunsetValue + postfixData;
                 } else {

@@ -45,7 +45,7 @@ public class TidesForFishingParser {
             generalParametra.add(fatalDef);
         }
 
-        String postficsTime = "-01T12:00:00.000000Z";
+        String postficsTime = "-01T00:10:00.000000Z";
 
         LocalDateTime currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
         String prefixCurrentDate = currentLocalDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM"));
@@ -57,12 +57,12 @@ public class TidesForFishingParser {
         Instant instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
         long currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
 
-        /*
-        //если день месяца 1, и текущее время меньше 12 часов дня, то мы присваиваем 0 элементу списка значение -200 и возвращаем список
+
+        //если день месяца 1, и текущее время меньше 00 ч 10 мин, то мы присваиваем 0 элементу списка значение -200 и возвращаем список
         if(currentTimeNumber < constTimeNumber){
             generalParametra.add(fatalDef);
             return generalParametra;
-        }*/
+        }
 
         return generalParametra;
     }

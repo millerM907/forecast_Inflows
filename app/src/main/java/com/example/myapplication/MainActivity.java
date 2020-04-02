@@ -19,14 +19,16 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Context thiscontext;
+    Context thisContext;
 
     TextView tv_time;
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String APP_PREFERENCES_DB_DATE_UPDATE = "db_date_update";
 
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint({"ClickableViewAccessibility", "SourceLockedOrientationActivity"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         mSettings = this.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
-        thiscontext = this;
+        thisContext = this;
 
         ImageView imageView = findViewById(R.id.iv_bg);
         imageView.setBackgroundResource(R.drawable.pur_bg);
@@ -70,16 +72,16 @@ public class MainActivity extends AppCompatActivity {
         handlerCurrentTime.post(showCurrentTimeInfo);
 
         //проверка интернет соединения
-        if (!NetworkManager.isNetworkAvailable(thiscontext) && mSettings.getBoolean("firstrun", true)) {
+        if (!NetworkManager.isNetworkAvailable(thisContext) && mSettings.getBoolean("firstrun", true)) {
             //вывод сообщения о том, что приложение недоступно из-за ошибки интернет соединения
             AppAlertDialog alertDialog = new AppAlertDialog();
-            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 1);
+            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 1);
             dialog.setCancelable(false);
             dialog.show();
-        } else if ((!NetworkManager.isNetworkAvailable(thiscontext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
+        } else if ((!NetworkManager.isNetworkAvailable(thisContext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
             //вывод сообщения о том, что приложение недоступно из-за ошибки обновления базы без интернет соединения
             AppAlertDialog alertDialog = new AppAlertDialog();
-            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 4);
+            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 4);
             dialog.setCancelable(false);
             dialog.show();
 
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             im_button = findViewById(R.id.imageButton);
             im_button.setOnClickListener(viewClickListener);
 
-            Object[] dataTaskObjectArray = {thiscontext};
+            Object[] dataTaskObjectArray = {thisContext};
 
             //запускаем поток по отрисовке процентов и передаем в него массив, содержищий контекст
             DataTask dataTask = new DataTask();
@@ -121,12 +123,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (id)
                 {
                     case R.id.item_instruction:
-                        Intent intent = new Intent(thiscontext, InstructionActivity.class);
+                        Intent intent = new Intent(thisContext, InstructionActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_about:
                         AppAlertDialog alertDialog = new AppAlertDialog();
-                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 2);
+                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
                         dialog.show();
 
                         TextView messageView = dialog.findViewById(android.R.id.message);
@@ -183,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Object[] objectsArray) {
 
             //работаем дальше
-            DBHelper dbHelper = new DBHelper(thiscontext);
+            DBHelper dbHelper = new DBHelper(thisContext);
 
             //получаем запрос на запись бд
             SQLiteDatabase databaseTidesWritable = dbHelper.getWritableDatabase();
@@ -198,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
                     //вывод сообщения о том, что приложение недоступно по техническим причинам
                     AppAlertDialog alertDialog = new AppAlertDialog();
-                    android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 0);
+                    android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 0);
                     dialog.setCancelable(false);
                     dialog.show();
 
@@ -231,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
                         //вывод сообщения о том, что приложение недоступно по техническим причинам
                         AppAlertDialog alertDialog = new AppAlertDialog();
-                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 0);
+                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 0);
                         dialog.setCancelable(false);
                         dialog.show();
                     } else {

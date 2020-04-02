@@ -1,14 +1,19 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.time.LocalDateTime;
@@ -21,7 +26,7 @@ public class DayActivity extends AppCompatActivity {
     TextView tvSunset;
     TextView tvSunrise;
 
-    Context thiscontext;
+    Context thisContext;
 
     TextView tv_weekDay;
 
@@ -37,15 +42,17 @@ public class DayActivity extends AppCompatActivity {
 
     AlertDialog dialog;
 
+    ImageButton im_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
 
-        thiscontext = this;
+        thisContext = this;
 
         AppAlertDialog alertDialog = new AppAlertDialog();
-        dialog = alertDialog.onCreateDialog(thiscontext, 3);
+        dialog = alertDialog.onCreateDialog(thisContext, 3);
         dialog.show();
 
         ImageView imageView = findViewById(R.id.iv_bg);
@@ -53,27 +60,26 @@ public class DayActivity extends AppCompatActivity {
 
         Bundle arguments = getIntent().getExtras();
         int keyDay = (Integer) arguments.get("keyDay");
-        String nameDay = (String) arguments.get("nameDay");
+        String numberDay = (String) arguments.get("numberDay");
+        String nameDayOfWeek = (String) arguments.get("nameDayOfWeek");
 
         tv_weekDay = findViewById(R.id.tv_weekday);
-        tv_weekDay.setText(nameDay);
+        tv_weekDay.setText(nameDayOfWeek + ", " + numberDay);
 
-        Object[] dataTaskObjectArray = {thiscontext, keyDay};
+        Object[] dataTaskObjectArray = {thisContext, keyDay};
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
+
+        im_button = findViewById(R.id.imageButton);
+        im_button.setOnClickListener(viewClickListener);
     }
 
-
-    private String dateTime(int offsetDay){
-        String date = LocalDateTime.now(ZoneId.of("Asia/Magadan")).plusDays(offsetDay).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        return date;
-    }
-
+    @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<Object, Void, Object[]> {
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
 
-            DBHelper dbHelper = new DBHelper(thiscontext);
+            DBHelper dbHelper = new DBHelper(thisContext);
 
             return new Object[]{ComputeTidalParam.getTodayTidesForFishingDataList(dbHelper, (Integer) dataTaskObjectArray[1]), ForecaParser.getForecaSunActivityDataList(), GismeteoParser.getGismeteoSunActivityDataList(), dataTaskObjectArray[0]};
         }
@@ -84,8 +90,8 @@ public class DayActivity extends AppCompatActivity {
             List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
             List<String> forecaParserList = (List<String>) objectsArray[1];
             List<String> gismeteoParserList = (List<String>) objectsArray[2];
-            thiscontext = (Context) objectsArray[3];
-            ResourseID resourseID = new ResourseID(thiscontext);
+            thisContext = (Context) objectsArray[3];
+            ResourseID resourseID = new ResourseID(thisContext);
 
 
             String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(0), gismeteoParserList.get(0), tidesForFishingParserList.get(tidesForFishingParserList.size() - 2));
@@ -126,15 +132,15 @@ public class DayActivity extends AppCompatActivity {
             } else if (sizeTidesForFishingParserList == 9) {
 
                 //определяем и скрываем cv_time4
-                cv_time = findViewById(R.id.cv_time4);
+                cv_time = findViewById(R.id.cv_time1);
                 cv_time.setVisibility(View.INVISIBLE);
 
                 //определяем и скрываем cv_height4
-                cv_height = findViewById(R.id.cv_height4);
+                cv_height = findViewById(R.id.cv_height1);
                 cv_height.setVisibility(View.INVISIBLE);
 
                 int x = 0;
-                for (int i = 1; i < 4; i++) {
+                for (int i = 2; i <= 4; i++) {
                     tv_water = findViewById(resourseID.tv_waterResourseID(i));
                     tv_time = findViewById(resourseID.tv_timeResourseID(i));
                     tv_height = findViewById(resourseID.tv_heightResourseID(i));
@@ -155,24 +161,24 @@ public class DayActivity extends AppCompatActivity {
                 dialog.dismiss();
             } else if (sizeTidesForFishingParserList == 6) {
 
-                //определяем и скрываем cv_time3
-                cv_time = findViewById(R.id.cv_time3);
+                //определяем и скрываем cv_time1
+                cv_time = findViewById(R.id.cv_time1);
                 cv_time.setVisibility(View.INVISIBLE);
 
-                //определяем и скрываем cv_time4
-                cv_time = findViewById(R.id.cv_time4);
+                //определяем и скрываем cv_time2
+                cv_time = findViewById(R.id.cv_time2);
                 cv_time.setVisibility(View.INVISIBLE);
 
-                //определяем и скрываем cv_height3
-                cv_height = findViewById(R.id.cv_height3);
+                //определяем и скрываем cv_height1
+                cv_height = findViewById(R.id.cv_height1);
                 cv_height.setVisibility(View.INVISIBLE);
 
-                //определяем и скрываем cv_height4
-                cv_height = findViewById(R.id.cv_height4);
+                //определяем и скрываем cv_height2
+                cv_height = findViewById(R.id.cv_height2);
                 cv_height.setVisibility(View.INVISIBLE);
 
                 int x = 0;
-                for (int i = 1; i < 3; i++) {
+                for (int i = 3; i <= 4; i++) {
                     tv_water = findViewById(resourseID.tv_waterResourseID(i));
                     tv_time = findViewById(resourseID.tv_timeResourseID(i));
                     tv_height = findViewById(resourseID.tv_heightResourseID(i));
@@ -193,5 +199,43 @@ public class DayActivity extends AppCompatActivity {
             }
             dialog.dismiss();
         }
+    }
+
+    View.OnClickListener viewClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showPopupMenu(v);
+        }
+    };
+
+    public void showPopupMenu (View view)
+    {
+        PopupMenu menu = new PopupMenu (this, view);
+        menu.setOnMenuItemClickListener (new PopupMenu.OnMenuItemClickListener ()
+        {
+            @Override
+            public boolean onMenuItemClick (MenuItem item)
+            {
+                int id = item.getItemId();
+                switch (id)
+                {
+                    case R.id.item_instruction:
+                        Intent intent = new Intent(thisContext, InstructionActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.item_about:
+                        AppAlertDialog alertDialog = new AppAlertDialog();
+                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
+                        dialog.show();
+
+                        TextView messageView = dialog.findViewById(android.R.id.message);
+                        messageView.setGravity(Gravity.CENTER);
+                        break;
+                }
+                return true;
+            }
+        });
+        menu.inflate (R.menu.popupmenu);
+        menu.show();
     }
 }

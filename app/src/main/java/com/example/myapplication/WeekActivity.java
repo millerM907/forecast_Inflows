@@ -35,6 +35,19 @@ public class WeekActivity extends Fragment  {
     Button but_day11;
     Button but_day12;
 
+    TextView tv_day1;
+    TextView tv_day2;
+    TextView tv_day3;
+    TextView tv_day4;
+    TextView tv_day5;
+    TextView tv_day6;
+    TextView tv_day7;
+    TextView tv_day8;
+    TextView tv_day9;
+    TextView tv_day10;
+    TextView tv_day11;
+    TextView tv_day12;
+
     TextView tv_day;
 
     TextView tv_month;
@@ -155,11 +168,24 @@ public class WeekActivity extends Fragment  {
         but_day11  = v.findViewById(R.id.but_day11);
         but_day12  = v.findViewById(R.id.but_day12);
 
+        tv_day1 = v.findViewById(R.id.tv_day1);
+        tv_day2 = v.findViewById(R.id.tv_day2);
+        tv_day3 = v.findViewById(R.id.tv_day3);
+        tv_day4 = v.findViewById(R.id.tv_day4);
+        tv_day5 = v.findViewById(R.id.tv_day5);
+        tv_day6 = v.findViewById(R.id.tv_day6);
+        tv_day7 = v.findViewById(R.id.tv_day7);
+        tv_day8 = v.findViewById(R.id.tv_day8);
+        tv_day9 = v.findViewById(R.id.tv_day9);
+        tv_day10 = v.findViewById(R.id.tv_day10);
+        tv_day11 = v.findViewById(R.id.tv_day11);
+        tv_day12 = v.findViewById(R.id.tv_day12);
+
         but_day1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(1)){
-                    startIntent(1, but_day1.getText().toString());
+                    startIntent(1, but_day1.getText().toString(), tv_day1.getText().toString());
                 }
             }
         });
@@ -168,7 +194,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(2)){
-                    startIntent(2, but_day2.getText().toString());
+                    startIntent(2, but_day2.getText().toString(), tv_day2.getText().toString());
                 }
 
             }
@@ -178,7 +204,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(3)){
-                    startIntent(3, but_day3.getText().toString());
+                    startIntent(3, but_day3.getText().toString(), tv_day3.getText().toString());
                 }
             }
         });
@@ -187,7 +213,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(4)){
-                    startIntent(4, but_day4.getText().toString());
+                    startIntent(4, but_day4.getText().toString(), tv_day4.getText().toString());
                 }
             }
         });
@@ -196,7 +222,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(5)){
-                    startIntent(5, but_day5.getText().toString());
+                    startIntent(5, but_day5.getText().toString(), tv_day5.getText().toString());
                 }
             }
         });
@@ -205,7 +231,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(6)){
-                    startIntent(6, but_day6.getText().toString());
+                    startIntent(6, but_day6.getText().toString(), tv_day6.getText().toString());
                 }
             }
         });
@@ -214,7 +240,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(7)){
-                    startIntent(7, but_day7.getText().toString());
+                    startIntent(7, but_day7.getText().toString(), tv_day7.getText().toString());
                 }
             }
         });
@@ -223,7 +249,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(8)){
-                    startIntent(8, but_day8.getText().toString());
+                    startIntent(8, but_day8.getText().toString(), tv_day8.getText().toString());
                 }
             }
         });
@@ -232,7 +258,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(9)){
-                    startIntent(9, but_day9.getText().toString());
+                    startIntent(9, but_day9.getText().toString(), tv_day9.getText().toString());
                 }
             }
         });
@@ -242,7 +268,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(10)){
-                    startIntent(10, but_day10.getText().toString());
+                    startIntent(10, but_day10.getText().toString(), tv_day10.getText().toString());
                 }
             }
         });
@@ -251,7 +277,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(11)){
-                    startIntent(11, but_day11.getText().toString());
+                    startIntent(11, but_day11.getText().toString(), tv_day11.getText().toString());
                 }
             }
         });
@@ -260,7 +286,7 @@ public class WeekActivity extends Fragment  {
             @Override
             public void onClick(View v) {
                 if(getEqualsMonth(12)){
-                    startIntent(12, but_day12.getText().toString());
+                    startIntent(12, but_day12.getText().toString(), tv_day12.getText().toString());
                 }
             }
         });
@@ -268,11 +294,12 @@ public class WeekActivity extends Fragment  {
         return v;
     }
 
-    private void startIntent(int key, String butText){
+    private void startIntent(int key, String butText, String tvButText){
         Intent intent = new Intent(getContext(), DayActivity.class);
         // передача объекта с ключом "keyDay" и значением key
         intent.putExtra("keyDay", key);
-        intent.putExtra("nameDay", butText);
+        intent.putExtra("numberDay", butText);
+        intent.putExtra("nameDayOfWeek", tvButText);
         // запуск SecondActivity
         startActivity(intent);
     }

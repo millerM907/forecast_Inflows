@@ -19,7 +19,7 @@ import java.util.List;
 
 public class TodayActivity extends Fragment {
 
-    Context thiscontext;
+    Context thisContext;
 
     TextView tv_sunrise_time;
     TextView tv_sunset_time;
@@ -35,9 +35,9 @@ public class TodayActivity extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_today, container, false);
 
-        thiscontext = getActivity();
+        thisContext = getActivity();
 
-        Object[] dataTaskObjectArray = {v, thiscontext};
+        Object[] dataTaskObjectArray = {v, thisContext};
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
 
@@ -47,7 +47,7 @@ public class TodayActivity extends Fragment {
     class DataTask extends AsyncTask<Object, Void, Object[]> {
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-           DBHelper dbHelper = new DBHelper(thiscontext);
+           DBHelper dbHelper = new DBHelper(thisContext);
 
            return new Object[]{ComputeTidalParam.getTodayTidesForFishingDataList(dbHelper,0), ForecaParser.getForecaSunActivityDataList(), GismeteoParser.getGismeteoSunActivityDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
         }
@@ -59,8 +59,8 @@ public class TodayActivity extends Fragment {
             List<String> forecaParserList = (List<String>) objectsArray[1];
             List<String> gismeteoParserList = (List<String>) objectsArray[2];
             View view = (View) objectsArray[3];
-            thiscontext = (Context) objectsArray[4];
-            ResourseID resourseID = new ResourseID(thiscontext);
+            thisContext = (Context) objectsArray[4];
+            ResourseID resourseID = new ResourseID(thisContext);
 
 
             String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(0), gismeteoParserList.get(0), tidesForFishingParserList.get(tidesForFishingParserList.size()-2));
@@ -101,70 +101,69 @@ public class TodayActivity extends Fragment {
             } else if (sizeTidesForFishingParserList == 9){
 
                 //определяем и скрываем cv_time4
-                cv_time = view.findViewById(R.id.cv_time4);
+                cv_time = view.findViewById(R.id.cv_time1);
                 cv_time.setVisibility(View.INVISIBLE);
 
                 //определяем и скрываем cv_height4
-                cv_height = view.findViewById(R.id.cv_height4);
+                cv_height = view.findViewById(R.id.cv_height1);
                 cv_height.setVisibility(View.INVISIBLE);
 
                 int x = 0;
-                for(int i = 1; i < 4; i++){
+                for (int i = 2; i <= 4; i++) {
                     tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
                     tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
                     tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
                     tv_tide = view.findViewById(resourseID.tv_tidetResourseID(i));
 
-                    for(int y = x; y < x+1 ; y++){
+                    for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));
-                        tv_time.setText(tidesForFishingParserList.get(y+1));
-                        if(tidesForFishingParserList.get(y).equals(waterSateArray[0])){
+                        tv_time.setText(tidesForFishingParserList.get(y + 1));
+                        if (tidesForFishingParserList.get(y).equals(waterSateArray[0])) {
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[3]));
                         } else {
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[2]));
                         }
-                        tv_height.setText(tidesForFishingParserList.get(y+2) + waterSateArray[4]);
+                        tv_height.setText(tidesForFishingParserList.get(y + 2) + waterSateArray[4]);
                     }
-                    x+=3;
+                    x += 3;
                 }
-
 
             } else if (sizeTidesForFishingParserList == 6){
 
-                //определяем и скрываем cv_time3
-                cv_time = view.findViewById(R.id.cv_time3);
+                //определяем и скрываем cv_time1
+                cv_time = view.findViewById(R.id.cv_time1);
                 cv_time.setVisibility(View.INVISIBLE);
 
-                //определяем и скрываем cv_time4
-                cv_time = view.findViewById(R.id.cv_time4);
+                //определяем и скрываем cv_time2
+                cv_time = view.findViewById(R.id.cv_time2);
                 cv_time.setVisibility(View.INVISIBLE);
 
-                //определяем и скрываем cv_height3
-                cv_height = view.findViewById(R.id.cv_height3);
+                //определяем и скрываем cv_height1
+                cv_height = view.findViewById(R.id.cv_height1);
                 cv_height.setVisibility(View.INVISIBLE);
 
-                //определяем и скрываем cv_height4
-                cv_height = view.findViewById(R.id.cv_height4);
+                //определяем и скрываем cv_height2
+                cv_height = view.findViewById(R.id.cv_height2);
                 cv_height.setVisibility(View.INVISIBLE);
 
                 int x = 0;
-                for(int i = 1; i < 3; i++){
+                for (int i = 3; i <= 4; i++) {
                     tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
                     tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
                     tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
                     tv_tide = view.findViewById(resourseID.tv_tidetResourseID(i));
 
-                    for(int y = x; y < x+1 ; y++){
+                    for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));
-                        tv_time.setText(tidesForFishingParserList.get(y+1));
-                        if(tidesForFishingParserList.get(y).equals(waterSateArray[0])){
+                        tv_time.setText(tidesForFishingParserList.get(y + 1));
+                        if (tidesForFishingParserList.get(y).equals(waterSateArray[0])) {
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[3]));
                         } else {
                             tv_tide.setText(getString(R.string.tide_now, waterSateArray[2]));
                         }
-                        tv_height.setText(tidesForFishingParserList.get(y+2) + waterSateArray[4]);
+                        tv_height.setText(tidesForFishingParserList.get(y + 2) + waterSateArray[4]);
                     }
-                    x+=3;
+                    x += 3;
                 }
             }
         }
