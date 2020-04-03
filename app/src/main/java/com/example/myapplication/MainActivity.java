@@ -19,11 +19,9 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String APP_PREFERENCES_DB_DATE_UPDATE = "db_date_update";
 
 
-    @SuppressLint({"ClickableViewAccessibility", "SourceLockedOrientationActivity"})
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,44 +100,6 @@ public class MainActivity extends AppCompatActivity {
             viewPager.setCurrentItem(0); // выводим первый экран
         }
 
-    }
-
-    View.OnClickListener viewClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            showPopupMenu(v);
-        }
-    };
-
-    public void showPopupMenu (View view)
-    {
-        PopupMenu menu = new PopupMenu (this, view);
-        menu.setOnMenuItemClickListener (new PopupMenu.OnMenuItemClickListener ()
-        {
-            @Override
-            public boolean onMenuItemClick (MenuItem item)
-            {
-                int id = item.getItemId();
-                switch (id)
-                {
-                    case R.id.item_instruction:
-                        Intent intent = new Intent(thisContext, InstructionActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.item_about:
-                        AppAlertDialog alertDialog = new AppAlertDialog();
-                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
-                        dialog.show();
-
-                        TextView messageView = dialog.findViewById(android.R.id.message);
-                        messageView.setGravity(Gravity.CENTER);
-                        break;
-                }
-                return true;
-            }
-        });
-        menu.inflate (R.menu.popupmenu);
-        menu.show();
     }
 
 
@@ -281,4 +241,44 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    View.OnClickListener viewClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            showPopupMenu(v);
+        }
+    };
+
+    public void showPopupMenu (View view)
+    {
+        PopupMenu menu = new PopupMenu (this, view);
+        menu.setOnMenuItemClickListener (new PopupMenu.OnMenuItemClickListener ()
+        {
+            @Override
+            public boolean onMenuItemClick (MenuItem item)
+            {
+                int id = item.getItemId();
+                switch (id)
+                {
+                    case R.id.item_instruction:
+                        Intent intent = new Intent(thisContext, InstructionActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.item_about:
+                        AppAlertDialog alertDialog = new AppAlertDialog();
+                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
+                        dialog.show();
+
+                        TextView messageView = dialog.findViewById(android.R.id.message);
+                        messageView.setGravity(Gravity.CENTER);
+                        break;
+                }
+                return true;
+            }
+        });
+        menu.inflate (R.menu.popupmenu);
+        menu.show();
+    }
+
+
 }

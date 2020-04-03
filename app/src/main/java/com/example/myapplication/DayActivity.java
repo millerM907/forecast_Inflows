@@ -26,9 +26,6 @@ import java.util.List;
 
 public class DayActivity extends AppCompatActivity {
 
-    TextView tvSunset;
-    TextView tvSunrise;
-
     Context thisContext;
 
     TextView tv_weekDay;
@@ -95,7 +92,7 @@ public class DayActivity extends AppCompatActivity {
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
 
-        im_button = findViewById(R.id.imageButton);
+        im_button = findViewById(R.id.imageButton2);
         im_button.setOnClickListener(viewClickListener);
     }
 
@@ -263,4 +260,5 @@ public class DayActivity extends AppCompatActivity {
         menu.inflate (R.menu.popupmenu);
         menu.show();
     }
+
 }
