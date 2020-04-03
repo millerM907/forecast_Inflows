@@ -47,8 +47,8 @@ public class ResourseID {
     }
 
     public int tv_dayResourseID(int identifier){
-        String but_day = "tv_day" + identifier;
-        int resourseID = context.getResources().getIdentifier(but_day, "id", "com.example.myapplication");
+        String tv_day = "tv_day" + identifier;
+        int resourseID = context.getResources().getIdentifier(tv_day, "id", "com.example.myapplication");
         return resourseID;
     }
 
