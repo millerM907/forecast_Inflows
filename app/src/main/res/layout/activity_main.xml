@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
@@ -21,7 +21,7 @@
         tools:visibility="visible" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_icon"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
@@ -36,7 +36,7 @@
         tools:visibility="visible" />
 
     <ImageView
-        android:id="@+id/iv_bg"
+        android:id="@+id/iv_main_bg"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/nothing"
@@ -69,7 +69,7 @@
     </android.support.v4.view.ViewPager>
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_main_bay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -79,7 +79,7 @@
         android:textColor="@android:color/white"
         android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_time"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintStart_toStartOf="@+id/gl_main"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -91,12 +91,12 @@
         android:fontFamily="@font/my_number_font"
         android:textColor="@android:color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar1"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_main"
+        app:layout_constraintStart_toStartOf="@+id/gl_main"
+        app:layout_constraintTop_toBottomOf="@id/tv_main_bay" />
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar1"
+        android:id="@+id/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="?attr/colorPrimary"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/ib_main_menu"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
@@ -120,7 +120,7 @@
         app:srcCompat="@drawable/points1" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/gl_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

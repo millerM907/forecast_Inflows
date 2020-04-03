@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //установка стартовой страницы приложения
-        im_view_start_screen = findViewById(R.id.imageView);
-        im_view_2 = findViewById(R.id.imageView2);
+        im_view_start_screen = findViewById(R.id.iv_white);
+        im_view_2 = findViewById(R.id.iv_icon);
 
         im_view_start_screen.bringToFront();
         im_view_2.bringToFront();
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         thisContext = this;
 
-        ImageView imageView = findViewById(R.id.iv_bg);
+        ImageView imageView = findViewById(R.id.iv_main_bg);
         imageView.setBackgroundResource(R.drawable.pur_bg);
 
         handlerCurrentTime = new Handler();
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
 
         } else {
-            im_button = findViewById(R.id.imageButton);
+            im_button = findViewById(R.id.ib_main_menu);
             im_button.setOnClickListener(viewClickListener);
 
             Object[] dataTaskObjectArray = {thisContext};
