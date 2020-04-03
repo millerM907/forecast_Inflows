@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
+        android:contentDescription="@string/nothing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:color/white"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -26,18 +27,19 @@
         android:layout_gravity="center"
         android:layout_marginBottom="50dp"
         android:visibility="visible"
+        android:contentDescription="@string/nothing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/iv_bg"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/bg"
+        android:contentDescription="@string/nothing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +49,7 @@
         android:id="@+id/iv_wave"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="@string/wave"
+        android:contentDescription="@string/nothing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +114,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
         android:background="#00FFFFFF"
-        android:contentDescription=""
+        android:contentDescription="@string/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/points1" />

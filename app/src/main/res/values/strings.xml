@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Приливы в Магадане</string>
-    <string name="bg">Background image with highlights and gradients</string>
-    <string name="sand">The wet sand</string>
-    <string name="wave">The water</string>
+    <string name="nothing"/>
 
     <string name="ma_percent">%1$s %%</string>
     <string name="ma_water_height">%1$s м</string>
@@ -31,22 +29,19 @@
     <string name="about_prog_alert_dialog_mes">Версия программы: 1.0</string>
     <string name="exit">Выйти</string>
     <string name="ok">ОК</string>
-    <string name="shell">The sea shells</string>
-    <string name="sync">Tap and synchronize</string>
     <string name="sunset">ЗАХОД</string>
     <string name="sunrise">ВОСХОД</string>
 
     <string name="txt_screen_1">1</string>
     <string name="txt_screen_2">2</string>
     <string name="tide_now">Высота %1$s воды</string>
-    <string name="menu" />
+    <string name="menu">Меню</string>
     <string name="help">Справка</string>
     <string name="about_app">О приложении</string>
     <string name="bay_name">Бухта Нагаева</string>
     <string name="remaining_time">до %1$s воды</string>
     <string name="download">Загрузка данных...</string>
-    <string name="continue_ten_days">Следующие 10 дней</string>
-    <string name="today">сегодня</string>
+    <string name="next_days">следующие дни</string>
     <string name="introduction_inf">Приливы в Магадане - это приложение, которое позволит Вам запланировать свой отдых или досуг
                                 на море: в бухте Нагаева. Здесь Вы сможете найти информацию о текущем состоянии погоды в бухте, оставшееся время до ближашей малой/полной воды,
                                 а также график времен полных и малых вод на 10 дней.
