@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
 
         } else {
-            im_button = findViewById(R.id.imageButton2);
+            im_button = findViewById(R.id.imageButton);
             im_button.setOnClickListener(viewClickListener);
 
             Object[] dataTaskObjectArray = {thisContext};
