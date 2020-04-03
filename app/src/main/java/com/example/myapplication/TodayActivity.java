@@ -82,7 +82,7 @@ public class TodayActivity extends Fragment {
                     tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
                     tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
                     tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = view.findViewById(resourseID.tv_tidetResourseID(i));
+                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i));
 
                     for(int y = x; y < x+1 ; y++){
                         tv_water.setText(tidesForFishingParserList.get(y));
@@ -113,7 +113,7 @@ public class TodayActivity extends Fragment {
                     tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
                     tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
                     tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = view.findViewById(resourseID.tv_tidetResourseID(i));
+                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i));
 
                     for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));
@@ -151,7 +151,7 @@ public class TodayActivity extends Fragment {
                     tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
                     tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
                     tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = view.findViewById(resourseID.tv_tidetResourseID(i));
+                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i));
 
                     for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));

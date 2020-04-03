@@ -56,7 +56,7 @@ public class DayActivity extends AppCompatActivity {
         dialog = alertDialog.onCreateDialog(thisContext, 3);
         dialog.show();
 
-        ImageView imageView = findViewById(R.id.iv_bg);
+        ImageView imageView = findViewById(R.id.iv_day_bg);
         imageView.setBackgroundResource(R.drawable.pur_bg2);
 
         Bundle arguments = getIntent().getExtras();
@@ -92,7 +92,7 @@ public class DayActivity extends AppCompatActivity {
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
 
-        im_button = findViewById(R.id.imageButton2);
+        im_button = findViewById(R.id.ib_day_menu);
         im_button.setOnClickListener(viewClickListener);
     }
 
@@ -117,11 +117,11 @@ public class DayActivity extends AppCompatActivity {
 
 
             String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(0), gismeteoParserList.get(0), tidesForFishingParserList.get(tidesForFishingParserList.size() - 2));
-            tv_sunrise_time = findViewById(R.id.tv_sunrise_time);
+            tv_sunrise_time = findViewById(R.id.tv_day_sunrise_time);
             tv_sunrise_time.setText(sunriseTime);
 
             String sunsetTime = WeatherAverages.calculationMeanSunsetTime(forecaParserList.get(1), gismeteoParserList.get(1), tidesForFishingParserList.get(tidesForFishingParserList.size() - 1));
-            tv_sunset_time = findViewById(R.id.tv_sunset_time);
+            tv_sunset_time = findViewById(R.id.tv_day_sunset_time);
             tv_sunset_time.setText(sunsetTime);
 
             int sizeTidesForFishingParserList = tidesForFishingParserList.size() - 2;
@@ -132,10 +132,10 @@ public class DayActivity extends AppCompatActivity {
             if (sizeTidesForFishingParserList == 12) {
                 int x = 0;
                 for (int i = 1; i < 5; i++) {
-                    tv_water = findViewById(resourseID.tv_waterResourseID(i));
-                    tv_time = findViewById(resourseID.tv_timeResourseID(i));
-                    tv_height = findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = findViewById(resourseID.tv_tidetResourseID(i));
+                    tv_water = findViewById(resourseID.tv_day_waterResourseID(i));
+                    tv_time = findViewById(resourseID.tv_day_timeResourseID(i));
+                    tv_height = findViewById(resourseID.tv_day_heightResourseID(i));
+                    tv_tide = findViewById(resourseID.tv_day_tideResourseID(i));
 
                     for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));
@@ -154,19 +154,19 @@ public class DayActivity extends AppCompatActivity {
             } else if (sizeTidesForFishingParserList == 9) {
 
                 //определяем и скрываем cv_time4
-                cv_time = findViewById(R.id.cv_time1);
+                cv_time = findViewById(R.id.cv_day_time1);
                 cv_time.setVisibility(View.INVISIBLE);
 
                 //определяем и скрываем cv_height4
-                cv_height = findViewById(R.id.cv_height1);
+                cv_height = findViewById(R.id.cv_day_height1);
                 cv_height.setVisibility(View.INVISIBLE);
 
                 int x = 0;
                 for (int i = 2; i <= 4; i++) {
-                    tv_water = findViewById(resourseID.tv_waterResourseID(i));
-                    tv_time = findViewById(resourseID.tv_timeResourseID(i));
-                    tv_height = findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = findViewById(resourseID.tv_tidetResourseID(i));
+                    tv_water = findViewById(resourseID.tv_day_waterResourseID(i));
+                    tv_time = findViewById(resourseID.tv_day_timeResourseID(i));
+                    tv_height = findViewById(resourseID.tv_day_heightResourseID(i));
+                    tv_tide = findViewById(resourseID.tv_day_tideResourseID(i));
 
                     for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));
@@ -184,27 +184,27 @@ public class DayActivity extends AppCompatActivity {
             } else if (sizeTidesForFishingParserList == 6) {
 
                 //определяем и скрываем cv_time1
-                cv_time = findViewById(R.id.cv_time1);
+                cv_time = findViewById(R.id.cv_day_time1);
                 cv_time.setVisibility(View.INVISIBLE);
 
                 //определяем и скрываем cv_time2
-                cv_time = findViewById(R.id.cv_time2);
+                cv_time = findViewById(R.id.cv_day_time2);
                 cv_time.setVisibility(View.INVISIBLE);
 
                 //определяем и скрываем cv_height1
-                cv_height = findViewById(R.id.cv_height1);
+                cv_height = findViewById(R.id.cv_day_height1);
                 cv_height.setVisibility(View.INVISIBLE);
 
                 //определяем и скрываем cv_height2
-                cv_height = findViewById(R.id.cv_height2);
+                cv_height = findViewById(R.id.cv_day_height2);
                 cv_height.setVisibility(View.INVISIBLE);
 
                 int x = 0;
                 for (int i = 3; i <= 4; i++) {
-                    tv_water = findViewById(resourseID.tv_waterResourseID(i));
-                    tv_time = findViewById(resourseID.tv_timeResourseID(i));
-                    tv_height = findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = findViewById(resourseID.tv_tidetResourseID(i));
+                    tv_water = findViewById(resourseID.tv_day_waterResourseID(i));
+                    tv_time = findViewById(resourseID.tv_day_timeResourseID(i));
+                    tv_height = findViewById(resourseID.tv_day_heightResourseID(i));
+                    tv_tide = findViewById(resourseID.tv_day_tideResourseID(i));
 
                     for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));
