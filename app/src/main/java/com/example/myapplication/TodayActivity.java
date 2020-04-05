@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,8 +11,6 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -44,6 +42,7 @@ public class TodayActivity extends Fragment {
         return v;
     }
 
+    @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<Object, Void, Object[]> {
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
@@ -53,6 +52,7 @@ public class TodayActivity extends Fragment {
         }
 
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(Object[] objectsArray) {
             List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
@@ -79,10 +79,10 @@ public class TodayActivity extends Fragment {
             if(sizeTidesForFishingParserList == 12){
                 int x = 0;
                 for(int i = 1; i < 5; i++){
-                    tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
-                    tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
-                    tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i));
+                    tv_water = view.findViewById(resourseID.tv_waterResourseID(i, "TodayActivity"));
+                    tv_time = view.findViewById(resourseID.tv_timeResourseID(i, "TodayActivity"));
+                    tv_height = view.findViewById(resourseID.tv_heightResourseID(i, "TodayActivity"));
+                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i, "TodayActivity"));
 
                     for(int y = x; y < x+1 ; y++){
                         tv_water.setText(tidesForFishingParserList.get(y));
@@ -110,10 +110,10 @@ public class TodayActivity extends Fragment {
 
                 int x = 0;
                 for (int i = 2; i <= 4; i++) {
-                    tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
-                    tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
-                    tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i));
+                    tv_water = view.findViewById(resourseID.tv_waterResourseID(i, "TodayActivity"));
+                    tv_time = view.findViewById(resourseID.tv_timeResourseID(i, "TodayActivity"));
+                    tv_height = view.findViewById(resourseID.tv_heightResourseID(i, "TodayActivity"));
+                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i, "TodayActivity"));
 
                     for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));
@@ -148,10 +148,10 @@ public class TodayActivity extends Fragment {
 
                 int x = 0;
                 for (int i = 3; i <= 4; i++) {
-                    tv_water = view.findViewById(resourseID.tv_waterResourseID(i));
-                    tv_time = view.findViewById(resourseID.tv_timeResourseID(i));
-                    tv_height = view.findViewById(resourseID.tv_heightResourseID(i));
-                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i));
+                    tv_water = view.findViewById(resourseID.tv_waterResourseID(i, "TodayActivity"));
+                    tv_time = view.findViewById(resourseID.tv_timeResourseID(i, "TodayActivity"));
+                    tv_height = view.findViewById(resourseID.tv_heightResourseID(i, "TodayActivity"));
+                    tv_tide = view.findViewById(resourseID.tv_tideResourseID(i, "TodayActivity"));
 
                     for (int y = x; y < x + 1; y++) {
                         tv_water.setText(tidesForFishingParserList.get(y));

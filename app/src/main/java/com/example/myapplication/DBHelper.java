@@ -14,17 +14,17 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "tidesDB";
     private static final String TABLE_ScheduleTides = "scheduleTides";
 
-    public static final String KEY_ID = "_id";
-    public static final String KEY_SunriseTime = "sunriseTime";
-    public static final String KEY_SunsetTime = "sunsetTime";
-    public static final String KEY_TidesTime_1 = "tidesTime_1";
-    public static final String KEY_TidesHeight_1 = "tidesHeight_1";
-    public static final String KEY_TidesTime_2 = "tidesTime_2";
-    public static final String KEY_TidesHeight_2 = "tidesHeight_2";
-    public static final String KEY_TidesTime_3 = "tidesTime_3";
-    public static final String KEY_TidesHeight_3 = "tidesHeight_3";
-    public static final String KEY_TidesTime_4 = "tidesTime_4";
-    public static final String KEY_TidesHeight_4 = "tidesHeight_4";
+    private static final String KEY_ID = "_id";
+    private static final String KEY_SunriseTime = "sunriseTime";
+    private static final String KEY_SunsetTime = "sunsetTime";
+    private static final String KEY_TidesTime_1 = "tidesTime_1";
+    private static final String KEY_TidesHeight_1 = "tidesHeight_1";
+    private static final String KEY_TidesTime_2 = "tidesTime_2";
+    private static final String KEY_TidesHeight_2 = "tidesHeight_2";
+    private static final String KEY_TidesTime_3 = "tidesTime_3";
+    private static final String KEY_TidesHeight_3 = "tidesHeight_3";
+    private static final String KEY_TidesTime_4 = "tidesTime_4";
+    private static final String KEY_TidesHeight_4 = "tidesHeight_4";
 
     private static final String DATABASE_CREATE = "create table "
             + TABLE_ScheduleTides + "("

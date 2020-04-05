@@ -46,23 +46,23 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
     TextView tv_remaining_time;
 
-    Context thiscontext;
+    Context thisContext;
 
-    Handler handlerRemaningTimeTide;
+    Handler handlerRemainingTimeTide;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private Object[] dataTaskObjectArray;
-    private int countExecuteAsycnkTask;
+    private int countExecuteAsyncTask;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(activity_current, container, false);
 
-        thiscontext = getActivity();
+        thisContext = getActivity();
 
-        dataTaskObjectArray = new Object[]{thiscontext, v};
+        dataTaskObjectArray = new Object[]{v};
 
-        countExecuteAsycnkTask = 0;
+        countExecuteAsyncTask = 0;
 
         //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
         DataTask dataTask = new DataTask();
@@ -75,7 +75,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         mSwipeRefreshLayout = v.findViewById(R.id.container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
-        handlerRemaningTimeTide = new Handler();
+        handlerRemainingTimeTide = new Handler();
 
         return v;
     }
@@ -118,7 +118,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
             Instant instantEndCycleTime = Instant.parse(time);
             long endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
-            long differenceTime = 0;
+            long differenceTime;
             if(endCycleTimeNumber-currentTimeNumber < 0){
                 time = LocalDateTime.now(ZoneId.of("Asia/Magadan")).plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+ "T" + tv_waterTime_1_2.getText() + ":00.000000Z";
                 instantEndCycleTime = Instant.parse(time);
@@ -133,7 +133,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             tvRemainingTimeTide.setText(output);
 
             // планирует сам себя через 1000 мсек
-            handlerRemaningTimeTide.postDelayed(showRemainingTime, 1000);
+            handlerRemainingTimeTide.postDelayed(showRemainingTime, 1000);
         }
     };
 
@@ -150,7 +150,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{dataTaskObjectArray[0], dataTaskObjectArray[1]};
+            return new Object[]{dataTaskObjectArray[0]};
         }
 
         @SuppressLint("SetTextI18n")
@@ -158,12 +158,10 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         protected void onPostExecute(Object[] objectsArray) {
 
             //работаем дальше
-            DBHelper dbHelper = new DBHelper(thiscontext);
+            DBHelper dbHelper = new DBHelper(thisContext);
 
             List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
-            System.out.println(objectsArray[0]);
-            Context thiscontext = (Context) objectsArray[0];
-            View view = (View) objectsArray[1];
+            View view = (View) objectsArray[0];
 
             //вычисление процента и присвоение переменной percent
             String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
@@ -235,12 +233,9 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(3)));
 
                 //запускаем поток обновления времени, оставшегося до конца приливного цикла
-                handlerRemaningTimeTide.post(showRemainingTime);
+                handlerRemainingTimeTide.post(showRemainingTime);
             }
-
         }
-
-
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -248,7 +243,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{ForecaParser.getForecaWeatherDataList(), GismeteoParser.getGismeteoWeatherDataList(), dataTaskObjectArray[1]};
+            return new Object[]{ForecaParser.getForecaWeatherDataList(), GismeteoParser.getGismeteoWeatherDataList(), dataTaskObjectArray[0]};
         }
 
         @Override
@@ -279,10 +274,10 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
             //после выполнения обновления убираем кругляк обновления
             mSwipeRefreshLayout.setRefreshing(false);
-            if(mSwipeRefreshLayout.isRefreshing() == false && (countExecuteAsycnkTask != 0)){
+            if(!mSwipeRefreshLayout.isRefreshing() && (countExecuteAsyncTask != 0)){
                 Toast.makeText((Context) dataTaskObjectArray[0], "Обновлено", Toast.LENGTH_SHORT).show();
             }
-            countExecuteAsycnkTask++;
+            countExecuteAsyncTask++;
 
             MainActivity.im_view_start_screen.setVisibility(View.GONE);
             MainActivity.im_view_2.setVisibility(View.GONE);

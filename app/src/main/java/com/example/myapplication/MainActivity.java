@@ -212,14 +212,14 @@ public class MainActivity extends AppCompatActivity {
 
 
             List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
-            Context thiscontext = (Context) objectsArray[0];
-            ResourseID resourseID = new ResourseID(thiscontext);
+            Context thisContext = (Context) objectsArray[0];
+            ResourseID resourseID = new ResourseID(thisContext);
 
             if(tidesForFishingParserList.get(0).equals("-200")){
 
                 //вывод сообщения о том, что приложение недоступно по техническим причинам
                 AppAlertDialog alertDialog = new AppAlertDialog();
-                android.app.AlertDialog dialog = alertDialog.onCreateDialog(thiscontext, 0);
+                android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 0);
                 dialog.setCancelable(false);
                 dialog.show();
 
