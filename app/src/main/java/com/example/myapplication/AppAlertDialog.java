@@ -54,8 +54,14 @@ public class AppAlertDialog extends DialogFragment {
                             System.exit(0);
                         }
                     });
+        } else if (keyMessage == 5) {
+            builder.setTitle(R.string.close_alert_dialog_net_title)
+                    .setMessage(R.string.warning_alert_dialog_net)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                        }
+                    });
         }
-
 
 
         return builder.create();

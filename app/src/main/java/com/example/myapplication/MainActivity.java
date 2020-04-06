@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         tv_time = findViewById(R.id.tv_time);
         handlerCurrentTime.post(showCurrentTimeInfo);
 
+        im_button = findViewById(R.id.ib_main_menu);
+        im_button.setOnClickListener(viewClickListener);
+
         //проверка интернет соединения
         if (!NetworkManager.isNetworkAvailable(thisContext) && mSettings.getBoolean("firstrun", true)) {
             //вывод сообщения о том, что приложение недоступно из-за ошибки интернет соединения
@@ -83,26 +86,46 @@ public class MainActivity extends AppCompatActivity {
             dialog.setCancelable(false);
             dialog.show();
 
+        } else if(!NetworkManager.isNetworkAvailable(thisContext)) {
+
+            //вывод сообщения о том, что данные о текущей погоде могут отображаться некорреткно
+            AppAlertDialog alertDialog = new AppAlertDialog();
+            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 5);
+            dialog.setCancelable(false);
+            dialog.show();
+
+            continueLoadMainActivity();
+
         } else {
-            im_button = findViewById(R.id.ib_main_menu);
-            im_button.setOnClickListener(viewClickListener);
 
-            Object[] dataTaskObjectArray = {thisContext};
-
-            //запускаем поток по отрисовке процентов и передаем в него массив, содержищий контекст
-            DataTask dataTask = new DataTask();
-            dataTask.execute(dataTaskObjectArray);
-
-            ViewPager viewPager = findViewById(R.id.pager);
-            viewPager.setOffscreenPageLimit(2);
-
-            viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
-            viewPager.setCurrentItem(0); // выводим первый экран
+            continueLoadMainActivity();
         }
 
     }
 
+    /**
+     *Метод запускает асинхронный поток, отвечающий за проверку обновления и обновление бд,
+     * установку картинки прилива и инициализацию ViewPager.
+     * */
+    private void continueLoadMainActivity(){
 
+        Object[] dataTaskObjectArray = {thisContext};
+
+        //запускаем поток по отрисовке процентов и передаем в него массив, содержищий контекст
+        DataTask dataTask = new DataTask();
+        dataTask.execute(dataTaskObjectArray);
+
+        ViewPager viewPager = findViewById(R.id.pager);
+        viewPager.setOffscreenPageLimit(2);
+
+        viewPager.setAdapter(new MyAdapter(getSupportFragmentManager())); // устанавливаем адаптер
+        viewPager.setCurrentItem(0); // выводим первый экран
+    }
+
+
+    /**
+     *Метод запускает поток, обновляющтй текущее время в тулбаре.
+     * */
     Runnable showCurrentTimeInfo = new Runnable() {
         public void run() {
             LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
