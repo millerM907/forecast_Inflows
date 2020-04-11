@@ -178,7 +178,6 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //поиск textView для вывода подписи к высоте
             tv_waterHeight_4_1 = view.findViewById(R.id.tv_waterHeight_4_1);
 
-
             //если процент вычислить не удалось он равен -100, иначе если удалось
             if(percent.equals("-100")){
                 tv_waterHeight_4_1.setText("Высота воды");
@@ -275,8 +274,8 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //после выполнения обновления убираем кругляк обновления
             mSwipeRefreshLayout.setRefreshing(false);
             if(!mSwipeRefreshLayout.isRefreshing() && (countExecuteAsyncTask != 0)){
-                Toast.makeText((Context) dataTaskObjectArray[0], "Обновлено", Toast.LENGTH_SHORT).show();
-                //AppToast.makeText((Context) dataTaskObjectArray[0], "Обновлеенооо").show();
+                //Toast.makeText((Context) dataTaskObjectArray[0], "Обновлено", Toast.LENGTH_SHORT).show();
+                AppToast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
             }
             countExecuteAsyncTask++;
 
