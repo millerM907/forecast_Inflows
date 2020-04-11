@@ -276,6 +276,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             mSwipeRefreshLayout.setRefreshing(false);
             if(!mSwipeRefreshLayout.isRefreshing() && (countExecuteAsyncTask != 0)){
                 Toast.makeText((Context) dataTaskObjectArray[0], "Обновлено", Toast.LENGTH_SHORT).show();
+                //AppToast.makeText((Context) dataTaskObjectArray[0], "Обновлеенооо").show();
             }
             countExecuteAsyncTask++;
 
