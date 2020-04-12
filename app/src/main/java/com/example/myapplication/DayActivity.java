@@ -238,10 +238,12 @@ public class DayActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id)
                 {
+                    /*
                     case R.id.item_instruction:
                         Intent intent = new Intent(thisContext, InstructionActivity.class);
                         startActivity(intent);
                         break;
+                     */
                     case R.id.item_about:
                         AppAlertDialog alertDialog = new AppAlertDialog();
                         android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);

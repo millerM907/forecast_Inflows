@@ -279,8 +279,11 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             }
             countExecuteAsyncTask++;
 
-            MainActivity.im_view_start_screen.setVisibility(View.GONE);
-            MainActivity.im_view_2.setVisibility(View.GONE);
+            MainActivity.getIm_view_start_screen().setVisibility(View.GONE);
+            MainActivity.getIm_view_2().setVisibility(View.GONE);
+
+            //MainActivity.im_view_start_screen.setVisibility(View.GONE);
+            //MainActivity.im_view_2.setVisibility(View.GONE)
         }
     }
 }

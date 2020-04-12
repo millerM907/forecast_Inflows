@@ -26,21 +26,20 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Context thisContext;
+    private Context thisContext;
 
-    TextView tv_time;
+    private TextView tv_time;
 
-    ImageButton im_button;
-    static ImageView im_view_start_screen;
-    static ImageView im_view_2;
+    private static ImageView im_view_start_screen;
+    private static ImageView im_view_2;
 
     //создаем обработчик для обновления текущего времени
-    Handler handlerCurrentTime;
+    private Handler handlerCurrentTime;
 
 
-    SharedPreferences mSettings = null;
-    public static final String APP_PREFERENCES = "mysettings";
-    public static final String APP_PREFERENCES_DB_DATE_UPDATE = "db_date_update";
+    private SharedPreferences mSettings = null;
+    private static final String APP_PREFERENCES = "mysettings";
+    private static final String APP_PREFERENCES_DB_DATE_UPDATE = "db_date_update";
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         tv_time = findViewById(R.id.tv_time);
         handlerCurrentTime.post(showCurrentTimeInfo);
 
-        im_button = findViewById(R.id.ib_main_menu);
+        ImageButton im_button = findViewById(R.id.ib_main_menu);
         im_button.setOnClickListener(viewClickListener);
 
         //проверка интернет соединения
@@ -101,6 +100,14 @@ public class MainActivity extends AppCompatActivity {
             continueLoadMainActivity();
         }
 
+    }
+
+    public static ImageView getIm_view_start_screen(){
+        return im_view_start_screen;
+    }
+
+    public static ImageView getIm_view_2(){
+        return im_view_2;
     }
 
     /**
@@ -259,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     //установка картинки
-                    imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.valueOf(percent)));
+                    imageView2.setBackgroundResource(resourseID.getSearchImageResourseID(Integer.parseInt(percent)));
                 }
             }
         }
@@ -283,10 +290,12 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch (id)
                 {
+                    /*
                     case R.id.item_instruction:
                         Intent intent = new Intent(thisContext, InstructionActivity.class);
                         startActivity(intent);
                         break;
+                     */
                     case R.id.item_about:
                         AppAlertDialog alertDialog = new AppAlertDialog();
                         android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
