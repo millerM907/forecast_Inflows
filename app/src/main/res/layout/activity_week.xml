@@ -24,13 +24,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:elegantTextHeight="true"
-        android:gravity="center"
         android:fontFamily="@font/my_nice_font"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@android:color/white"
         android:textSize="44sp"
-        app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintHeight_percent="0.12" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -346,6 +346,25 @@
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/but_day12"
         app:layout_constraintTop_toTopOf="@id/but_day12" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <ImageButton
+        android:id="@+id/ib_link"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:background="@drawable/anchor"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/tv_month"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        android:contentDescription="@string/nothing" />
 
 
 </android.support.constraint.ConstraintLayout>
