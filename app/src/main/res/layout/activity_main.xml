@@ -110,7 +110,6 @@
         android:id="@+id/ib_main_menu"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="14dp"
         android:background="#00FFFFFF"
         android:contentDescription="@string/menu"
         app:layout_constraintEnd_toEndOf="parent"

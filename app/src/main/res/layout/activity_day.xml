@@ -340,14 +340,12 @@
 
     <ImageButton
         android:id="@+id/ib_day_menu"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:contentDescription="@string/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/points2" />
+        android:background="@drawable/points2plus" />
 
     <TextView
         android:id="@+id/tv_weekday"
