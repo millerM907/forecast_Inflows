@@ -9,6 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/iv_crab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/crab"
+            android:contentDescription="@string/nothing"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <android.support.constraint.Guideline
             android:id="@+id/gl_current"
             android:layout_width="wrap_content"
@@ -259,6 +271,7 @@
             android:textSize="26sp"
             app:layout_constraintBottom_toTopOf="@+id/gl_current"
             app:layout_constraintEnd_toEndOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
 
 

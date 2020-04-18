@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
                 //если процент вычислить не удалось он равен -100, иначе если удалось
                 if(percent.equals("-100")){
                     //установка картинки
-                    imageView2.setBackgroundResource(R.drawable.crab);
+                    imageView2.setBackgroundResource(R.drawable.stone);
 
                 } else {
                     //установка картинки
