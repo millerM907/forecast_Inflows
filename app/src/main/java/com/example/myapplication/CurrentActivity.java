@@ -46,6 +46,8 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
     TextView tv_remaining_time;
 
+    ImageView iv_crab;
+
     Context thisContext;
 
     Handler handlerRemainingTimeTide;
@@ -180,13 +182,15 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
 
             //если процент вычислить не удалось он равен -100, иначе если удалось
             if(percent.equals("-100")){
+                iv_crab = view.findViewById(R.id.iv_crab);
+                iv_crab.setVisibility(View.VISIBLE);
                 tv_waterHeight_4_1.setText("Высота воды");
                 //вместо времени и высоты устанавливаем прочерки, слово прилив/отлив не выводим
                 tv_waterTime_1_2.setText("-");
                 tv_waterHeight_4_2.setText("-");
             } else {
 
-                //устанавливаем вместо процента - время до конца цикла
+                //устанавливаем время до конца цикла
 
                 //получаем текущее время с учетом часового пояса +11
                 LocalDateTime currentLocalDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
@@ -274,16 +278,13 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //после выполнения обновления убираем кругляк обновления
             mSwipeRefreshLayout.setRefreshing(false);
             if(!mSwipeRefreshLayout.isRefreshing() && (countExecuteAsyncTask != 0)){
-                Toast.makeText((Context) dataTaskObjectArray[0], "Обновлено", Toast.LENGTH_SHORT).show();
+                Toast.makeText((Context) dataTaskObjectArray[0], R.string.refresh_finished, Toast.LENGTH_SHORT).show();
                 //AppToast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
             }
             countExecuteAsyncTask++;
 
             MainActivity.getIm_view_start_screen().setVisibility(View.GONE);
             MainActivity.getIm_view_2().setVisibility(View.GONE);
-
-            //MainActivity.im_view_start_screen.setVisibility(View.GONE);
-            //MainActivity.im_view_2.setVisibility(View.GONE)
         }
     }
 }
