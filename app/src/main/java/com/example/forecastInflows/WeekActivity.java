@@ -1,6 +1,7 @@
 package com.example.forecastInflows;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.time.DayOfWeek;
@@ -20,6 +22,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class WeekActivity extends Fragment  {
+
+    ImageButton ib_link;
 
     Button but_today;
     Button but_day1;
@@ -155,6 +159,7 @@ public class WeekActivity extends Fragment  {
             }
         }
 
+        ib_link = v.findViewById(R.id.ib_link);
         but_day1 = v.findViewById(R.id.but_day1);
         but_day2 = v.findViewById(R.id.but_day2);
         but_day3 = v.findViewById(R.id.but_day3);
@@ -180,6 +185,15 @@ public class WeekActivity extends Fragment  {
         tv_day10 = v.findViewById(R.id.tv_day10);
         tv_day11 = v.findViewById(R.id.tv_day11);
         tv_day12 = v.findViewById(R.id.tv_day12);
+
+        /* Кнопка для перехода на страницу группы в вк
+        ib_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent vkGroupIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.com/ageenkomihael"));
+                startActivity(vkGroupIntent);
+            }
+        });*/
 
         but_day1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -76,6 +76,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         mSwipeRefreshLayout = v.findViewById(R.id.container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
+
         handlerRemainingTimeTide = new Handler();
 
         return v;
@@ -84,13 +85,20 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
     @Override
     public void onRefresh() {
 
-        //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
-        DataTask dataTask = new DataTask();
-        dataTask.execute(dataTaskObjectArray);
+        if(NetworkManager.isNetworkAvailable(thisContext)){
+            mSwipeRefreshLayout.setRefreshing(true);
 
-        //запускаем второй поток
-        DataTaskTwo dataTaskTwo = new DataTaskTwo();
-        dataTaskTwo.execute(dataTaskObjectArray);
+            //запускаем поток по отрисовке процентов и передаем в него пременную типа ResourseID
+            DataTask dataTask = new DataTask();
+            dataTask.execute(dataTaskObjectArray);
+
+            //запускаем второй поток
+            DataTaskTwo dataTaskTwo = new DataTaskTwo();
+            dataTaskTwo.execute(dataTaskObjectArray);
+        } else {
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+
     }
 
     Runnable showRemainingTime = new Runnable() {
@@ -277,7 +285,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //после выполнения обновления убираем кругляк обновления
             mSwipeRefreshLayout.setRefreshing(false);
             if(!mSwipeRefreshLayout.isRefreshing() && (countExecuteAsyncTask != 0)){
-                Toast.makeText((Context) dataTaskObjectArray[0], R.string.refresh_finished, Toast.LENGTH_SHORT).show();
+                Toast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
                 //AppToast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
             }
             countExecuteAsyncTask++;
