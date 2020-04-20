@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

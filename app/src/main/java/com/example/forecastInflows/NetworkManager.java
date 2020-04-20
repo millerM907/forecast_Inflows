@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

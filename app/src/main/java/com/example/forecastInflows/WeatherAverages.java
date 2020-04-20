@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

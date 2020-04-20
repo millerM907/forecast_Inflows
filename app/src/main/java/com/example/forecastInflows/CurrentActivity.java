@@ -1,8 +1,7 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-import static com.example.myapplication.R.layout.*;
+import static com.example.forecastInflows.R.layout.*;
 
 public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 

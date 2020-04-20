@@ -28,7 +28,8 @@
         Проверьте подключение к сети и повторите попытку.</string>
 
     <string name="about_prog_alert_dialog_title">О программе</string>
-    <string name="about_prog_alert_dialog_mes">Версия программы: 1.0</string>
+    <string name="about_prog_alert_dialog_mes">Версия приложения: </string>
+    <string name="about_prog_alert_dialog_company">Copyright © Stlanik Studio, 2020</string>
     <string name="exit">Выйти</string>
     <string name="ok">ОК</string>
     <string name="sunset">ЗАХОД</string>

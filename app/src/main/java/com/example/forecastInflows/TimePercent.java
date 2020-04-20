@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;

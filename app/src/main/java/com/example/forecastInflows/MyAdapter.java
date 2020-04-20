@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;

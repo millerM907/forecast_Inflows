@@ -1,14 +1,8 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.support.v4.app.DialogFragment;
-import android.view.Gravity;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class AppAlertDialog extends DialogFragment {
 
@@ -34,8 +28,8 @@ public class AppAlertDialog extends DialogFragment {
                     });
         } else if (keyMessage == 2){
             String appName = context.getString(R.string.app_name);
-            String version = "Версия приложения: " + BuildConfig.VERSION_NAME;
-            String developer = "Разработчик: Агеенко Михаил";
+            String version = context.getString(R.string.about_prog_alert_dialog_mes) + " " + BuildConfig.VERSION_NAME;
+            String developer = context.getString(R.string.about_prog_alert_dialog_company);
             builder.setIcon(R.drawable.icon).
                     setTitle(R.string.about_prog_alert_dialog_title)
                     .setMessage("\n" + appName + "\n\n" + version + "\n\n" + developer)

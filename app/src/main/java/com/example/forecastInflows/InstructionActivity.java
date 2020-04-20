@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

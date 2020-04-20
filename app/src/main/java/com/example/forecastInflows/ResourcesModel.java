@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 public enum ResourcesModel {
     // создаем 3 перечисления с тайтлом и макетом

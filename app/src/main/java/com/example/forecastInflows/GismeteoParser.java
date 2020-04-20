@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.forecastInflows;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
