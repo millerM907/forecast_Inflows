@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static ImageView im_view_start_screen;
     private static ImageView im_view_2;
+    private static boolean imViewStoneState = false;
 
     //создаем обработчик для обновления текущего времени
     private Handler handlerCurrentTime;
@@ -107,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static ImageView getIm_view_2(){
         return im_view_2;
+    }
+
+    public static boolean getImViewStoneState(){
+        return imViewStoneState;
     }
 
     /**
@@ -262,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
                 if(percent.equals("-100")){
                     //установка картинки
                     imageView2.setBackgroundResource(R.drawable.stone);
+                    imViewStoneState = true;
 
                 } else {
                     //установка картинки

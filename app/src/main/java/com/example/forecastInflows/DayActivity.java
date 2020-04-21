@@ -82,7 +82,7 @@ public class DayActivity extends AppCompatActivity {
                 + monthOfRussian.get(LocalDate.now(ZoneId.of("Asia/Magadan")).getMonthValue() - 1)
         );
 
-        Object[] dataTaskObjectArray = {thisContext, keyDay};
+        Object[] dataTaskObjectArray = {keyDay};
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
 
@@ -97,31 +97,26 @@ public class DayActivity extends AppCompatActivity {
 
             DBHelper dbHelper = new DBHelper(thisContext);
 
-            return new Object[]{ComputeTidalParam.getTodayTidesForFishingDataList(dbHelper, (Integer) dataTaskObjectArray[1]), ForecaParser.getForecaSunActivityDataList(), GismeteoParser.getGismeteoSunActivityDataList(), dataTaskObjectArray[0]};
+            return new Object[]{ComputeTidalParam.getTodayTidesForFishingDataList(dbHelper, (Integer) dataTaskObjectArray[0])};
         }
 
 
         @Override
         protected void onPostExecute(Object[] objectsArray) {
             List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
-            List<String> forecaParserList = (List<String>) objectsArray[1];
-            List<String> gismeteoParserList = (List<String>) objectsArray[2];
-            thisContext = (Context) objectsArray[3];
             ResourseID resourseID = new ResourseID(thisContext);
 
-
-            String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(0), gismeteoParserList.get(0), tidesForFishingParserList.get(tidesForFishingParserList.size() - 2));
+            String sunriseTime = WeatherDataFormatter.parseSunriseTime(tidesForFishingParserList.get(tidesForFishingParserList.size()-2));
             tv_sunrise_time = findViewById(R.id.tv_day_sunrise_time);
             tv_sunrise_time.setText(sunriseTime);
 
-            String sunsetTime = WeatherAverages.calculationMeanSunsetTime(forecaParserList.get(1), gismeteoParserList.get(1), tidesForFishingParserList.get(tidesForFishingParserList.size() - 1));
+            String sunsetTime = WeatherDataFormatter.parseSunsetTime(tidesForFishingParserList.get(tidesForFishingParserList.size()-1));
             tv_sunset_time = findViewById(R.id.tv_day_sunset_time);
             tv_sunset_time.setText(sunsetTime);
 
             int sizeTidesForFishingParserList = tidesForFishingParserList.size() - 2;
 
             String[] waterSateArray = {"Полная вода", "Малая вода", "малой", "полной", " м"};
-
 
             if (sizeTidesForFishingParserList == 12) {
                 int x = 0;

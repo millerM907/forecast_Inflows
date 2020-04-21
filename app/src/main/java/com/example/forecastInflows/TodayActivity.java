@@ -35,7 +35,7 @@ public class TodayActivity extends Fragment {
 
         thisContext = getActivity();
 
-        Object[] dataTaskObjectArray = {v, thisContext};
+        Object[] dataTaskObjectArray = {v};
         DataTask dataTask = new DataTask();
         dataTask.execute(dataTaskObjectArray);
 
@@ -48,7 +48,7 @@ public class TodayActivity extends Fragment {
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
            DBHelper dbHelper = new DBHelper(thisContext);
 
-           return new Object[]{ComputeTidalParam.getTodayTidesForFishingDataList(dbHelper,0), ForecaParser.getForecaSunActivityDataList(), GismeteoParser.getGismeteoSunActivityDataList(), dataTaskObjectArray[0], dataTaskObjectArray[1]};
+           return new Object[]{ComputeTidalParam.getTodayTidesForFishingDataList(dbHelper,0), dataTaskObjectArray[0]};
         }
 
 
@@ -56,18 +56,14 @@ public class TodayActivity extends Fragment {
         @Override
         protected void onPostExecute(Object[] objectsArray) {
             List<String> tidesForFishingParserList = (List<String>) objectsArray[0];
-            List<String> forecaParserList = (List<String>) objectsArray[1];
-            List<String> gismeteoParserList = (List<String>) objectsArray[2];
-            View view = (View) objectsArray[3];
-            thisContext = (Context) objectsArray[4];
+            View view = (View) objectsArray[1];
             ResourseID resourseID = new ResourseID(thisContext);
 
-
-            String sunriseTime = WeatherAverages.calculationMeanSunriseTime(forecaParserList.get(0), gismeteoParserList.get(0), tidesForFishingParserList.get(tidesForFishingParserList.size()-2));
+            String sunriseTime = WeatherDataFormatter.parseSunriseTime(tidesForFishingParserList.get(tidesForFishingParserList.size()-2));
             tv_sunrise_time = view.findViewById(R.id.tv_sunrise_time);
             tv_sunrise_time.setText(sunriseTime);
 
-            String sunsetTime = WeatherAverages.calculationMeanSunsetTime(forecaParserList.get(1), gismeteoParserList.get(1), tidesForFishingParserList.get(tidesForFishingParserList.size()-1));
+            String sunsetTime = WeatherDataFormatter.parseSunsetTime(tidesForFishingParserList.get(tidesForFishingParserList.size()-1));
             tv_sunset_time = view.findViewById(R.id.tv_sunset_time);
             tv_sunset_time.setText(sunsetTime);
 

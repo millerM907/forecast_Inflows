@@ -263,12 +263,12 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             View view = (View) objectsArray[2];
 
             //устанавливаем температуру
-            String temperature =  WeatherAverages.calculationTemperatureAverages(forecaParserList.get(0), gismeteoParserList.get(0));
+            String temperature =  WeatherDataFormatter.calculationTemperatureAverages(forecaParserList.get(0), gismeteoParserList.get(0));
             tv_temperature_2_2 = view.findViewById(R.id.tv_temperature_2_2);
             tv_temperature_2_2.setText(getString(R.string.ma_temperature, temperature));
 
             //устанавливаем влажность
-            String humidity = WeatherAverages.сalculationAverageHumidity(forecaParserList.get(1), gismeteoParserList.get(3));
+            String humidity = WeatherDataFormatter.сalculationAverageHumidity(forecaParserList.get(1), gismeteoParserList.get(3));
             tv_humidity_5_2 = view.findViewById(R.id.tv_humidity_5_2);
             tv_humidity_5_2.setText(getString(R.string.ma_humidity, humidity));
 
