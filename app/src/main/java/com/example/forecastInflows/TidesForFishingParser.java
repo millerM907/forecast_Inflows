@@ -35,7 +35,7 @@ public class TidesForFishingParser {
         Document doc;
         try {
             doc = Jsoup.connect("https://tides4fishing.com/as/northeast-russia/nagaeva-bay-tauiskaya-bay")
-                    .userAgent("Chrome/77.0.3865.90 Safari/12.1.1")
+                    .userAgent("Chrome/81.0.4044.113 Safari/13.0")
                     .referrer("http://www.google.com")
                     .get();
 

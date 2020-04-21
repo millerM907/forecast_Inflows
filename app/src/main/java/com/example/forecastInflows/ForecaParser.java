@@ -22,7 +22,7 @@ public class ForecaParser {
         Document doc;
         try {
             doc = Jsoup.connect("https://www.foreca.com/Russia/Magadan")
-                    .userAgent("Chrome/77.0.3865.90 Safari/12.1.1")
+                    .userAgent("Chrome/81.0.4044.113 Safari/13.0")
                     .referrer("http://www.google.com")
                     .get();
 

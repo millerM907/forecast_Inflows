@@ -22,7 +22,7 @@ public class GismeteoParser {
         Document doc;
         try {
             doc = Jsoup.connect("https://www.gismeteo.ru/weather-magadan-4063/now/")
-                    .userAgent("Chrome/77.0.3865.90 Safari/12.1.1")
+                    .userAgent("Chrome/81.0.4044.113 Safari/13.0")
                     .referrer("http://www.google.com")
                     .get();
 
