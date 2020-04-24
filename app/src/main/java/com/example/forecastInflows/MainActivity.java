@@ -61,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         thisContext = this;
 
-        ImageView imageView = findViewById(R.id.iv_main_bg);
-        imageView.setBackgroundResource(R.drawable.pur_bg);
-
         handlerCurrentTime = new Handler();
         tv_time = findViewById(R.id.tv_time);
         handlerCurrentTime.post(showCurrentTimeInfo);
