@@ -96,7 +96,7 @@
         android:contentDescription="@string/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/points2plus"  />
+        android:background="@drawable/info24" />
 
     <android.support.constraint.Guideline
         android:id="@+id/gl_main"

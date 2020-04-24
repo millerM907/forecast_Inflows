@@ -332,7 +332,7 @@
         android:contentDescription="@string/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/points2plus" />
+        android:background="@drawable/info24" />
 
     <TextView
         android:id="@+id/tv_weekday"
