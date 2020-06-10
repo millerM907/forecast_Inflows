@@ -7,7 +7,7 @@ public class WeatherDataFormatter {
 
     public static String calculationTemperatureAverages(String firstTemp, String secondTemp) {
         String averageTemp = "-";
-        if (!(firstTemp.equals("-100") && secondTemp.equals("-100"))) {
+        if (!(firstTemp.equals("-100") || secondTemp.equals("-100"))) {
             int firstValueTemp = Integer.parseInt(firstTemp);
             int secondValueTemp = Integer.parseInt(secondTemp);
             int averageValueTemp = (firstValueTemp + secondValueTemp) / 2;
@@ -33,7 +33,7 @@ public class WeatherDataFormatter {
 
     public static String сalculationAverageHumidity(String firstHumidity, String secondHumidity) {
         String averageHumidity = "-";
-        if (!(firstHumidity.equals("-100") && secondHumidity.equals("-100"))) {
+        if (!(firstHumidity.equals("-100") || secondHumidity.equals("-100"))) {
             int firstValueHumidity = Integer.parseInt(firstHumidity);
             int secondValueHumidity = Integer.parseInt(secondHumidity);
             averageHumidity = String.valueOf((firstValueHumidity + secondValueHumidity) / 2);

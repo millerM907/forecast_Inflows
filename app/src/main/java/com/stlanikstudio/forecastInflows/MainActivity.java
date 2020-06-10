@@ -241,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-
             List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
             Context thisContext = (Context) objectsArray[0];
             ResourseID resourseID = new ResourseID(thisContext);
