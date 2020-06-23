@@ -194,113 +194,77 @@ public class WeekActivity extends Fragment  {
             }
         });*/
 
-        but_day1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(1)){
-                    startIntent(1, but_day1.getText().toString(), tv_day1.getText().toString());
-                }
+        but_day1.setOnClickListener(v1 -> {
+            if(getEqualsMonth(1)){
+                startIntent(1, but_day1.getText().toString(), tv_day1.getText().toString());
             }
         });
 
-        but_day2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(2)){
-                    startIntent(2, but_day2.getText().toString(), tv_day2.getText().toString());
-                }
+        but_day2.setOnClickListener(v2 -> {
+            if(getEqualsMonth(2)){
+                startIntent(2, but_day2.getText().toString(), tv_day2.getText().toString());
+            }
 
+        });
+
+        but_day3.setOnClickListener(v3 -> {
+            if(getEqualsMonth(3)){
+                startIntent(3, but_day3.getText().toString(), tv_day3.getText().toString());
             }
         });
 
-        but_day3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(3)){
-                    startIntent(3, but_day3.getText().toString(), tv_day3.getText().toString());
-                }
+        but_day4.setOnClickListener(v4 -> {
+            if(getEqualsMonth(4)){
+                startIntent(4, but_day4.getText().toString(), tv_day4.getText().toString());
             }
         });
 
-        but_day4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(4)){
-                    startIntent(4, but_day4.getText().toString(), tv_day4.getText().toString());
-                }
+        but_day5.setOnClickListener(v5 -> {
+            if(getEqualsMonth(5)){
+                startIntent(5, but_day5.getText().toString(), tv_day5.getText().toString());
             }
         });
 
-        but_day5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(5)){
-                    startIntent(5, but_day5.getText().toString(), tv_day5.getText().toString());
-                }
+        but_day6.setOnClickListener(v6 -> {
+            if(getEqualsMonth(6)){
+                startIntent(6, but_day6.getText().toString(), tv_day6.getText().toString());
             }
         });
 
-        but_day6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(6)){
-                    startIntent(6, but_day6.getText().toString(), tv_day6.getText().toString());
-                }
+        but_day7.setOnClickListener(v7 -> {
+            if(getEqualsMonth(7)){
+                startIntent(7, but_day7.getText().toString(), tv_day7.getText().toString());
             }
         });
 
-        but_day7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(7)){
-                    startIntent(7, but_day7.getText().toString(), tv_day7.getText().toString());
-                }
+        but_day8.setOnClickListener(v8 -> {
+            if(getEqualsMonth(8)){
+                startIntent(8, but_day8.getText().toString(), tv_day8.getText().toString());
             }
         });
 
-        but_day8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(8)){
-                    startIntent(8, but_day8.getText().toString(), tv_day8.getText().toString());
-                }
-            }
-        });
-
-        but_day9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(9)){
-                    startIntent(9, but_day9.getText().toString(), tv_day9.getText().toString());
-                }
+        but_day9.setOnClickListener(v9 -> {
+            if(getEqualsMonth(9)){
+                startIntent(9, but_day9.getText().toString(), tv_day9.getText().toString());
             }
         });
 
 
-        but_day10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(10)){
-                    startIntent(10, but_day10.getText().toString(), tv_day10.getText().toString());
-                }
+        but_day10.setOnClickListener(v10 -> {
+            if(getEqualsMonth(10)){
+                startIntent(10, but_day10.getText().toString(), tv_day10.getText().toString());
             }
         });
 
-        but_day11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(11)){
-                    startIntent(11, but_day11.getText().toString(), tv_day11.getText().toString());
-                }
+        but_day11.setOnClickListener(v11 -> {
+            if(getEqualsMonth(11)){
+                startIntent(11, but_day11.getText().toString(), tv_day11.getText().toString());
             }
         });
 
-        but_day12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(getEqualsMonth(12)){
-                    startIntent(12, but_day12.getText().toString(), tv_day12.getText().toString());
-                }
+        but_day12.setOnClickListener(v12 -> {
+            if(getEqualsMonth(12)){
+                startIntent(12, but_day12.getText().toString(), tv_day12.getText().toString());
             }
         });
 

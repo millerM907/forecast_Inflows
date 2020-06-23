@@ -128,7 +128,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             Instant instantEndCycleTime = Instant.parse(time);
             long endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
             long differenceTime;
-            if(endCycleTimeNumber-currentTimeNumber < 0){
+            if(endCycleTimeNumber - currentTimeNumber < 0){
                 time = LocalDateTime.now(ZoneId.of("Asia/Magadan")).plusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+ "T" + tv_waterTime_1_2.getText() + ":00.000000Z";
                 instantEndCycleTime = Instant.parse(time);
                 endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
@@ -169,11 +169,11 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             //работаем дальше
             DBHelper dbHelper = new DBHelper(thisContext);
 
-            List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
+            List<String> currentTidesDataList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
             View view = (View) objectsArray[0];
 
             //вычисление процента и присвоение переменной percent
-            String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));
+            String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(currentTidesDataList.get(4), currentTidesDataList.get(0), currentTidesDataList.get(2)));
 
             //поиск textView для времени
             tv_waterTime_1_2 = view.findViewById(R.id.tv_waterTime_1_2);
@@ -205,7 +205,7 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 Instant instantCurrentTime = currentLocalDateTime.toInstant(ZoneOffset.UTC);
                 long currentTimeNumber = Instant.ofEpochSecond(0L).until(instantCurrentTime, ChronoUnit.SECONDS);
 
-                Instant instantEndCycleTime = Instant.parse(tidesForFishingParserList.get(2));
+                Instant instantEndCycleTime = Instant.parse(currentTidesDataList.get(2));
                 long endCycleTimeNumber = Instant.ofEpochSecond(0L).until(instantEndCycleTime, ChronoUnit.SECONDS);
 
                 long differenceTime = endCycleTimeNumber - currentTimeNumber;
@@ -224,12 +224,12 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 String[] state = new String[]{"ПРИЛИВ", "ОТЛИВ", "Полная вода", "Малая вода", "полной", "малой", "до полной воды", "до малой воды"};
                 tvState = view.findViewById(R.id.tv_state);
                 tv_waterTime_1_1 = view.findViewById(R.id.tv_waterTime_1_1);
-                if(tidesForFishingParserList.get(4).equals("true")){
+                if(currentTidesDataList.get(4).equals("true")){
                     tv_remaining_time.setText(state[6]); //постоянно вылетает
                     tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[4]));
                     tvState.setText(state[0]);
                     tv_waterTime_1_1.setText(state[2]);
-                } else if (tidesForFishingParserList.get(4).equals("false")){
+                } else if (currentTidesDataList.get(4).equals("false")){
                     tv_remaining_time.setText(state[7]);
                     tv_waterHeight_4_1.setText(getString(R.string.tide_now, state[5]));
                     tvState.setText(state[1]);
@@ -237,10 +237,10 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
                 }
 
                 //устанавливаем время конца цикла
-                tv_waterTime_1_2.setText(OffsetDateTime.parse(tidesForFishingParserList.get(2)).format(DateTimeFormatter.ofPattern("HH:mm")));
+                tv_waterTime_1_2.setText(OffsetDateTime.parse(currentTidesDataList.get(2)).format(DateTimeFormatter.ofPattern("HH:mm")));
 
                 //устанавливаем высоту воды
-                tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, tidesForFishingParserList.get(3)));
+                tv_waterHeight_4_2.setText(getString(R.string.ma_water_height, currentTidesDataList.get(3)));
 
                 //запускаем поток обновления времени, оставшегося до конца приливного цикла
                 handlerRemainingTimeTide.post(showRemainingTime);

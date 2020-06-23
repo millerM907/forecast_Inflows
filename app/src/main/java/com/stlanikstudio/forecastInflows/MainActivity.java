@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         //установка стартовой страницы приложения
@@ -71,24 +73,15 @@ public class MainActivity extends AppCompatActivity {
         //проверка интернет соединения
         if (!NetworkManager.isNetworkAvailable(thisContext) && mSettings.getBoolean("firstrun", true)) {
             //вывод сообщения о том, что приложение недоступно из-за ошибки интернет соединения
-            AppAlertDialog alertDialog = new AppAlertDialog();
-            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 1);
-            dialog.setCancelable(false);
-            dialog.show();
+            showAlertDialog(thisContext, 1);
+
         } else if ((!NetworkManager.isNetworkAvailable(thisContext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
             //вывод сообщения о том, что приложение недоступно из-за ошибки обновления базы без интернет соединения
-            AppAlertDialog alertDialog = new AppAlertDialog();
-            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 4);
-            dialog.setCancelable(false);
-            dialog.show();
+            showAlertDialog(thisContext, 4);
 
         } else if(!NetworkManager.isNetworkAvailable(thisContext)) {
-
             //вывод сообщения о том, что данные о текущей погоде могут отображаться некорреткно
-            AppAlertDialog alertDialog = new AppAlertDialog();
-            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 5);
-            dialog.setCancelable(false);
-            dialog.show();
+            showAlertDialog(thisContext, 5);
 
             continueLoadMainActivity();
 
@@ -96,7 +89,17 @@ public class MainActivity extends AppCompatActivity {
 
             continueLoadMainActivity();
         }
+    }
 
+    /*
+    * Метод принимает на вход context и ключ вызываемого сообщения keyMessage.
+    * Создает и выводит AlertDialog с сообщением.
+    * */
+    private void showAlertDialog(Context context, int keyMessage){
+        AppAlertDialog alertDialog = new AppAlertDialog();
+        android.app.AlertDialog dialog = alertDialog.onCreateDialog(context, keyMessage);
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     public static ImageView getIm_view_start_screen(){
@@ -136,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
      * */
     Runnable showCurrentTimeInfo = new Runnable() {
         public void run() {
+
             LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
             String currentTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
             tv_time.setText(currentTime);
@@ -190,10 +194,7 @@ public class MainActivity extends AppCompatActivity {
                 if(tidesTable.get(0).equals("-200")){
 
                     //вывод сообщения о том, что приложение недоступно по техническим причинам
-                    AppAlertDialog alertDialog = new AppAlertDialog();
-                    android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 0);
-                    dialog.setCancelable(false);
-                    dialog.show();
+                    showAlertDialog(thisContext, 0);
 
                 } else {
 
@@ -223,10 +224,7 @@ public class MainActivity extends AppCompatActivity {
                     if(tidesTable.get(0).equals("-200")) {
 
                         //вывод сообщения о том, что приложение недоступно по техническим причинам
-                        AppAlertDialog alertDialog = new AppAlertDialog();
-                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 0);
-                        dialog.setCancelable(false);
-                        dialog.show();
+                        showAlertDialog(thisContext, 0);
                     } else {
 
                         //стираем данные в таблтце БД
@@ -241,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+
+            //Переименовать tidesForFishingParserList
             List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
             Context thisContext = (Context) objectsArray[0];
             ResourseID resourseID = new ResourseID(thisContext);
@@ -248,10 +248,7 @@ public class MainActivity extends AppCompatActivity {
             if(tidesForFishingParserList.get(0).equals("-200")){
 
                 //вывод сообщения о том, что приложение недоступно по техническим причинам
-                AppAlertDialog alertDialog = new AppAlertDialog();
-                android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 0);
-                dialog.setCancelable(false);
-                dialog.show();
+                showAlertDialog(thisContext, 0);
 
             } else {
                 //вычисление процента и присвоение переменной percent
