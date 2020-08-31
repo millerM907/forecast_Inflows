@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.stlanikstudio.forecastInflows.AppAlertDialog;
+import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.CurrentWeather;
+import com.stlanikstudio.forecastInflows.db.DBHelper;
+import com.stlanikstudio.forecastInflows.ForecaParser;
+import com.stlanikstudio.forecastInflows.GismeteoParser;
+import com.stlanikstudio.forecastInflows.NetworkManager;
+import com.stlanikstudio.forecastInflows.R;
+import com.stlanikstudio.forecastInflows.TimePercent;
+import com.stlanikstudio.forecastInflows.WeatherDataFormatter;
+
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -70,8 +85,11 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         dataTask.execute(dataTaskObjectArray);
 
         //запускаем второй поток
-        DataTaskTwo dataTaskTwo = new DataTaskTwo();
-        dataTaskTwo.execute(dataTaskObjectArray);
+        /*DataTaskTwo dataTaskTwo = new DataTaskTwo();
+        dataTaskTwo.execute(dataTaskObjectArray);*/
+
+        HttpRequestTask httpRequestTask = new HttpRequestTask();
+        httpRequestTask.execute(dataTaskObjectArray);
 
         mSwipeRefreshLayout = v.findViewById(R.id.container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
@@ -93,8 +111,11 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             dataTask.execute(dataTaskObjectArray);
 
             //запускаем второй поток
-            DataTaskTwo dataTaskTwo = new DataTaskTwo();
-            dataTaskTwo.execute(dataTaskObjectArray);
+            /*DataTaskTwo dataTaskTwo = new DataTaskTwo();
+              dataTaskTwo.execute(dataTaskObjectArray);
+            */
+            HttpRequestTask httpRequestTask = new HttpRequestTask();
+            httpRequestTask.execute(dataTaskObjectArray);
         } else {
             mSwipeRefreshLayout.setRefreshing(false);
         }
@@ -102,18 +123,6 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     Runnable showRemainingTime = new Runnable() {
-        //LocalDateTime currentLocalDateTime;
-        //Instant instantCurrentTime;
-
-        //long currentTimeNumber;
-
-        //String time;
-
-        //Instant instantEndCycleTime;
-        //long endCycleTimeNumber;
-        //long differenceTime;
-
-        //String output;
 
         public void run() {
             //получаем текущее время с учетом часового пояса +11
@@ -248,7 +257,83 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
         }
     }
 
-    @SuppressLint("StaticFieldLeak")
+    /**
+     * HttpRequestTask this class get current weather with server
+     * and set this information in view (Current Activity).
+     * */
+    private class HttpRequestTask extends AsyncTask<Object, Void, Object[]> {
+        @Override
+        protected Object[] doInBackground(Object[] dataTaskObjectArray) {
+            try {
+                final String url = "https://still-dusk-90773.herokuapp.com/api/v1.0/getCurrentWeather";
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                CurrentWeather currentWeather = restTemplate.getForObject(url, CurrentWeather.class);
+                return new Object[]{dataTaskObjectArray[0], currentWeather};
+            } catch (Exception e) {
+                Log.e("CurrentActivity", e.getMessage(), e);
+            }
+
+            return new Object[]{dataTaskObjectArray[0], null};
+        }
+
+        @Override
+        protected void onPostExecute(Object[] objectsArray) {
+
+            View view = (View) objectsArray[0];
+
+            if(objectsArray[1] != null) {
+                CurrentWeather currentWeather = (CurrentWeather) objectsArray[1];
+
+                //устанавливаем температуру
+                tv_temperature_2_2 = view.findViewById(R.id.tv_temperature_2_2);
+                tv_temperature_2_2.setText(getString(R.string.ma_temperature, currentWeather.getTemperature()));
+
+                //устанавливаем влажность
+                tv_humidity_5_2 = view.findViewById(R.id.tv_humidity_5_2);
+                tv_humidity_5_2.setText(getString(R.string.ma_humidity, currentWeather.getHumidity()));
+
+                //устанавливаем силу ветра
+                tv_windStrength_6_2 = view.findViewById(R.id.tv_windStrength_6_2);
+                tv_windStrength_6_2.setText(getString(R.string.ma_wind, currentWeather.getWind_force()));
+
+                //направление ветра
+                tv_windSide_3_2 = view.findViewById(R.id.tv_windSide_3_2);
+                tv_windSide_3_2.setText(currentWeather.getWind_direction());
+
+            } else {
+
+                //устанавливаем температуру
+                tv_temperature_2_2 = view.findViewById(R.id.tv_temperature_2_2);
+                tv_temperature_2_2.setText(getString(R.string.ma_temperature, "-"));
+
+                //устанавливаем влажность
+                tv_humidity_5_2 = view.findViewById(R.id.tv_humidity_5_2);
+                tv_humidity_5_2.setText(getString(R.string.ma_humidity, "-"));
+
+                //устанавливаем силу ветра
+                tv_windStrength_6_2 = view.findViewById(R.id.tv_windStrength_6_2);
+                tv_windStrength_6_2.setText(getString(R.string.ma_wind, "-"));
+
+                //направление ветра
+                tv_windSide_3_2 = view.findViewById(R.id.tv_windSide_3_2);
+                tv_windSide_3_2.setText("-");
+            }
+
+            //после выполнения обновления убираем кругляк обновления
+            mSwipeRefreshLayout.setRefreshing(false);
+            if(!mSwipeRefreshLayout.isRefreshing() && (countExecuteAsyncTask != 0)){
+                Toast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
+                //AppToast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
+            }
+            countExecuteAsyncTask++;
+
+            MainActivity.getIm_view_start_screen().setVisibility(View.GONE);
+            MainActivity.getIm_view_2().setVisibility(View.GONE);
+        }
+    }
+
+    /*@SuppressLint("StaticFieldLeak")
     class DataTaskTwo extends AsyncTask<Object, Void, Object[]>{
 
         @Override
@@ -293,5 +378,5 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             MainActivity.getIm_view_start_screen().setVisibility(View.GONE);
             MainActivity.getIm_view_2().setVisibility(View.GONE);
         }
-    }
+    }*/
 }

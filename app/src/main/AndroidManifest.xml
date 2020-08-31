@@ -13,11 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.stlanikstudio.forecastInflows.InstructionActivity"></activity>
-        <activity android:name="com.stlanikstudio.forecastInflows.DayActivity" />
-        <activity android:name="com.stlanikstudio.forecastInflows.WeekActivity"
+        <activity android:name="com.stlanikstudio.forecastInflows.activity.InstructionActivity"></activity>
+        <activity android:name="com.stlanikstudio.forecastInflows.activity.DayActivity" />
+        <activity android:name="com.stlanikstudio.forecastInflows.activity.WeekActivity"
             tools:ignore="Instantiatable" />
-        <activity android:name="com.stlanikstudio.forecastInflows.MainActivity">
+        <activity android:name="com.stlanikstudio.forecastInflows.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

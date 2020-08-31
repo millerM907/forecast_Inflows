@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -12,6 +12,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.stlanikstudio.forecastInflows.AppAlertDialog;
+import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.db.DBHelper;
+import com.stlanikstudio.forecastInflows.R;
+import com.stlanikstudio.forecastInflows.ResourseID;
+import com.stlanikstudio.forecastInflows.WeatherDataFormatter;
 
 import java.time.LocalDate;
 import java.time.ZoneId;

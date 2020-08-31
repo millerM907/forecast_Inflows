@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,6 +17,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.stlanikstudio.forecastInflows.AppAlertDialog;
+import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.db.DBHelper;
+import com.stlanikstudio.forecastInflows.NetworkManager;
+import com.stlanikstudio.forecastInflows.R;
+import com.stlanikstudio.forecastInflows.ResourseID;
+import com.stlanikstudio.forecastInflows.TidesForFishingParser;
+import com.stlanikstudio.forecastInflows.TimePercent;
+
+import java.net.HttpURLConnection;
+import java.net.InetAddress;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -70,29 +82,52 @@ public class MainActivity extends AppCompatActivity {
         im_button = findViewById(R.id.ib_main_menu);
         im_button.setOnClickListener(viewClickListener);
 
-        //проверка интернет соединения
+        /*//проверка интернет соединения
         if (!NetworkManager.isNetworkAvailable(thisContext) && mSettings.getBoolean("firstrun", true)) {
             //вывод сообщения о том, что приложение недоступно из-за ошибки интернет соединения
-            showAlertDialog(thisContext, 1);
-
+            AppAlertDialog.showAlertDialog(thisContext, 1);
         } else if ((!NetworkManager.isNetworkAvailable(thisContext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
             //вывод сообщения о том, что приложение недоступно из-за ошибки обновления базы без интернет соединения
-            showAlertDialog(thisContext, 4);
+            AppAlertDialog.showAlertDialog(thisContext, 4);
 
         } else if(!NetworkManager.isNetworkAvailable(thisContext)) {
             //вывод сообщения о том, что данные о текущей погоде могут отображаться некорреткно
-            showAlertDialog(thisContext, 5);
-
+            AppAlertDialog.showAlertDialog(thisContext, 5);
             continueLoadMainActivity();
 
+        //проверить, доступен ли мой сервер, если нет выводим соответствующее сообщение
+        } else if (!isServerAlive("https://still-dusk-90773.herokuapp.com")) {
+            AppAlertDialog.showAlertDialog(thisContext, 6);
+            continueLoadMainActivity();
         } else {
-
             continueLoadMainActivity();
+        }*/
+
+        ChekInet chekInet = new ChekInet();
+        chekInet.execute();
+
+    }
+
+    // To check if server is reachable
+    public boolean isServerAlive(String serverURL) {
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(serverURL).openConnection();
+            connection.setRequestMethod("HEAD");
+            int responseCode = connection.getResponseCode();
+            if (responseCode != 404) {
+                return false;
+            }
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
-    /*
-    * Метод принимает на вход context и ключ вызываемого сообщения keyMessage.
+
+    /**
+    * Метод принимает на вход Сontext и ключ вызываемого сообщения keyMessage.
     * Создает и выводит AlertDialog с сообщением.
     * */
     private void showAlertDialog(Context context, int keyMessage){
@@ -149,6 +184,53 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    class ChekInet extends AsyncTask<Void, Void, Integer> {
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            //проверка интернет соединения
+            if (!NetworkManager.isNetworkAvailable(thisContext) && mSettings.getBoolean("firstrun", true)) {
+                //код ошибки 1 - приложение недоступно из-за ошибки интернет соединения
+                return 1;
+            } else if ((!NetworkManager.isNetworkAvailable(thisContext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
+                //код ошибки 4 - приложение недоступно из-за ошибки обновления базы без интернет соединения
+
+                return 4;
+            } else if(!NetworkManager.isNetworkAvailable(thisContext)) {
+                //код ошибки 5 - данные о текущей погоде могут отображаться некорреткно из-за недоступности интернет соединения
+                return 5;
+            } else if (!isServerAlive("https://still-dusk-90773.herokuapp.com")) {
+                //код ошибки 6 - данные о текущей погоде могут отображаться некорреткно из-за недоступности сервера
+                return 6;
+            }
+
+            return 10;
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            switch (result) {
+                case 1:
+                    AppAlertDialog.showAlertDialog(thisContext, 1);
+                    break;
+                case 4:
+                    AppAlertDialog.showAlertDialog(thisContext, 4);
+                    break;
+                case 5:
+                    AppAlertDialog.showAlertDialog(thisContext, 5);
+                    continueLoadMainActivity();
+                    break;
+                case 6:
+                    AppAlertDialog.showAlertDialog(thisContext, 6);
+                    continueLoadMainActivity();
+                    break;
+                case 10:
+                    continueLoadMainActivity();
+                    break;
+            }
+        }
+    }
+
+
     @SuppressLint("StaticFieldLeak")
     class DataTask extends AsyncTask<Object, Void, Object[]> {
 
@@ -194,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                 if(tidesTable.get(0).equals("-200")){
 
                     //вывод сообщения о том, что приложение недоступно по техническим причинам
-                    showAlertDialog(thisContext, 0);
+                    AppAlertDialog.showAlertDialog(thisContext, 0);
 
                 } else {
 
@@ -224,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
                     if(tidesTable.get(0).equals("-200")) {
 
                         //вывод сообщения о том, что приложение недоступно по техническим причинам
-                        showAlertDialog(thisContext, 0);
+                        AppAlertDialog.showAlertDialog(thisContext, 0);
                     } else {
 
                         //стираем данные в таблтце БД
@@ -239,7 +321,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-
             //Переименовать tidesForFishingParserList
             List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
             Context thisContext = (Context) objectsArray[0];
@@ -248,8 +329,7 @@ public class MainActivity extends AppCompatActivity {
             if(tidesForFishingParserList.get(0).equals("-200")){
 
                 //вывод сообщения о том, что приложение недоступно по техническим причинам
-                showAlertDialog(thisContext, 0);
-
+                AppAlertDialog.showAlertDialog(thisContext, 0);
             } else {
                 //вычисление процента и присвоение переменной percent
                 String percent = String.valueOf(TimePercent.calculatePercentUntilEndCycle(tidesForFishingParserList.get(4), tidesForFishingParserList.get(0), tidesForFishingParserList.get(2)));

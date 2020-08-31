@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.stlanikstudio.forecastInflows.R;
+import com.stlanikstudio.forecastInflows.ResourseID;
+import com.stlanikstudio.forecastInflows.activity.DayActivity;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

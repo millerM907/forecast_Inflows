@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.db;
 
 import android.content.ContentValues;
 import android.content.Context;

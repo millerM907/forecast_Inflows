@@ -16,6 +16,7 @@
     <string name="water_time">Вода</string>
 
     <string name="close_alert_dialog_site_title">Техническая ошибка</string>
+    <string name="close_alert_dialog_warning_title">Предупреждение</string>
     <string name="close_alert_dialog_site">Извините, в данный момент приложение недоступно по техническим причинам.</string>
 
     <string name="close_alert_dialog_net_title">Ошибка интернет-соединения</string>
@@ -23,6 +24,7 @@
         Проверьте подключение к сети и повторите попытку.</string>
 
     <string name="warning_alert_dialog_net">Интернет-соеднинение отсутствует. Данные о погоде могут отображаться некорректно.</string>
+    <string name="warning_alert_dialog_server">Данные о погоде могут отображаться некорректно.</string>
 
     <string name="close_alert_dialog_net_update_db">Не удалось обновить данные из-за проблем с интернет-соединением.
         Проверьте подключение к сети и повторите попытку.</string>

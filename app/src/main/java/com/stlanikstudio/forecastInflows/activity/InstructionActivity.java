@@ -1,7 +1,9 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.stlanikstudio.forecastInflows.R;
 
 public class InstructionActivity extends AppCompatActivity {
 

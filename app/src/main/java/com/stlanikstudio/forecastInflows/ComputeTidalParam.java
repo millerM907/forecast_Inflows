@@ -3,6 +3,8 @@ package com.stlanikstudio.forecastInflows;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.stlanikstudio.forecastInflows.db.DBHelper;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.activity;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
