@@ -78,7 +78,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="bottom|center_horizontal"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
@@ -113,7 +114,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="bottom|center_horizontal"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
@@ -147,7 +149,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="bottom|center_horizontal"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
@@ -181,7 +184,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="bottom|center_horizontal"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
@@ -216,7 +220,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="bottom|center_horizontal"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
@@ -251,7 +256,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="bottom|center_horizontal"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
@@ -279,6 +285,7 @@
             android:textColor="@android:color/white"
             android:textSize="14sp" />
 
+
         <TextView
             android:id="@+id/tv_day_time4"
             android:layout_width="match_parent"
@@ -286,7 +293,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="bottom|center_horizontal"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 
@@ -321,7 +329,8 @@
             android:fontFamily="@font/my_number_font"
             android:gravity="center_horizontal|bottom"
             android:textColor="@android:color/white"
-            android:textSize="26sp"
+            android:paddingTop="15dp"
+            app:autoSizeTextType="uniform"
             tools:ignore="HardcodedText" />
     </android.support.v7.widget.CardView>
 

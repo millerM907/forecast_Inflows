@@ -193,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
                 return 1;
             } else if ((!NetworkManager.isNetworkAvailable(thisContext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
                 //код ошибки 4 - приложение недоступно из-за ошибки обновления базы без интернет соединения
-
                 return 4;
             } else if(!NetworkManager.isNetworkAvailable(thisContext)) {
                 //код ошибки 5 - данные о текущей погоде могут отображаться некорреткно из-за недоступности интернет соединения
