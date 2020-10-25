@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.models;
 
 public class CurrentWeather {
     private Integer id;

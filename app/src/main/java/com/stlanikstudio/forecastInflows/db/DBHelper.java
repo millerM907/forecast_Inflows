@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
+import com.stlanikstudio.forecastInflows.models.TidesDay;
+
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -58,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addTidesData(SQLiteDatabase db, List<String> tidesTable){
+    public void addTidesData(SQLiteDatabase db, List<TidesDay> tidesTable){
         ContentValues values = new ContentValues();
         for(int i = 0; i < tidesTable.size(); i+=11) {
             values.put(KEY_ID, " " + tidesTable.get(i));

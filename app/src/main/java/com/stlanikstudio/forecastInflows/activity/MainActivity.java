@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,21 +18,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stlanikstudio.forecastInflows.AppAlertDialog;
 import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.models.CurrentWeather;
 import com.stlanikstudio.forecastInflows.db.DBHelper;
 import com.stlanikstudio.forecastInflows.NetworkManager;
 import com.stlanikstudio.forecastInflows.R;
 import com.stlanikstudio.forecastInflows.ResourseID;
 import com.stlanikstudio.forecastInflows.TidesForFishingParser;
 import com.stlanikstudio.forecastInflows.TimePercent;
+import com.stlanikstudio.forecastInflows.models.TidesDay;
+
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -239,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
             //если приложение стартует первый раз
             if (mSettings.getBoolean("firstrun", true)) {
 
-                return new Object[]{dataTaskObjectArray[0], TidesForFishingParser.getTidesTableDataList()};
+                return new Object[]{dataTaskObjectArray[0], getTidesTable()};
 
             } else {
 
@@ -247,9 +257,9 @@ public class MainActivity extends AppCompatActivity {
                 LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
                 LocalDateTime dbUpdateTime = LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null));
 
-                //если в прошлом месяце, то получаем список, иначе передаем только контекст
-                if(!dbUpdateTime.getMonth().equals(localDateTime.getMonth())) {
-                    return new Object[]{dataTaskObjectArray[0], TidesForFishingParser.getTidesTableDataList()};
+                //если таблица обновлялась в прошлом месяце, то получаем список, иначе передаем только контекст
+                if (!dbUpdateTime.getMonth().equals(localDateTime.getMonth())) {
+                    return new Object[]{dataTaskObjectArray[0], getTidesTable()};
                 } else {
                     return new Object[]{dataTaskObjectArray[0]};
                 }
@@ -268,11 +278,11 @@ public class MainActivity extends AppCompatActivity {
 
             //если приложение стартует первый раз
             if (mSettings.getBoolean("firstrun", true)) {
-                //получае список с расписанием
-                List tidesTable = (List) objectsArray[1];
+                //получаем список с расписанием
+                List<TidesDay> tidesTable = (List) objectsArray[1];
 
                 //проверка на возврат отказа парсером
-                if(tidesTable.get(0).equals("-200")){
+                if(tidesTable == null){
 
                     //вывод сообщения о том, что приложение недоступно по техническим причинам
                     AppAlertDialog.showAlertDialog(thisContext, 0);
@@ -282,33 +292,34 @@ public class MainActivity extends AppCompatActivity {
                     //записываем данные в бд
                     dbHelper.addTidesData(databaseTidesWritable, tidesTable);
 
-                    /*записываем во вторую строку преференсов дату обновления */
+                    /*записываем во вторую строку преференсов дату обновления таблицы приливов*/
                     mSettings.edit().putString(APP_PREFERENCES_DB_DATE_UPDATE, String.valueOf(LocalDateTime.now(ZoneId.of("Asia/Magadan")))).apply();
 
                     mSettings.edit().putBoolean("firstrun", false).apply();
                 }
-                //если стартует не первый раз
+            //если стартует не первый раз
             } else {
 
                 //получаем текущую дату и дату обновления базы
                 LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
                 LocalDateTime dbUpdateTime = LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null));
 
-                //если база обновлялась в прошлом месяце, тогда
+                //если база обновлялась не в этом месяце, тогда
 
                 if(!dbUpdateTime.getMonth().equals(localDateTime.getMonth())){
-                    System.out.println("След месяц");
+
                     //получае список с расписанием
-                    List tidesTable = (List) objectsArray[1];
+                    List<TidesDay> tidesTable = (List<TidesDay>) objectsArray[1];
 
                     //проверка на возврат отказа парсером
-                    if(tidesTable.get(0).equals("-200")) {
+                    if(tidesTable == null) {
 
                         //вывод сообщения о том, что приложение недоступно по техническим причинам
                         AppAlertDialog.showAlertDialog(thisContext, 0);
+
                     } else {
 
-                        //стираем данные в таблтце БД
+                        //стираем данные в таблице БД
                         dbHelper.onUpgrade(databaseTidesWritable, 0, 0);
 
                         //записываем полученные данные
@@ -361,6 +372,22 @@ public class MainActivity extends AppCompatActivity {
             messageView.setGravity(Gravity.CENTER);
         }
     };
+
+    private List<TidesDay> getTidesTable() {
+        try {
+            final String url = "https://still-dusk-90773.herokuapp.com/api/v1.0/getTidesTable";
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+            TidesDay[] tidesTableArray = restTemplate.getForObject(url, TidesDay[].class);
+            System.out.println("update");
+            return Arrays.asList(tidesTableArray);
+        } catch (Exception e) {
+            Log.e("MainActivity", e.getMessage(), e);
+            return null;
+        }
+    }
+
+
 
     /*
     public void showPopupMenu (View view)

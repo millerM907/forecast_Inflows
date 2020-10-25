@@ -50,7 +50,7 @@ public class DayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_day);
+        setContentView(R.layout.activity_day_v3);
 
         thisContext = this;
 
@@ -58,8 +58,8 @@ public class DayActivity extends AppCompatActivity {
         dialog = alertDialog.onCreateDialog(thisContext, 3);
         dialog.show();
 
-        ImageView imageView = findViewById(R.id.iv_day_bg);
-        imageView.setBackgroundResource(R.drawable.pur_bg2);
+        /*ImageView imageView = findViewById(R.id.iv_day_bg);
+        imageView.setBackgroundResource(R.drawable.pur_bg2);*/
 
         Bundle arguments = getIntent().getExtras();
         int keyDay = (Integer) arguments.get("keyDay");

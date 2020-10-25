@@ -18,16 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.stlanikstudio.forecastInflows.AppAlertDialog;
 import com.stlanikstudio.forecastInflows.ComputeTidalParam;
-import com.stlanikstudio.forecastInflows.CurrentWeather;
+import com.stlanikstudio.forecastInflows.models.CurrentWeather;
 import com.stlanikstudio.forecastInflows.db.DBHelper;
-import com.stlanikstudio.forecastInflows.ForecaParser;
-import com.stlanikstudio.forecastInflows.GismeteoParser;
 import com.stlanikstudio.forecastInflows.NetworkManager;
 import com.stlanikstudio.forecastInflows.R;
 import com.stlanikstudio.forecastInflows.TimePercent;
-import com.stlanikstudio.forecastInflows.WeatherDataFormatter;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
