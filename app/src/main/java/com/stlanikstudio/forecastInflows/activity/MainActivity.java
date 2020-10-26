@@ -10,38 +10,27 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stlanikstudio.forecastInflows.AppAlertDialog;
 import com.stlanikstudio.forecastInflows.ComputeTidalParam;
-import com.stlanikstudio.forecastInflows.models.CurrentWeather;
+import com.stlanikstudio.forecastInflows.network.Protocol;
 import com.stlanikstudio.forecastInflows.db.DBHelper;
-import com.stlanikstudio.forecastInflows.NetworkManager;
+import com.stlanikstudio.forecastInflows.network.NetworkManager;
 import com.stlanikstudio.forecastInflows.R;
 import com.stlanikstudio.forecastInflows.ResourseID;
-import com.stlanikstudio.forecastInflows.TidesForFishingParser;
 import com.stlanikstudio.forecastInflows.TimePercent;
 import com.stlanikstudio.forecastInflows.models.TidesDay;
-
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private Context thisContext;
 
     private TextView tv_time;
-
-    private ImageButton im_button;
 
     private static ImageView im_view_start_screen;
     private static ImageView im_view_2;
@@ -89,33 +76,8 @@ public class MainActivity extends AppCompatActivity {
         tv_time = findViewById(R.id.tv_time);
         handlerCurrentTime.post(showCurrentTimeInfo);
 
-        im_button = findViewById(R.id.ib_main_menu);
-        im_button.setOnClickListener(viewClickListener);
-
-        /*//проверка интернет соединения
-        if (!NetworkManager.isNetworkAvailable(thisContext) && mSettings.getBoolean("firstrun", true)) {
-            //вывод сообщения о том, что приложение недоступно из-за ошибки интернет соединения
-            AppAlertDialog.showAlertDialog(thisContext, 1);
-        } else if ((!NetworkManager.isNetworkAvailable(thisContext)) && !LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null)).getMonth().equals(LocalDateTime.now(ZoneId.of("Asia/Magadan")).getMonth())){
-            //вывод сообщения о том, что приложение недоступно из-за ошибки обновления базы без интернет соединения
-            AppAlertDialog.showAlertDialog(thisContext, 4);
-
-        } else if(!NetworkManager.isNetworkAvailable(thisContext)) {
-            //вывод сообщения о том, что данные о текущей погоде могут отображаться некорреткно
-            AppAlertDialog.showAlertDialog(thisContext, 5);
-            continueLoadMainActivity();
-
-        //проверить, доступен ли мой сервер, если нет выводим соответствующее сообщение
-        } else if (!isServerAlive("https://still-dusk-90773.herokuapp.com")) {
-            AppAlertDialog.showAlertDialog(thisContext, 6);
-            continueLoadMainActivity();
-        } else {
-            continueLoadMainActivity();
-        }*/
-
-        ChekInet chekInet = new ChekInet();
-        chekInet.execute();
-
+        CheckInet checkInet = new CheckInet();
+        checkInet.execute();
     }
 
     // To check if server is reachable
@@ -133,18 +95,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             return false;
         }
-    }
-
-
-    /**
-    * Метод принимает на вход Сontext и ключ вызываемого сообщения keyMessage.
-    * Создает и выводит AlertDialog с сообщением.
-    * */
-    private void showAlertDialog(Context context, int keyMessage){
-        AppAlertDialog alertDialog = new AppAlertDialog();
-        android.app.AlertDialog dialog = alertDialog.onCreateDialog(context, keyMessage);
-        dialog.setCancelable(false);
-        dialog.show();
     }
 
     public static ImageView getIm_view_start_screen(){
@@ -165,11 +115,9 @@ public class MainActivity extends AppCompatActivity {
      * */
     private void continueLoadMainActivity(){
 
-        Object[] dataTaskObjectArray = {thisContext};
-
-        //запускаем поток по отрисовке процентов и передаем в него массив, содержищий контекст
+        //запускаем поток по отрисовке процентов и передаем в него массив объектов, содержищий контекст
         DataTask dataTask = new DataTask();
-        dataTask.execute(dataTaskObjectArray);
+        dataTask.execute();
 
         ViewPager viewPager = findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(2);
@@ -178,13 +126,11 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setCurrentItem(0); // выводим первый экран
     }
 
-
     /**
      *Метод запускает поток, обновляющтй текущее время в тулбаре.
      * */
     Runnable showCurrentTimeInfo = new Runnable() {
         public void run() {
-
             LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Asia/Magadan"));
             String currentTime = localDateTime.format(DateTimeFormatter.ofPattern("HH:mm"));
             tv_time.setText(currentTime);
@@ -193,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-    class ChekInet extends AsyncTask<Void, Void, Integer> {
+    class CheckInet extends AsyncTask<Void, Void, Integer> {
         @Override
         protected Integer doInBackground(Void... voids) {
             //проверка интернет соединения
@@ -239,18 +184,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @SuppressLint("StaticFieldLeak")
-    class DataTask extends AsyncTask<Object, Void, Object[]> {
+    class DataTask extends AsyncTask<Void, Void, Object[]> {
 
         @Override
-        protected Object[] doInBackground(Object[] dataTaskObjectArray) {
+        protected Object[] doInBackground(Void... voids) {
 
             //если приложение стартует первый раз
             if (mSettings.getBoolean("firstrun", true)) {
 
-                return new Object[]{dataTaskObjectArray[0], getTidesTable()};
-
+                return new Object[]{Protocol.getTidesTable()};
             } else {
 
                 //получаем текущую дату и дату обновления базы
@@ -259,9 +202,9 @@ public class MainActivity extends AppCompatActivity {
 
                 //если таблица обновлялась в прошлом месяце, то получаем список, иначе передаем только контекст
                 if (!dbUpdateTime.getMonth().equals(localDateTime.getMonth())) {
-                    return new Object[]{dataTaskObjectArray[0], getTidesTable()};
+                    return new Object[]{Protocol.getTidesTable()};
                 } else {
-                    return new Object[]{dataTaskObjectArray[0]};
+                    return new Object[]{};
                 }
             }
         }
@@ -278,8 +221,8 @@ public class MainActivity extends AppCompatActivity {
 
             //если приложение стартует первый раз
             if (mSettings.getBoolean("firstrun", true)) {
-                //получаем список с расписанием
-                List<TidesDay> tidesTable = (List) objectsArray[1];
+                //получаем таблицу приливов
+                List<TidesDay> tidesTable = (List) objectsArray[0];
 
                 //проверка на возврат отказа парсером
                 if(tidesTable == null){
@@ -289,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 
-                    //записываем данные в бд
+                    //записываем таблицу приливов в бд
                     dbHelper.addTidesData(databaseTidesWritable, tidesTable);
 
                     /*записываем во вторую строку преференсов дату обновления таблицы приливов*/
@@ -305,11 +248,10 @@ public class MainActivity extends AppCompatActivity {
                 LocalDateTime dbUpdateTime = LocalDateTime.parse(mSettings.getString(APP_PREFERENCES_DB_DATE_UPDATE, null));
 
                 //если база обновлялась не в этом месяце, тогда
-
                 if(!dbUpdateTime.getMonth().equals(localDateTime.getMonth())){
 
-                    //получае список с расписанием
-                    List<TidesDay> tidesTable = (List<TidesDay>) objectsArray[1];
+                    //получаем таблицу приливов
+                    List<TidesDay> tidesTable = (List<TidesDay>) objectsArray[0];
 
                     //проверка на возврат отказа парсером
                     if(tidesTable == null) {
@@ -333,7 +275,6 @@ public class MainActivity extends AppCompatActivity {
 
             //Переименовать tidesForFishingParserList
             List<String> tidesForFishingParserList = ComputeTidalParam.getCurrentTidesForFishingDataList(dbHelper);
-            Context thisContext = (Context) objectsArray[0];
             ResourseID resourseID = new ResourseID(thisContext);
 
             if(tidesForFishingParserList.get(0).equals("-200")){
@@ -360,68 +301,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    View.OnClickListener viewClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //showPopupMenu(v);
-            AppAlertDialog alertDialog = new AppAlertDialog();
-            android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
-            dialog.show();
+    public void onClickMenu(View view) {
+        AppAlertDialog alertDialog = new AppAlertDialog();
+        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
+        dialog.show();
 
-            TextView messageView = dialog.findViewById(android.R.id.message);
-            messageView.setGravity(Gravity.CENTER);
-        }
-    };
-
-    private List<TidesDay> getTidesTable() {
-        try {
-            final String url = "https://still-dusk-90773.herokuapp.com/api/v1.0/getTidesTable";
-            RestTemplate restTemplate = new RestTemplate();
-            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            TidesDay[] tidesTableArray = restTemplate.getForObject(url, TidesDay[].class);
-            System.out.println("update");
-            return Arrays.asList(tidesTableArray);
-        } catch (Exception e) {
-            Log.e("MainActivity", e.getMessage(), e);
-            return null;
-        }
+        TextView messageView = dialog.findViewById(android.R.id.message);
+        messageView.setGravity(Gravity.CENTER);
     }
-
-
-
-    /*
-    public void showPopupMenu (View view)
-    {
-        PopupMenu menu = new PopupMenu (this, view);
-        menu.setOnMenuItemClickListener (new PopupMenu.OnMenuItemClickListener ()
-        {
-            @Override
-            public boolean onMenuItemClick (MenuItem item)
-            {
-                int id = item.getItemId();
-                switch (id)
-                {
-
-                    case R.id.item_instruction:
-                        Intent intent = new Intent(thisContext, InstructionActivity.class);
-                        startActivity(intent);
-                        break;
-
-                    case R.id.item_about:
-                        AppAlertDialog alertDialog = new AppAlertDialog();
-                        android.app.AlertDialog dialog = alertDialog.onCreateDialog(thisContext, 2);
-                        dialog.show();
-
-                        TextView messageView = dialog.findViewById(android.R.id.message);
-                        messageView.setGravity(Gravity.CENTER);
-                        break;
-                }
-                return true;
-            }
-        });
-        menu.inflate (R.menu.popupmenu);
-        menu.show();
-    }
-    */
-
 }

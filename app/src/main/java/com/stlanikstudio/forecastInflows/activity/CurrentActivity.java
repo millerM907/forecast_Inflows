@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +18,12 @@ import android.widget.Toast;
 
 
 import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.network.Protocol;
 import com.stlanikstudio.forecastInflows.models.CurrentWeather;
 import com.stlanikstudio.forecastInflows.db.DBHelper;
-import com.stlanikstudio.forecastInflows.NetworkManager;
+import com.stlanikstudio.forecastInflows.network.NetworkManager;
 import com.stlanikstudio.forecastInflows.R;
 import com.stlanikstudio.forecastInflows.TimePercent;
-
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -260,17 +257,8 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
     private class HttpRequestTask extends AsyncTask<Object, Void, Object[]> {
         @Override
         protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            try {
-                final String url = "https://still-dusk-90773.herokuapp.com/api/v1.0/getCurrentWeather";
-                RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                CurrentWeather currentWeather = restTemplate.getForObject(url, CurrentWeather.class);
-                return new Object[]{dataTaskObjectArray[0], currentWeather};
-            } catch (Exception e) {
-                Log.e("CurrentActivity", e.getMessage(), e);
-            }
 
-            return new Object[]{dataTaskObjectArray[0], null};
+            return new Object[]{dataTaskObjectArray[0], Protocol.getCurrentWeather()};
         }
 
         @Override
@@ -327,51 +315,4 @@ public class CurrentActivity extends Fragment implements SwipeRefreshLayout.OnRe
             MainActivity.getIm_view_2().setVisibility(View.GONE);
         }
     }
-
-    /*@SuppressLint("StaticFieldLeak")
-    class DataTaskTwo extends AsyncTask<Object, Void, Object[]>{
-
-        @Override
-        protected Object[] doInBackground(Object[] dataTaskObjectArray) {
-            return new Object[]{ForecaParser.getForecaWeatherDataList(), GismeteoParser.getGismeteoWeatherDataList(), dataTaskObjectArray[0]};
-        }
-
-        @Override
-        protected void onPostExecute(Object[] objectsArray) {
-            List<String> forecaParserList = (List<String>) objectsArray[0];
-            List<String> gismeteoParserList = (List<String>) objectsArray[1];
-            View view = (View) objectsArray[2];
-
-            //устанавливаем температуру
-            String temperature =  WeatherDataFormatter.calculationTemperatureAverages(forecaParserList.get(0), gismeteoParserList.get(0));
-            tv_temperature_2_2 = view.findViewById(R.id.tv_temperature_2_2);
-            tv_temperature_2_2.setText(getString(R.string.ma_temperature, temperature));
-
-            //устанавливаем влажность
-            String humidity = WeatherDataFormatter.сalculationAverageHumidity(forecaParserList.get(1), gismeteoParserList.get(3));
-            tv_humidity_5_2 = view.findViewById(R.id.tv_humidity_5_2);
-            tv_humidity_5_2.setText(getString(R.string.ma_humidity, humidity));
-
-            //устанавливаем силу ветра
-            String windStrength = gismeteoParserList.get(1);
-            tv_windStrength_6_2 = view.findViewById(R.id.tv_windStrength_6_2);
-            tv_windStrength_6_2.setText(getString(R.string.ma_wind, windStrength));
-
-            //направление ветра
-            String windDirection = gismeteoParserList.get(2);
-            tv_windSide_3_2 = view.findViewById(R.id.tv_windSide_3_2);
-            tv_windSide_3_2.setText(windDirection);
-
-            //после выполнения обновления убираем кругляк обновления
-            mSwipeRefreshLayout.setRefreshing(false);
-            if(!mSwipeRefreshLayout.isRefreshing() && (countExecuteAsyncTask != 0)){
-                Toast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
-                //AppToast.makeText(thisContext, R.string.refresh_finished, Toast.LENGTH_SHORT).show();
-            }
-            countExecuteAsyncTask++;
-
-            MainActivity.getIm_view_start_screen().setVisibility(View.GONE);
-            MainActivity.getIm_view_2().setVisibility(View.GONE);
-        }
-    }*/
 }

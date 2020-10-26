@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
