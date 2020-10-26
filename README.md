@@ -3,7 +3,7 @@
 # About forecast_Inflows
 
 # Technologies in the project
-Java, SQLite
+Java, XML, SQLite
 
 # Authors
 Programming and architecture: [Mikhail Ageenko](https://github.com/millerM907)
