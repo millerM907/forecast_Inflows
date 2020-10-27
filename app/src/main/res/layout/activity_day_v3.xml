@@ -36,13 +36,13 @@
                 android:id="@+id/sp_toolbar1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_bay"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_font"
                 android:gravity="start|center_vertical"
                 android:text="@string/bay_name"
@@ -59,7 +59,7 @@
                 android:id="@+id/tv_weekday"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="start|center_vertical"
                 android:textColor="@android:color/white"
@@ -69,7 +69,7 @@
                 android:id="@+id/sp_toolbar3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -105,13 +105,13 @@
                 android:id="@+id/sp_day_time11"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_water1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/water_time"
@@ -128,7 +128,7 @@
                 android:id="@+id/tv_day_time1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -138,7 +138,7 @@
                 android:id="@+id/sp_day_time13"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -164,13 +164,13 @@
                 android:id="@+id/sp_day_height11"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_tide1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/tide_now"
@@ -187,7 +187,7 @@
                 android:id="@+id/tv_day_height1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -197,7 +197,7 @@
                 android:id="@+id/sp_day_height13"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -223,13 +223,13 @@
                 android:id="@+id/sp_day_time21"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_water2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/water_time"
@@ -246,7 +246,7 @@
                 android:id="@+id/tv_day_time2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -256,7 +256,7 @@
                 android:id="@+id/sp_day_time23"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -282,13 +282,13 @@
                 android:id="@+id/sp_day_height21"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_tide2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/tide_now"
@@ -305,7 +305,7 @@
                 android:id="@+id/tv_day_height2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -315,7 +315,7 @@
                 android:id="@+id/sp_day_height23"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -341,13 +341,13 @@
                 android:id="@+id/sp_day_time31"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_water3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/water_time"
@@ -357,14 +357,14 @@
             <Space
                 android:id="@+id/sp_day_time32"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="1dp"
                 android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_day_time3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -374,7 +374,7 @@
                 android:id="@+id/sp_day_time33"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -400,13 +400,13 @@
                 android:id="@+id/sp_day_height31"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_tide3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/tide_now"
@@ -423,7 +423,7 @@
                 android:id="@+id/tv_day_height3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -433,7 +433,7 @@
                 android:id="@+id/sp_day_height33"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -459,13 +459,13 @@
                 android:id="@+id/sp_day_time41"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_water4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/water_time"
@@ -482,7 +482,7 @@
                 android:id="@+id/tv_day_time4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -492,7 +492,7 @@
                 android:id="@+id/sp_day_time43"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -518,13 +518,13 @@
                 android:id="@+id/sp_day_height41"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_day_tide4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="15"
                 android:fontFamily="@font/my_font"
                 android:gravity="center"
                 android:text="@string/tide_now"
@@ -541,7 +541,7 @@
                 android:id="@+id/tv_day_height4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="5"
+                android:layout_weight="25"
                 android:fontFamily="@font/my_number_font"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -551,7 +551,7 @@
                 android:id="@+id/sp_day_height43"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
