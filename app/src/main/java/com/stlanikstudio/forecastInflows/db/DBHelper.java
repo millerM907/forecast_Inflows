@@ -62,18 +62,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void addTidesData(SQLiteDatabase db, List<TidesDay> tidesTable){
         ContentValues values = new ContentValues();
-        for(int i = 0; i < tidesTable.size(); i+=11) {
-            values.put(KEY_ID, " " + tidesTable.get(i));
-            values.put(KEY_SunriseTime, " " + tidesTable.get(i + 1));
-            values.put(KEY_SunsetTime, " " + tidesTable.get(i + 2));
-            values.put(KEY_TidesTime_1, " " + tidesTable.get(i + 3));
-            values.put(KEY_TidesHeight_1, " " + tidesTable.get(i + 4));
-            values.put(KEY_TidesTime_2, " " + tidesTable.get(i + 5));
-            values.put(KEY_TidesHeight_2, " " + tidesTable.get(i + 6));
-            values.put(KEY_TidesTime_3, " " + tidesTable.get(i + 7));
-            values.put(KEY_TidesHeight_3, " " + tidesTable.get(i + 8));
-            values.put(KEY_TidesTime_4, " " + tidesTable.get(i + 9));
-            values.put(KEY_TidesHeight_4, " " + tidesTable.get(i + 10));
+        for(int i = 0; i < tidesTable.size(); i++) {
+            TidesDay tidesDay = tidesTable.get(i);
+            values.put(KEY_ID, " " + tidesDay.getId());
+            values.put(KEY_SunriseTime, " " + tidesDay.getSunriseTime());
+            values.put(KEY_SunsetTime, " " + tidesDay.getSunsetTime());
+            values.put(KEY_TidesTime_1, " " + tidesDay.getTidesTimeFirst());
+            values.put(KEY_TidesHeight_1, " " + tidesDay.getTidesHeightFirst());
+            values.put(KEY_TidesTime_2, " " + tidesDay.getTidesTimeSecond());
+            values.put(KEY_TidesHeight_2, " " + tidesDay.getGetTidesHeightSecond());
+            values.put(KEY_TidesTime_3, " " + tidesDay.getTidesTimeThird());
+            values.put(KEY_TidesHeight_3, " " + tidesDay.getGetTidesHeightThird());
+            values.put(KEY_TidesTime_4, " " + tidesDay.getTidesTimeFourth());
+            values.put(KEY_TidesHeight_4, " " + tidesDay.getGetTidesHeightFourth());
             db.insert(TABLE_ScheduleTides, null, values);
         }
     }

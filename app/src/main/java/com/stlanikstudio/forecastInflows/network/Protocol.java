@@ -15,7 +15,7 @@ public class Protocol {
 
     private static final String TIDES_SERVER_API_URL = "https://still-dusk-90773.herokuapp.com/api/v1.0/";
     private static final String GET_CURRENT_WEATHER = "getCurrentWeather";
-    private static final String GET_TIDES_TABLE = "getCurrentWeather";
+    private static final String GET_TIDES_TABLE = "getTidesTable";
 
     private static RestTemplate createRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();
