@@ -43,7 +43,7 @@ During each launch, the app parsed the weather site, which increased the launch 
 
 Solution:
 
-Developed a web application TidesServer using the Spring Framework that provides a REST API.
+Developed a web application [TidesServer](https://github.com/millerM907/TidesServer) using the Spring Framework that provides a REST API.
 The parsers have been moved to the backend.
 
 ### 3) Support for new libraries with Android versions lower than 8.0
