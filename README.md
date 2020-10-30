@@ -1,10 +1,14 @@
+![123](https://github.com/millerM907/forecast_Inflows/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher2.png)
+
 # About Tides in Magadan
+
 A seaside holiday with the family, fishing with friends, a walk? You don't have to worry about being late anymore. The application "Tides in Magadan" allows you to find out: 
 - the current state of the tide and weather conditions in Nagaev Bay (Magadan); 
 - chart of times and heights of full and small waters for today and the next 12 days.
 
 The app consists of three pages:
 1) Now:
+
 The first page of the app shows information about the state of the tide,
 which is supplemented by an image of a wave in the background, the nearest time of full / low water,
 the time remaining to low/full water, air temperature,
