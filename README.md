@@ -7,21 +7,21 @@ A seaside holiday with the family, fishing with friends, a walk? You don't have 
 - chart of times and heights of full and small waters for today and the next 12 days.
 
 The app consists of three pages:
-1) Now
+1) Now:
 
-The first page of the app shows information about the state of the tide,
+the first page of the app shows information about the state of the tide,
 which is supplemented by an image of a wave in the background, the nearest time of full / low water,
 the time remaining to low/full water, air temperature,
 humidity, wind speed and direction.
 
-2) Today
+2) Today:
 
-On the second page of the app, you can find out the time of sunrise/sunset,
+on the second page of the app, you can find out the time of sunrise/sunset,
 as well as the times and heights of full and small waters for today.
 
-3) Pick of the day
+3) Pick of the day:
 
-The third page of the app allows you to view the tidal chart for one of the next 12 days.
+the third page of the app allows you to view the tidal chart for one of the next 12 days.
 
 
 # Solve the problem
