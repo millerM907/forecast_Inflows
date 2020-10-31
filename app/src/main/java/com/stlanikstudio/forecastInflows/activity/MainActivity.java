@@ -16,14 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.stlanikstudio.forecastInflows.AppAlertDialog;
-import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.util.message.AppAlertDialog;
+import com.stlanikstudio.forecastInflows.util.tides.ComputeTidalParam;
 import com.stlanikstudio.forecastInflows.network.Protocol;
 import com.stlanikstudio.forecastInflows.db.DBHelper;
 import com.stlanikstudio.forecastInflows.network.NetworkManager;
 import com.stlanikstudio.forecastInflows.R;
-import com.stlanikstudio.forecastInflows.ResourseID;
-import com.stlanikstudio.forecastInflows.TimePercent;
+import com.stlanikstudio.forecastInflows.util.resourse.ResourseID;
+import com.stlanikstudio.forecastInflows.util.tides.TimePercent;
 import com.stlanikstudio.forecastInflows.models.TidesDay;
 
 import java.net.HttpURLConnection;

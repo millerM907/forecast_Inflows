@@ -1,6 +1,8 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.util.resourse;
 
 import android.content.Context;
+
+import com.stlanikstudio.forecastInflows.BuildConfig;
 
 public class ResourseID {
     private Context context;

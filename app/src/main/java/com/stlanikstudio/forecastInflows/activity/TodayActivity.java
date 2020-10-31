@@ -13,11 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.util.tides.ComputeTidalParam;
 import com.stlanikstudio.forecastInflows.db.DBHelper;
 import com.stlanikstudio.forecastInflows.R;
-import com.stlanikstudio.forecastInflows.ResourseID;
-import com.stlanikstudio.forecastInflows.WeatherDataFormatter;
+import com.stlanikstudio.forecastInflows.util.resourse.ResourseID;
+import com.stlanikstudio.forecastInflows.util.weather.WeatherDataFormatter;
 
 import java.util.List;
 

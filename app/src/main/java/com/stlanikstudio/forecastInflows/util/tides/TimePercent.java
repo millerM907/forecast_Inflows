@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.util.tides;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;

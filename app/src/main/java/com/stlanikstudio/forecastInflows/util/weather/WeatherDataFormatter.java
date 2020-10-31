@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.util.weather;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.util.message;
 
 import android.app.Activity;
 import android.app.Application;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.stlanikstudio.forecastInflows.R;
 
 public class AppToast extends Toast {
 

@@ -13,8 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.stlanikstudio.forecastInflows.R;
-import com.stlanikstudio.forecastInflows.ResourseID;
-import com.stlanikstudio.forecastInflows.activity.DayActivity;
+import com.stlanikstudio.forecastInflows.util.resourse.ResourseID;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

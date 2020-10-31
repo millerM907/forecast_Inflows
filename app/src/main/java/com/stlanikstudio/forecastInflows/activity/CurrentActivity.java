@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Consumer;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.stlanikstudio.forecastInflows.ComputeTidalParam;
+import com.stlanikstudio.forecastInflows.util.tides.ComputeTidalParam;
 import com.stlanikstudio.forecastInflows.network.Protocol;
 import com.stlanikstudio.forecastInflows.models.CurrentWeather;
 import com.stlanikstudio.forecastInflows.db.DBHelper;
 import com.stlanikstudio.forecastInflows.network.NetworkManager;
 import com.stlanikstudio.forecastInflows.R;
-import com.stlanikstudio.forecastInflows.TimePercent;
+import com.stlanikstudio.forecastInflows.util.tides.TimePercent;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

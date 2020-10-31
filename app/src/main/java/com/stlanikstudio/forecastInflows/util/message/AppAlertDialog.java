@@ -1,8 +1,11 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.util.message;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.app.DialogFragment;
+
+import com.stlanikstudio.forecastInflows.BuildConfig;
+import com.stlanikstudio.forecastInflows.R;
 
 public class AppAlertDialog extends DialogFragment {
 

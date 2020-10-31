@@ -1,4 +1,4 @@
-package com.stlanikstudio.forecastInflows;
+package com.stlanikstudio.forecastInflows.util.tides;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
