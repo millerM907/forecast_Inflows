@@ -2,7 +2,7 @@
 
 # About Tides in Magadan
 
-A seaside holiday with the family, fishing with friends, a walk? You don't have to worry about being late anymore. The mobile application "Tides in Magadan" allows you to find out: 
+A seaside holiday with the family, fishing with friends, a walk? You don't have to worry about being late anymore. The mobile Android application "Tides in Magadan" allows you to find out: 
 - the current state of the tide and weather conditions in Nagaev Bay (Magadan); 
 - chart of times and heights of full and small waters for today and the next 12 days.
 
